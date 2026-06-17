@@ -1,0 +1,16 @@
+# Reference clone — not part of the site
+claude-code-starter/
+
+# Local editor / preview / harness config
+.claude/
+
+# OS & editor junk
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+*.log
+*.tmp
+
+# Node (in case tooling is added later)
+node_modules/

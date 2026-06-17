@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Partnerships — Empower Foundation</title>
+  <meta name="description" content="The schools, libraries, and youth organizations Empower Foundation partners with across Orange County — featuring our returning partnership with the Boys & Girls Club of Stanton." />
+  <meta name="theme-color" content="#2563EB" />
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== Design tokens (shared with index.html) ===== */
+    :root{
+      --primary:#2563EB; --primary-700:#1D4ED8; --primary-800:#1E40AF;
+      --secondary:#60A5FA;
+      --accent:#16A34A; --accent-700:#15803D; --accent-800:#166534;
+      --bg:#EFF6FF; --surface:#FFFFFF; --surface-2:#E9F2FD;
+      --heading:#0F2C5E; --text:#3A4658; --muted:#5F6B7E;
+      --border:#D6E6FB; --border-strong:#C5DCF7;
+      --ring:#2563EB;
+      --shadow-sm:0 1px 2px rgba(15,44,94,.06), 0 2px 8px rgba(15,44,94,.05);
+      --shadow-md:0 10px 30px -12px rgba(15,44,94,.22);
+      --shadow-lg:0 24px 60px -20px rgba(15,44,94,.30);
+      --radius:18px;
+      --container:1180px;
+      --space:clamp(64px, 9vw, 116px);
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{-webkit-text-size-adjust:100%}
+    @media (prefers-reduced-motion: no-preference){html{scroll-behavior:smooth}}
+    body{margin:0; background:var(--bg); color:var(--text); font-family:"Source Sans 3",system-ui,-apple-system,Segoe UI,Roboto,sans-serif; font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased}
+    h1,h2,h3,h4{font-family:"Lexend",system-ui,sans-serif; color:var(--heading); line-height:1.12; letter-spacing:-.02em; margin:0}
+    p{margin:0}
+    a{color:var(--primary-700); text-decoration:none}
+    a:hover{text-decoration:underline}
+    img,svg{display:block; max-width:100%}
+    ul{margin:0; padding:0; list-style:none}
+    :focus-visible{outline:3px solid var(--ring); outline-offset:3px; border-radius:6px}
+    .container{width:100%; max-width:var(--container); margin-inline:auto; padding-inline:clamp(20px,5vw,40px)}
+    .section{padding-block:var(--space); position:relative; overflow:hidden}
+    .section > .container{position:relative; z-index:1}
+    .eyebrow{display:inline-flex; align-items:center; gap:8px; font-family:"Lexend",sans-serif; font-weight:600; font-size:.82rem; letter-spacing:.12em; text-transform:uppercase; color:var(--primary-700); margin:0 0 14px}
+    .eyebrow::before{content:""; width:22px; height:2px; border-radius:2px; background:var(--accent)}
+    .section-head{max-width:640px; margin:0 auto 52px; text-align:center}
+    .section-head .eyebrow{justify-content:center}
+    .section-head h2{font-size:clamp(1.85rem,3.4vw,2.6rem); font-weight:700}
+    .section-head p{margin-top:16px; font-size:1.08rem; color:var(--muted)}
+    .text-grad{background:linear-gradient(120deg,#2563EB 20%,#16A34A); -webkit-background-clip:text; background-clip:text; color:transparent}
+
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:9px; min-height:50px; padding:0 26px; font-family:"Lexend",sans-serif; font-weight:600; font-size:1rem; border-radius:13px; border:1.5px solid transparent; cursor:pointer; transition:transform .18s ease, box-shadow .25s ease, background-color .2s ease, border-color .2s ease; text-decoration:none}
+    .btn:hover{text-decoration:none; transform:translateY(-2px)}
+    .btn:active{transform:translateY(0)}
+    .btn svg{width:19px; height:19px}
+    .btn-accent{background:var(--accent-700); color:#fff; box-shadow:0 10px 22px -10px rgba(21,128,61,.65)}
+    .btn-accent:hover{background:var(--accent-800)}
+    .btn-outline{background:var(--surface); color:var(--primary-800); border-color:var(--border-strong); box-shadow:var(--shadow-sm)}
+    .btn-outline:hover{border-color:var(--primary); background:#fff}
+
+    /* ===== Header / footer (shared) ===== */
+    .site-header{position:sticky; top:0; z-index:100; background:rgba(239,246,255,.82); backdrop-filter:saturate(180%) blur(14px); border-bottom:1px solid transparent; transition:border-color .25s, box-shadow .25s, background-color .25s}
+    .site-header.scrolled{border-bottom-color:var(--border); box-shadow:0 6px 24px -18px rgba(15,44,94,.5); background:rgba(239,246,255,.92)}
+    .nav{display:flex; align-items:center; gap:18px; height:74px}
+    .brand{display:inline-flex; align-items:center; gap:11px; font-family:"Lexend",sans-serif; font-weight:700; font-size:1.18rem; color:var(--heading)}
+    .brand:hover{text-decoration:none}
+    .brand .logo{width:44px; height:44px; flex:none; object-fit:contain}
+    .nav-links{display:flex; align-items:center; gap:4px; margin-left:auto}
+    .nav-links a{font-family:"Lexend",sans-serif; font-weight:500; font-size:.97rem; color:var(--heading); padding:9px 14px; border-radius:10px; transition:background-color .18s, color .18s}
+    .nav-links a:hover{background:var(--surface-2); text-decoration:none}
+    .nav-links a[aria-current="page"]{background:var(--surface-2); color:var(--primary-700)}
+    .nav-cta{margin-left:6px}
+    .nav-toggle{display:none; margin-left:auto; width:46px; height:46px; align-items:center; justify-content:center; background:var(--surface); border:1.5px solid var(--border-strong); border-radius:12px; cursor:pointer; color:var(--heading)}
+    .nav-toggle svg{width:24px;height:24px}
+    .nav-toggle .ico-close{display:none}
+    .nav-toggle[aria-expanded="true"] .ico-open{display:none}
+    .nav-toggle[aria-expanded="true"] .ico-close{display:block}
+    .mobile-menu{display:none; position:fixed; inset:74px 0 auto 0; z-index:99; background:var(--bg); border-bottom:1px solid var(--border); box-shadow:var(--shadow-lg); padding:18px clamp(20px,5vw,40px) 26px; transform:translateY(-12px); opacity:0; pointer-events:none; transition:opacity .22s, transform .22s}
+    .mobile-menu.open{opacity:1; transform:none; pointer-events:auto}
+    .mobile-menu a{display:block; font-family:"Lexend",sans-serif; font-weight:500; font-size:1.05rem; color:var(--heading); padding:14px 6px; border-bottom:1px solid var(--border)}
+    .mobile-menu a:hover{text-decoration:none; color:var(--primary-700)}
+    .mobile-menu .btn{width:100%; margin-top:18px}
+    .site-footer{background:linear-gradient(180deg,#0F2C5E,#06173A); color:#CFE0F5; position:relative; overflow:hidden}
+    .site-footer .container{position:relative; z-index:1}
+    .footer-grid{display:grid; grid-template-columns:1.6fr 1fr 1fr 1.2fr; gap:40px; padding-block:64px 40px}
+    .footer-brand .brand{color:#fff}
+    .footer-brand p{margin-top:16px; color:#A9C2E3; max-width:34ch; font-size:.97rem}
+    .footer-col h4{color:#fff; font-size:.82rem; letter-spacing:.1em; text-transform:uppercase; font-weight:600; margin-bottom:16px}
+    .footer-col a{display:block; color:#B6CBE8; padding:6px 0; font-size:.97rem}
+    .footer-col a:hover{color:#fff; text-decoration:none}
+    .footer-contact li{display:flex; gap:11px; padding:6px 0; font-size:.95rem; color:#B6CBE8}
+    .footer-contact svg{width:18px; height:18px; flex:none; margin-top:3px; color:var(--secondary)}
+    .footer-contact a{color:#B6CBE8}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.12); padding-block:22px; display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; justify-content:space-between}
+    .footer-bottom p{font-size:.88rem; color:#8FA6C9}
+
+    /* ===== Page head ===== */
+    .page-head{padding:clamp(56px,9vw,96px) 0 0; text-align:center; position:relative; overflow:hidden}
+    .page-head .crumb{display:inline-flex; align-items:center; gap:7px; font-family:"Lexend",sans-serif; font-weight:600; font-size:.9rem; margin-bottom:22px}
+    .page-head .crumb svg{width:16px; height:16px}
+    .page-head h1{font-size:clamp(2.2rem,5vw,3.6rem); font-weight:800; letter-spacing:-.03em}
+    .page-head .lede{margin:18px auto 0; max-width:62ch; color:var(--muted); font-size:1.12rem}
+    .page-head .ph-bg{position:absolute; inset:-12% 0; z-index:-1; pointer-events:none;
+      background:
+        radial-gradient(50% 38% at 24% 20%, rgba(37,99,235,.12), transparent 65%),
+        radial-gradient(46% 34% at 78% 16%, rgba(22,163,74,.12), transparent 65%)}
+
+    /* ===== Container-scroll showcase ===== */
+    .cscroll{height:60rem; display:flex; align-items:center; justify-content:center; position:relative; padding:8px; overflow:hidden}
+    .cscroll-inner{width:100%; position:relative; padding:40px 0; perspective:1000px}
+    .cscroll-head{max-width:64rem; margin:0 auto; text-align:center; will-change:transform}
+    .cscroll-head .eyebrow{justify-content:center}
+    .cs-small{font-family:"Lexend",sans-serif; font-weight:600; color:var(--heading); font-size:clamp(1.4rem,2.6vw,2rem); margin:0}
+    .cs-big{font-family:"Lexend",sans-serif; font-weight:800; font-size:clamp(2.8rem,8vw,6rem); line-height:1.04; letter-spacing:-.03em; margin:4px 0 0}
+    .cscroll-card{max-width:64rem; margin:-48px auto 0; height:30rem; width:100%; border:4px solid #6C6C6C; padding:8px; background:#222222; border-radius:30px; will-change:transform; transform:rotateX(20deg) scale(1.05);
+      box-shadow:0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003}
+    .cscroll-screen{height:100%; width:100%; overflow:hidden; border-radius:16px; background:#E9F2FD}
+    .cscroll-screen img{width:100%; height:100%; object-fit:cover; object-position:center; border-radius:12px; display:block}
+    @media (min-width:768px){
+      .cscroll{height:80rem; padding:80px}
+      .cscroll-inner{padding:160px 0}
+      .cscroll-card{height:40rem; padding:24px}
+      .cscroll-screen{padding:16px}
+    }
+    @media (prefers-reduced-motion: reduce){ .cscroll-card{transform:none !important} .cscroll-head{transform:none !important} }
+
+    /* ===== Stanton story ===== */
+    .partner{background:linear-gradient(180deg,#fff,#E9F2FD)}
+    .partner-grid{display:grid; grid-template-columns:1.08fr .92fr; gap:clamp(34px,5vw,64px); align-items:start}
+    .partner-copy p + p{margin-top:18px}
+    .partner-copy .quote{margin-top:26px; padding:22px 26px; background:var(--surface-2); border-left:4px solid var(--accent); border-radius:0 14px 14px 0; font-family:"Lexend",sans-serif; font-weight:500; color:var(--heading); font-size:1.05rem}
+    .partner-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:30px; box-shadow:var(--shadow-md); position:relative; overflow:hidden}
+    .partner-card::after{content:""; position:absolute; inset:0 0 auto auto; width:170px; height:170px; background:radial-gradient(circle at top right, rgba(74,222,128,.16), transparent 70%); pointer-events:none}
+    .partner-card h3{display:flex; align-items:center; gap:12px; font-size:1.2rem; margin-bottom:18px}
+    .partner-card h3 .mi{width:44px; height:44px; flex:none; border-radius:12px; display:grid; place-items:center; color:#fff; background:linear-gradient(135deg,#16A34A,#166534)}
+    .partner-card h3 .mi svg{width:23px; height:23px}
+    .partner-card li{display:flex; gap:11px; padding:9px 0; color:var(--text); align-items:flex-start}
+    .partner-card li svg{width:19px; height:19px; flex:none; margin-top:4px; color:var(--accent-700)}
+    .partner-card .return-note{margin-top:16px; padding-top:16px; border-top:1px solid var(--border); font-family:"Lexend",sans-serif; font-weight:600; font-size:.95rem; color:var(--primary-700); display:flex; align-items:center; gap:8px}
+    .partner-card .return-note svg{width:18px; height:18px; color:var(--accent-700)}
+
+    /* ===== Photo gallery ===== */
+    #gallery{background:linear-gradient(180deg,#EEF5FF,#F2FBF3)}
+    /* masonry photo wall — flows any number of photos at their natural heights; just add more .ph-tile buttons */
+    .gallery-grid{column-count:4; column-gap:14px}
+    .ph-tile{position:relative; display:block; width:100%; break-inside:avoid; margin:0 0 14px; border:1px solid var(--border); border-radius:16px; overflow:hidden; cursor:pointer; text-align:center; box-shadow:var(--shadow-sm); transition:transform .25s ease, box-shadow .3s ease}
+    .ph-tile:not(.has-photo){display:grid; place-items:center; padding:18px; aspect-ratio:var(--ar,4/5)}
+    .ph-tile:hover{transform:translateY(-6px); box-shadow:var(--shadow-md)}
+    .ph-tile::after{content:""; position:absolute; top:0; bottom:0; left:-85%; width:55%; background:linear-gradient(105deg, transparent, rgba(255,255,255,.55), transparent); transform:skewX(-18deg); transition:left .55s ease; pointer-events:none}
+    .ph-tile:hover::after{left:135%}
+    .ph-tile .inner{display:grid; justify-items:center; gap:7px}
+    .ph-tile .cam{width:46px; height:46px; border-radius:13px; background:rgba(255,255,255,.65); display:grid; place-items:center; transition:transform .25s ease}
+    .ph-tile:hover .cam{transform:scale(1.12) rotate(-4deg)}
+    .ph-tile .cam svg{width:24px; height:24px; color:var(--primary-700)}
+    .ph-tile .soon{font-family:"Lexend",sans-serif; font-weight:600; font-size:.82rem; color:var(--heading); opacity:.75}
+    .ph-tile .wm{position:absolute; right:12px; top:0; font-family:"Lexend",sans-serif; font-weight:800; font-size:4.4rem; line-height:1.3; color:rgba(15,44,94,.07); pointer-events:none}
+    .ph-tile .ph-cap{position:absolute; left:12px; right:12px; bottom:10px; font-family:"Lexend",sans-serif; font-weight:600; font-size:.76rem; color:var(--heading); opacity:.65; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+    .ph-tile.has-photo{min-height:140px; background:linear-gradient(135deg,#E8F1FF,#E6F6EC)}
+    .ph-tile .ph-photo{position:static; width:100%; height:auto; display:block}
+    .ph-tile.has-photo .ph-cap{z-index:2; left:0; right:0; bottom:0; padding:26px 14px 10px; color:#fff; opacity:.97; white-space:normal; background:linear-gradient(transparent, rgba(7,15,33,.82))}
+    .lb-media .lb-photo{position:absolute; inset:0; width:100%; height:100%; object-fit:contain; display:none}
+    .lb-media.has-photo{background:#0a1830}
+    .lb-media.has-photo .lb-photo{display:block}
+    .lb-media.has-photo .inner, .lb-media.has-photo .wm{display:none}
+    .g1{background:linear-gradient(135deg,#DBEAFE,#BFDBFE)}
+    .g2{background:linear-gradient(135deg,#DCFCE7,#BBF7D0)}
+    .g3{background:linear-gradient(135deg,#E0F2FE,#BAE6FD)}
+    .g4{background:linear-gradient(135deg,#D1FAE5,#A7F3D0)}
+    .g5{background:linear-gradient(135deg,#DBEAFE,#BBF7D0)}
+    .s22{grid-column:span 2; grid-row:span 2}
+    .sw2{grid-column:span 2}
+    .sh2{grid-row:span 2}
+    .gallery-grid .reveal{transition-delay:calc(var(--i,0)*55ms)}
+    .gallery-actions{display:flex; flex-wrap:wrap; justify-content:center; gap:14px; margin-top:46px}
+    @media (max-width:1100px){ .gallery-grid{column-count:3} }
+    @media (max-width:720px){ .gallery-grid{column-count:2} }
+    @media (max-width:430px){ .gallery-grid{column-count:1} }
+
+    /* ===== Lightbox ===== */
+    .lightbox{position:fixed; inset:0; z-index:200; display:grid; place-items:center; padding:22px; background:rgba(7,15,33,.66); backdrop-filter:blur(10px); opacity:0; pointer-events:none; transition:opacity .28s ease}
+    .lightbox.open{opacity:1; pointer-events:auto}
+    .lb-panel{position:relative; width:min(880px,94vw)}
+    .lb-media{height:min(58vh,520px); border-radius:22px; position:relative; overflow:hidden; display:grid; place-items:center; box-shadow:0 40px 90px -28px rgba(7,15,33,.6); transform:scale(.9) translateY(16px); transition:transform .36s cubic-bezier(.16,1,.3,1)}
+    .lightbox.open .lb-media{transform:none}
+    .lb-media .inner{display:grid; justify-items:center; gap:10px}
+    .lb-media .cam{width:72px; height:72px; border-radius:20px; background:rgba(255,255,255,.65); display:grid; place-items:center}
+    .lb-media .cam svg{width:38px; height:38px; color:var(--primary-700)}
+    .lb-media .soon{font-family:"Lexend",sans-serif; font-weight:600; color:var(--heading); opacity:.75}
+    .lb-media .wm{position:absolute; right:26px; top:0; font-family:"Lexend",sans-serif; font-weight:800; font-size:10rem; line-height:1.2; color:rgba(15,44,94,.08); pointer-events:none}
+    .lb-media.swap{animation:lbSwap .3s ease}
+    @keyframes lbSwap{from{opacity:.25; transform:scale(.965)} to{opacity:1; transform:scale(1)}}
+    .lb-cap{margin-top:16px; text-align:center; color:#fff; font-family:"Lexend",sans-serif; font-weight:600; font-size:1.02rem}
+    .lb-btn{position:absolute; width:48px; height:48px; border-radius:50%; border:none; background:rgba(255,255,255,.92); color:var(--heading); display:grid; place-items:center; cursor:pointer; box-shadow:var(--shadow-md); transition:transform .18s ease, background-color .2s}
+    .lb-btn:hover{transform:scale(1.08); background:#fff}
+    .lb-btn svg{width:22px; height:22px}
+    .lb-close{top:-14px; right:-10px}
+    .lb-prev{left:-12px; top:50%; transform:translateY(-50%)}
+    .lb-prev:hover{transform:translateY(-50%) scale(1.08)}
+    .lb-next{right:-12px; top:50%; transform:translateY(-50%)}
+    .lb-next:hover{transform:translateY(-50%) scale(1.08)}
+    @media (max-width:640px){ .lb-prev{left:6px} .lb-next{right:6px} .lb-close{right:6px} }
+
+    /* ===== Reveal ===== */
+    .js .reveal{opacity:0; transform:translateY(26px) scale(.985); transition:opacity .75s cubic-bezier(.16,1,.3,1), transform .75s cubic-bezier(.16,1,.3,1)}
+    .scroll-progress{position:fixed; top:0; left:0; height:3px; width:0; z-index:1000; background:linear-gradient(90deg,#2563EB,#16A34A); pointer-events:none}
+    .js .reveal.in{opacity:1; transform:none}
+    .js .reveal[data-d="1"]{transition-delay:.08s}
+
+    @media (max-width:980px){ .partner-grid{grid-template-columns:1fr} .footer-grid{grid-template-columns:1fr 1fr} .footer-brand{grid-column:1 / -1} }
+    @media (max-width:760px){
+      .nav-links,.nav-cta.desktop{display:none}
+      .nav-toggle{display:inline-flex}
+      .mobile-menu{display:block}
+    }
+    @media (max-width:440px){ .footer-grid{grid-template-columns:1fr} .gallery-actions .btn{width:100%} }
+    @media (prefers-reduced-motion: reduce){
+      *,*::before,*::after{animation-duration:.01ms !important; transition-duration:.01ms !important; scroll-behavior:auto !important}
+      .js .reveal{opacity:1 !important; transform:none !important}
+      .ph-tile:hover{transform:none}
+    }
+  </style>
+</head>
+<body>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <a href="#main" class="btn btn-accent" style="position:absolute; left:-9999px; top:8px; z-index:300" onfocus="this.style.left='12px'" onblur="this.style.left='-9999px'">Skip to main content</a>
+
+  <header class="site-header" id="top">
+    <div class="container">
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html" class="brand" aria-label="Empower Foundation home">
+          <img class="logo" src="logo.png" alt="" />
+          <span>Empower Foundation</span>
+        </a>
+        <div class="nav-links">
+          <a href="about.html">About</a>
+          <a href="programs.html">Programs</a>
+          <a href="index.html#volunteer">Volunteer</a>
+          <a href="partnership.html" aria-current="page">Partnerships</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <a href="index.html#get-involved" class="btn btn-accent nav-cta desktop" style="min-height:44px; padding:0 20px">Get Involved</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <svg class="ico-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <svg class="ico-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </nav>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="about.html">About</a>
+      <a href="programs.html">Programs</a>
+      <a href="index.html#volunteer">Volunteer</a>
+      <a href="partnership.html" aria-current="page">Partnerships</a>
+      <a href="contact.html">Contact</a>
+      <a href="index.html#get-involved" class="btn btn-accent">Get Involved</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===== Page head ===== -->
+    <section class="page-head">
+      <div class="ph-bg" aria-hidden="true"></div>
+      <div class="container">
+        <a class="crumb" href="index.html#explore"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Back to home</a>
+        <span class="eyebrow" style="justify-content:center; display:flex">Partnerships</span>
+        <h1>The Company <span class="text-grad">We Keep</span></h1>
+        <p class="lede">Schools, libraries, and youth organizations across Orange County — these are the partners behind our programs, and the story of the Club we keep coming back to.</p>
+      </div>
+    </section>
+
+    <!-- ===== Community showcase: 3D tilt straightens as you scroll ===== -->
+    <section class="cscroll" id="community" aria-label="Our community in action">
+      <div class="cscroll-inner">
+        <div class="cscroll-head" id="cscrollHead">
+          <span class="eyebrow">Community in Action</span>
+          <h2 class="cs-small">Watch our community</h2>
+          <p class="cs-big text-grad">Grow Together</p>
+        </div>
+        <div class="cscroll-card" id="cscrollCard">
+          <div class="cscroll-screen">
+            <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1600&q=75&auto=format&fit=crop"
+                 alt="Students learning together in a classroom" loading="lazy" draggable="false" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== The story ===== -->
+    <section class="section partner" id="stanton">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Partner Spotlight</span>
+          <h2>Boys &amp; Girls Club of Stanton</h2>
+          <p>Our favorite kind of partnership — the kind we keep coming back to.</p>
+        </div>
+        <div class="partner-grid">
+          <div class="partner-copy reveal">
+            <p>Some of our favorite chapters have been written at the <strong>Boys &amp; Girls Club of Stanton</strong>. We've partnered with the Club <strong>multiple times</strong> — and we keep coming back, because the energy in that building is exactly why Empower Foundation exists.</p>
+            <p>Across our visits, our volunteers have run hands-on STEM workshops, hosted reading and homework-help sessions, set up game and activity afternoons, and pitched in on supply drives and seasonal celebrations. Every visit is planned with the Club's staff so our time meets a real need — and every visit ends with our team already talking about the next one.</p>
+            <p>Stanton's kids show up curious, competitive, and full of questions. Our job is simple: keep showing up for them.</p>
+            <p class="quote">"Every visit reminds us why we started — kids light up when someone keeps showing up for them."</p>
+          </div>
+          <aside class="partner-card reveal" data-d="1">
+            <h3><span class="mi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 17a5 5 0 0 1-5 5H4v-2a5 5 0 0 1 5-5"/><path d="M13 7a5 5 0 0 1 5-5h2v2a5 5 0 0 1-5 5"/><path d="M4 22l16-20"/></svg></span> What volunteers do at the Club</h3>
+            <ul>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><strong>STEM workshops</strong> — hands-on builds, experiments, and science demos</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><strong>Reading buddies</strong> — one-on-one reading and homework help</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><strong>Games &amp; activities</strong> — art stations, group games, and friendly tournaments</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg><span><strong>Drives &amp; events</strong> — school supplies, books, and seasonal celebrations</span></li>
+            </ul>
+            <p class="return-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 2l4 4-4 4"/><path d="M3 11v-1a4 4 0 0 1 4-4h14"/><path d="M7 22l-4-4 4-4"/><path d="M21 13v1a4 4 0 0 1-4 4H3"/></svg> Returning partners — next visit already in the works</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Photo gallery — a growing masonry wall of ALL our photos (separate from the Stanton spotlight above) ===== -->
+    <section class="section" id="gallery">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Photo Gallery</span>
+          <h2>Our Story in Pictures</h2>
+          <p>A growing wall of everything we do — workshops, reading days, game afternoons, drives, and celebrations. New photos go up after every visit. Click any photo to view it full-size.</p>
+        </div>
+        <div class="gallery-grid" id="galleryGrid">
+          <!-- TO ADD A PHOTO: drop the image file in /images/, then copy ONE line like the two below and change the file name.
+               Order/size don't matter — the wall reflows automatically and the lightbox picks it up. -->
+          <button class="ph-tile has-photo reveal" data-img="images/stanton-chess.jpg" aria-label="Open photo"><img class="ph-photo" src="images/stanton-chess.jpg" alt="" loading="lazy" /></button>
+          <button class="ph-tile has-photo reveal" data-img="images/stanton-craft.jpg" aria-label="Open photo"><img class="ph-photo" src="images/stanton-craft.jpg" alt="" loading="lazy" /></button>
+          <button class="ph-tile g3 reveal" style="--ar:4/5" data-g="g3" data-cap="STEM Workshop" aria-label="Empty photo slot: STEM Workshop"><span class="wm">+</span><span class="inner"><span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span><span class="soon">Photo coming soon</span></span><span class="ph-cap">STEM Workshop</span></button>
+          <button class="ph-tile g4 reveal" style="--ar:1/1" data-g="g4" data-cap="Reading Day" aria-label="Empty photo slot: Reading Day"><span class="wm">+</span><span class="inner"><span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span><span class="soon">Photo coming soon</span></span><span class="ph-cap">Reading Day</span></button>
+          <button class="ph-tile g5 reveal" style="--ar:3/4" data-g="g5" data-cap="Community Day" aria-label="Empty photo slot: Community Day"><span class="wm">+</span><span class="inner"><span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span><span class="soon">Photo coming soon</span></span><span class="ph-cap">Community Day</span></button>
+          <button class="ph-tile g3 reveal" style="--ar:5/6" data-g="g3" data-cap="Game Afternoon" aria-label="Empty photo slot: Game Afternoon"><span class="wm">+</span><span class="inner"><span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span><span class="soon">Photo coming soon</span></span><span class="ph-cap">Game Afternoon</span></button>
+        </div>
+        <div class="gallery-actions reveal">
+          <a class="btn btn-accent" href="mailto:empwrfoundationcorp@gmail.com?subject=Volunteering%20with%20Empower%20Foundation">Join the Next Visit
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn-outline" href="contact.html">Contact Us</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Lightbox ===== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <div class="lb-panel">
+      <div class="lb-media g1" id="lbMedia">
+        <span class="wm" id="lbNum">1</span>
+        <span class="inner">
+          <span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span>
+          <span class="soon">Photo coming soon</span>
+        </span>
+        <img class="lb-photo" id="lbImg" alt="" />
+      </div>
+      <p class="lb-cap" id="lbCap"></p>
+      <button class="lb-btn lb-close" id="lbClose" aria-label="Close photo viewer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <button class="lb-btn lb-next" id="lbNext" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">
+            <img class="logo" src="logo.png" alt="" />
+            <span>Empower Foundation</span>
+          </a>
+          <p>Empowering communities in Orange County through education and sustainable development programs.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <a href="about.html">About Us</a>
+          <a href="programs.html">Our Programs</a>
+          <a href="index.html#volunteer">Volunteer</a>
+          <a href="partnership.html">Partnerships</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Programs</h4>
+          <a href="programs.html">Education Initiative</a>
+          <a href="programs.html">Sustainable Development</a>
+        </div>
+        <div class="footer-col">
+          <h4>Get in Touch</h4>
+          <ul class="footer-contact">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Orange County, California</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg> <a href="tel:+16575001398">(657) 500-1398</a></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg> <a href="mailto:empwrfoundationcorp@gmail.com">empwrfoundationcorp@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year">2026</span> Empower Foundation. All rights reserved. 501(c)(3) Nonprofit Organization.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+
+    // Sticky header shadow
+    var header = document.querySelector('.site-header');
+    var onScroll = function(){ header.classList.toggle('scrolled', window.scrollY > 8); };
+    onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+    // Mobile menu
+    var toggle = document.getElementById('navToggle');
+    var menu = document.getElementById('mobileMenu');
+    var setMenu = function(open){
+      menu.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+    toggle.addEventListener('click', function(){ setMenu(!menu.classList.contains('open')); });
+    menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+
+    // Reveal on scroll
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var reveals = document.querySelectorAll('.reveal');
+    if(reduce || !('IntersectionObserver' in window)){
+      reveals.forEach(function(el){ el.classList.add('in'); });
+    } else {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, {rootMargin:'0px 0px -10% 0px', threshold:0.08});
+      reveals.forEach(function(el){ io.observe(el); });
+    }
+
+    // 3D container-scroll showcase — rotateX 20->0 as the section passes
+    (function(){
+      var sec=document.getElementById('community');
+      if(!sec) return;
+      var card=document.getElementById('cscrollCard');
+      var head=document.getElementById('cscrollHead');
+      if(reduce) return;  // CSS pins the flat state
+      var mobile=window.matchMedia('(max-width:768px)');
+      function apply(){
+        var r=sec.getBoundingClientRect(), vh=window.innerHeight;
+        var p=(vh-r.top)/(vh+r.height);
+        p=Math.max(0,Math.min(1,p));
+        var rot=20*(1-p);
+        var s=mobile.matches ? (0.7+0.2*p) : (1.05-0.05*p);
+        card.style.transform='rotateX('+rot.toFixed(2)+'deg) scale('+s.toFixed(3)+')';
+        head.style.transform='translateY('+(-100*p).toFixed(1)+'px)';
+      }
+      var tick=false;
+      function onS(){ if(!tick){ tick=true; requestAnimationFrame(function(){ apply(); tick=false; }); } }
+      apply();
+      window.addEventListener('scroll', onS, {passive:true});
+      window.addEventListener('resize', onS);
+    })();
+
+    // Gallery lightbox
+    (function(){
+      var tiles = [].slice.call(document.querySelectorAll('.ph-tile'));
+      var lb = document.getElementById('lightbox');
+      if(!tiles.length || !lb) return;
+      var media = document.getElementById('lbMedia');
+      var lbImg = document.getElementById('lbImg');
+      var num = document.getElementById('lbNum');
+      var cap = document.getElementById('lbCap');
+      var btnClose = document.getElementById('lbClose');
+      var btnPrev = document.getElementById('lbPrev');
+      var btnNext = document.getElementById('lbNext');
+      var idx = 0, isOpen = false;
+      function render(){
+        var t = tiles[idx];
+        var img = t.getAttribute('data-img');
+        var dc = t.getAttribute('data-cap'); dc = dc ? dc.replace(/&amp;/g,'&') : '';
+        if(img){ media.className = 'lb-media has-photo'; lbImg.src = img; lbImg.alt = dc; }
+        else { media.className = 'lb-media ' + t.getAttribute('data-g'); lbImg.removeAttribute('src'); }
+        num.textContent = idx + 1;
+        cap.textContent = dc;
+      }
+      function swap(){ media.classList.remove('swap'); void media.offsetWidth; render(); media.classList.add('swap'); }
+      function open(i){ idx=i; render(); lb.classList.add('open'); document.body.style.overflow='hidden'; isOpen=true; btnClose.focus(); }
+      function close(){ lb.classList.remove('open'); document.body.style.overflow=''; isOpen=false; tiles[idx].focus(); }
+      function nav(d){ idx=(idx+d+tiles.length)%tiles.length; swap(); }
+      tiles.forEach(function(t,i){ t.addEventListener('click', function(){ open(i); }); });
+      btnClose.addEventListener('click', close);
+      btnPrev.addEventListener('click', function(){ nav(-1); });
+      btnNext.addEventListener('click', function(){ nav(1); });
+      lb.addEventListener('click', function(e){ if(e.target===lb) close(); });
+      document.addEventListener('keydown', function(e){
+        if(!isOpen) return;
+        if(e.key==='Escape') close();
+        else if(e.key==='ArrowLeft') nav(-1);
+        else if(e.key==='ArrowRight') nav(1);
+      });
+      window.__gallery = { open:open, close:close, count:tiles.length };
+    })();
+
+    // Scroll progress bar
+    (function(){
+      var bar=document.getElementById('scrollProgress');
+      if(!bar) return;
+      function u(){ var m=document.documentElement.scrollHeight-window.innerHeight; bar.style.width=(m>0?(window.scrollY/m)*100:0).toFixed(2)+'%'; }
+      var t=false;
+      window.addEventListener('scroll', function(){ if(!t){ t=true; requestAnimationFrame(function(){ u(); t=false; }); } }, {passive:true});
+      window.addEventListener('resize', u); u();
+    })();
+
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

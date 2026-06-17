@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Volunteer — Empower Foundation</title>
+  <meta name="description" content="Volunteer with Empower Foundation in Orange County. Become a member and join us for STEM workshops, reading sessions, and community events." />
+  <meta name="theme-color" content="#06173A" />
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== Design tokens (shared with index.html) ===== */
+    :root{
+      --primary:#2563EB; --primary-700:#1D4ED8; --primary-800:#1E40AF;
+      --secondary:#60A5FA;
+      --accent:#16A34A; --accent-700:#15803D; --accent-800:#166534;
+      --bg:#EFF6FF; --surface:#FFFFFF; --surface-2:#E9F2FD;
+      --heading:#0F2C5E; --text:#3A4658; --muted:#5F6B7E;
+      --border:#D6E6FB; --border-strong:#C5DCF7;
+      --ring:#2563EB;
+      --shadow-sm:0 1px 2px rgba(15,44,94,.06), 0 2px 8px rgba(15,44,94,.05);
+      --shadow-md:0 10px 30px -12px rgba(15,44,94,.22);
+      --shadow-lg:0 24px 60px -20px rgba(15,44,94,.30);
+      --radius:18px;
+      --container:1180px;
+      --space:clamp(64px, 9vw, 116px);
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{-webkit-text-size-adjust:100%}
+    @media (prefers-reduced-motion: no-preference){html{scroll-behavior:smooth}}
+    body{margin:0; background:var(--bg); color:var(--text); font-family:"Source Sans 3",system-ui,-apple-system,Segoe UI,Roboto,sans-serif; font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased}
+    h1,h2,h3,h4{font-family:"Lexend",system-ui,sans-serif; color:var(--heading); line-height:1.12; letter-spacing:-.02em; margin:0}
+    p{margin:0}
+    a{color:var(--primary-700); text-decoration:none}
+    a:hover{text-decoration:underline}
+    img,svg{display:block; max-width:100%}
+    ul{margin:0; padding:0; list-style:none}
+    :focus-visible{outline:3px solid var(--ring); outline-offset:3px; border-radius:6px}
+    .container{width:100%; max-width:var(--container); margin-inline:auto; padding-inline:clamp(20px,5vw,40px)}
+    .section{padding-block:var(--space); position:relative; overflow:hidden}
+    .section > .container{position:relative; z-index:1}
+    .eyebrow{display:inline-flex; align-items:center; gap:8px; font-family:"Lexend",sans-serif; font-weight:600; font-size:.82rem; letter-spacing:.12em; text-transform:uppercase; color:var(--primary-700); margin:0 0 14px}
+    .eyebrow::before{content:""; width:22px; height:2px; border-radius:2px; background:var(--accent)}
+    .section-head{max-width:640px; margin:0 auto 52px; text-align:center}
+    .section-head .eyebrow{justify-content:center}
+    .section-head h2{font-size:clamp(1.85rem,3.4vw,2.6rem); font-weight:700}
+    .section-head p{margin-top:16px; font-size:1.08rem; color:var(--muted)}
+    .text-grad-bright{background:linear-gradient(120deg,#60A5FA 15%,#4ADE80); -webkit-background-clip:text; background-clip:text; color:transparent}
+
+    /* ===== Buttons ===== */
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:9px; min-height:50px; padding:0 26px; font-family:"Lexend",sans-serif; font-weight:600; font-size:1rem; border-radius:13px; border:1.5px solid transparent; cursor:pointer; transition:transform .18s ease, box-shadow .25s ease, background-color .2s ease, border-color .2s ease; text-decoration:none}
+    .btn:hover{text-decoration:none; transform:translateY(-2px)}
+    .btn:active{transform:translateY(0)}
+    .btn svg{width:19px; height:19px}
+    .btn-accent{background:var(--accent-700); color:#fff; box-shadow:0 10px 22px -10px rgba(21,128,61,.65)}
+    .btn-accent:hover{background:var(--accent-800)}
+    .btn-ghost{background:rgba(255,255,255,.14); color:#fff; border-color:rgba(255,255,255,.45)}
+    .btn-ghost:hover{background:rgba(255,255,255,.24)}
+    .btn-outline{background:var(--surface); color:var(--primary-800); border-color:var(--border-strong); box-shadow:var(--shadow-sm)}
+    .btn-outline:hover{border-color:var(--primary); background:#fff}
+
+    /* ===== Header (shared) ===== */
+    .site-header{position:sticky; top:0; z-index:100; background:rgba(239,246,255,.82); backdrop-filter:saturate(180%) blur(14px); border-bottom:1px solid transparent; transition:border-color .25s, box-shadow .25s, background-color .25s}
+    .site-header.scrolled{border-bottom-color:var(--border); box-shadow:0 6px 24px -18px rgba(15,44,94,.5); background:rgba(239,246,255,.92)}
+    .nav{display:flex; align-items:center; gap:18px; height:74px}
+    .brand{display:inline-flex; align-items:center; gap:11px; font-family:"Lexend",sans-serif; font-weight:700; font-size:1.18rem; color:var(--heading)}
+    .brand:hover{text-decoration:none}
+    .brand .logo{width:44px; height:44px; flex:none; object-fit:contain}
+    .nav-links{display:flex; align-items:center; gap:4px; margin-left:auto}
+    .nav-links a{font-family:"Lexend",sans-serif; font-weight:500; font-size:.97rem; color:var(--heading); padding:9px 14px; border-radius:10px; transition:background-color .18s, color .18s}
+    .nav-links a:hover{background:var(--surface-2); text-decoration:none}
+    .nav-links a[aria-current="page"]{background:var(--surface-2); color:var(--primary-700)}
+    .nav-cta{margin-left:6px}
+    .nav-toggle{display:none; margin-left:auto; width:46px; height:46px; align-items:center; justify-content:center; background:var(--surface); border:1.5px solid var(--border-strong); border-radius:12px; cursor:pointer; color:var(--heading)}
+    .nav-toggle svg{width:24px;height:24px}
+    .nav-toggle .ico-close{display:none}
+    .nav-toggle[aria-expanded="true"] .ico-open{display:none}
+    .nav-toggle[aria-expanded="true"] .ico-close{display:block}
+    .mobile-menu{display:none; position:fixed; inset:74px 0 auto 0; z-index:99; background:var(--bg); border-bottom:1px solid var(--border); box-shadow:var(--shadow-lg); padding:18px clamp(20px,5vw,40px) 26px; transform:translateY(-12px); opacity:0; pointer-events:none; transition:opacity .22s, transform .22s}
+    .mobile-menu.open{opacity:1; transform:none; pointer-events:auto}
+    .mobile-menu a{display:block; font-family:"Lexend",sans-serif; font-weight:500; font-size:1.05rem; color:var(--heading); padding:14px 6px; border-bottom:1px solid var(--border)}
+    .mobile-menu a:hover{text-decoration:none; color:var(--primary-700)}
+    .mobile-menu .btn{width:100%; margin-top:18px}
+
+    /* ===== Volunteer hero with shader background ===== */
+    .vhero{position:relative; min-height:88vh; display:grid; place-items:center; overflow:hidden; background:#06173A; color:#fff; padding:110px 0 96px}
+    #shaderHero{position:absolute; inset:0; width:100%; height:100%; z-index:0}
+    #shaderHero canvas{display:block; width:100%; height:100%}
+    #shaderHero.fallback{background:
+      radial-gradient(60% 50% at 30% 30%, rgba(37,99,235,.35), transparent 70%),
+      radial-gradient(55% 45% at 75% 65%, rgba(22,163,74,.28), transparent 70%), #06173A}
+    .vhero::after{content:""; position:absolute; inset:0; width:100%; height:100%; z-index:0; pointer-events:none; background:linear-gradient(180deg, rgba(6,23,58,.30), transparent 35%, transparent 60%, rgba(6,23,58,.82))}
+    .vhero-content{position:relative; z-index:1; text-align:center; max-width:900px; padding-inline:clamp(20px,5vw,40px)}
+    .vhero-badge{display:inline-flex; align-items:center; gap:9px; padding:8px 16px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.32); border-radius:999px; font-family:"Lexend",sans-serif; font-size:.86rem; font-weight:600; color:#fff; backdrop-filter:blur(6px); margin-bottom:26px}
+    .vhero-badge .dot{width:9px; height:9px; border-radius:50%; background:#4ADE80; box-shadow:0 0 0 4px rgba(74,222,128,.2)}
+    .vhero h1{color:#fff; font-size:clamp(2.6rem,6.5vw,4.6rem); font-weight:800; letter-spacing:-.03em}
+    .vhero .lede{color:#D7E4F8; margin:20px auto 0; font-size:clamp(1.05rem,2vw,1.22rem); max-width:58ch}
+    .vhero-actions{display:flex; flex-wrap:wrap; justify-content:center; gap:14px; margin-top:34px}
+    .vhero-trust{margin-top:30px; color:#A9C2E3; font-size:.92rem; display:flex; flex-wrap:wrap; justify-content:center; gap:8px 22px}
+    .vhero-trust span{display:inline-flex; align-items:center; gap:7px}
+    .vhero-trust svg{width:16px; height:16px; color:#4ADE80}
+
+    /* ===== Ways to help cards ===== */
+    .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:24px}
+    .card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:30px; box-shadow:var(--shadow-sm); transition:transform .22s ease, box-shadow .25s ease, border-color .25s}
+    .card:hover{transform:translateY(-5px); box-shadow:var(--shadow-md); border-color:var(--border-strong)}
+    .card .chip{width:54px; height:54px; border-radius:15px; display:grid; place-items:center; color:#fff; margin-bottom:20px}
+    .card .chip svg{width:27px; height:27px}
+    .chip-blue{background:linear-gradient(135deg,#2563EB,#1E40AF)}
+    .chip-green{background:linear-gradient(135deg,#16A34A,#166534)}
+    .chip-sky{background:linear-gradient(135deg,#60A5FA,#2563EB)}
+    .card h3{font-size:1.3rem; font-weight:700; margin-bottom:10px}
+
+    /* ===== Stanton partnership ===== */
+    .partner{background:linear-gradient(180deg,#fff,#E9F2FD)}
+    .partner-grid{display:grid; grid-template-columns:1.08fr .92fr; gap:clamp(34px,5vw,64px); align-items:start}
+    .partner-copy p + p{margin-top:18px}
+    .partner-copy .quote{margin-top:26px; padding:22px 26px; background:var(--surface-2); border-left:4px solid var(--accent); border-radius:0 14px 14px 0; font-family:"Lexend",sans-serif; font-weight:500; color:var(--heading); font-size:1.05rem}
+    .partner-card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:30px; box-shadow:var(--shadow-md); position:relative; overflow:hidden}
+    .partner-card::after{content:""; position:absolute; inset:0 0 auto auto; width:170px; height:170px; background:radial-gradient(circle at top right, rgba(74,222,128,.16), transparent 70%); pointer-events:none}
+    .partner-card h3{display:flex; align-items:center; gap:12px; font-size:1.2rem; margin-bottom:18px}
+    .partner-card h3 .mi{width:44px; height:44px; flex:none; border-radius:12px; display:grid; place-items:center; color:#fff; background:linear-gradient(135deg,#16A34A,#166534)}
+    .partner-card h3 .mi svg{width:23px; height:23px}
+    .partner-card li{display:flex; gap:11px; padding:9px 0; color:var(--text); align-items:flex-start}
+    .partner-card li svg{width:19px; height:19px; flex:none; margin-top:4px; color:var(--accent-700)}
+    .partner-card .return-note{margin-top:16px; padding-top:16px; border-top:1px solid var(--border); font-family:"Lexend",sans-serif; font-weight:600; font-size:.95rem; color:var(--primary-700); display:flex; align-items:center; gap:8px}
+    .partner-card .return-note svg{width:18px; height:18px; color:var(--accent-700)}
+
+    /* ===== Photo gallery (placeholders) ===== */
+    .gallery-grid{display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:168px; gap:16px}
+    .ph-tile{position:relative; border:1px solid var(--border); border-radius:18px; overflow:hidden; cursor:pointer; display:grid; place-items:center; text-align:center; padding:14px; box-shadow:var(--shadow-sm); transition:transform .25s ease, box-shadow .3s ease}
+    .ph-tile:hover{transform:translateY(-6px); box-shadow:var(--shadow-md)}
+    .ph-tile::after{content:""; position:absolute; top:0; bottom:0; left:-85%; width:55%; background:linear-gradient(105deg, transparent, rgba(255,255,255,.55), transparent); transform:skewX(-18deg); transition:left .55s ease; pointer-events:none}
+    .ph-tile:hover::after{left:135%}
+    .ph-tile .inner{display:grid; justify-items:center; gap:7px}
+    .ph-tile .cam{width:46px; height:46px; border-radius:13px; background:rgba(255,255,255,.65); display:grid; place-items:center; transition:transform .25s ease}
+    .ph-tile:hover .cam{transform:scale(1.12) rotate(-4deg)}
+    .ph-tile .cam svg{width:24px; height:24px; color:var(--primary-700)}
+    .ph-tile .soon{font-family:"Lexend",sans-serif; font-weight:600; font-size:.82rem; color:var(--heading); opacity:.75}
+    .ph-tile .wm{position:absolute; right:12px; top:0; font-family:"Lexend",sans-serif; font-weight:800; font-size:4.4rem; line-height:1.3; color:rgba(15,44,94,.07); pointer-events:none}
+    .ph-tile .ph-cap{position:absolute; left:12px; right:12px; bottom:10px; font-family:"Lexend",sans-serif; font-weight:600; font-size:.76rem; color:var(--heading); opacity:.65; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+    .g1{background:linear-gradient(135deg,#DBEAFE,#BFDBFE)}
+    .g2{background:linear-gradient(135deg,#DCFCE7,#BBF7D0)}
+    .g3{background:linear-gradient(135deg,#E0F2FE,#BAE6FD)}
+    .g4{background:linear-gradient(135deg,#D1FAE5,#A7F3D0)}
+    .g5{background:linear-gradient(135deg,#DBEAFE,#BBF7D0)}
+    .s22{grid-column:span 2; grid-row:span 2}
+    .sw2{grid-column:span 2}
+    .sh2{grid-row:span 2}
+    .gallery-grid .reveal{transition-delay:calc(var(--i,0)*55ms)}
+    @media (max-width:900px){ .gallery-grid{grid-template-columns:repeat(3,1fr)} }
+    @media (max-width:640px){
+      .gallery-grid{grid-template-columns:repeat(2,1fr); grid-auto-rows:150px}
+      .s22{grid-column:span 2; grid-row:span 1}
+      .sh2{grid-row:span 1}
+    }
+
+    /* ===== Lightbox ===== */
+    .lightbox{position:fixed; inset:0; z-index:200; display:grid; place-items:center; padding:22px; background:rgba(7,15,33,.66); backdrop-filter:blur(10px); opacity:0; pointer-events:none; transition:opacity .28s ease}
+    .lightbox.open{opacity:1; pointer-events:auto}
+    .lb-panel{position:relative; width:min(880px,94vw)}
+    .lb-media{height:min(58vh,520px); border-radius:22px; position:relative; overflow:hidden; display:grid; place-items:center; box-shadow:0 40px 90px -28px rgba(7,15,33,.6); transform:scale(.9) translateY(16px); transition:transform .36s cubic-bezier(.16,1,.3,1)}
+    .lightbox.open .lb-media{transform:none}
+    .lb-media .inner{display:grid; justify-items:center; gap:10px}
+    .lb-media .cam{width:72px; height:72px; border-radius:20px; background:rgba(255,255,255,.65); display:grid; place-items:center}
+    .lb-media .cam svg{width:38px; height:38px; color:var(--primary-700)}
+    .lb-media .soon{font-family:"Lexend",sans-serif; font-weight:600; color:var(--heading); opacity:.75}
+    .lb-media .wm{position:absolute; right:26px; top:0; font-family:"Lexend",sans-serif; font-weight:800; font-size:10rem; line-height:1.2; color:rgba(15,44,94,.08); pointer-events:none}
+    .lb-media.swap{animation:lbSwap .3s ease}
+    @keyframes lbSwap{from{opacity:.25; transform:scale(.965)} to{opacity:1; transform:scale(1)}}
+    .lb-cap{margin-top:16px; text-align:center; color:#fff; font-family:"Lexend",sans-serif; font-weight:600; font-size:1.02rem}
+    .lb-btn{position:absolute; width:48px; height:48px; border-radius:50%; border:none; background:rgba(255,255,255,.92); color:var(--heading); display:grid; place-items:center; cursor:pointer; box-shadow:var(--shadow-md); transition:transform .18s ease, background-color .2s}
+    .lb-btn:hover{transform:scale(1.08); background:#fff}
+    .lb-btn svg{width:22px; height:22px}
+    .lb-close{top:-14px; right:-10px}
+    .lb-prev{left:-12px; top:50%; transform:translateY(-50%)}
+    .lb-prev:hover{transform:translateY(-50%) scale(1.08)}
+    .lb-next{right:-12px; top:50%; transform:translateY(-50%)}
+    .lb-next:hover{transform:translateY(-50%) scale(1.08)}
+    @media (max-width:640px){ .lb-prev{left:6px} .lb-next{right:6px} .lb-close{right:6px} }
+
+    /* ===== Contact (combined from the main site) ===== */
+    .btn-primary{background:linear-gradient(135deg,#2563EB,#1D4ED8); color:#fff; box-shadow:0 10px 22px -10px rgba(29,78,216,.7)}
+    .btn-primary:hover{box-shadow:0 16px 30px -10px rgba(29,78,216,.75)}
+    .contact-grid{display:grid; grid-template-columns:.92fr 1.08fr; gap:clamp(30px,4vw,56px); align-items:start}
+    .contact-list{display:grid; gap:14px; margin-top:26px}
+    .contact-list li{display:flex; align-items:center; gap:15px; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:16px 18px; box-shadow:var(--shadow-sm)}
+    .contact-list .ic{width:44px; height:44px; flex:none; border-radius:12px; display:grid; place-items:center; background:var(--surface-2); color:var(--primary-700)}
+    .contact-list .ic svg{width:21px; height:21px}
+    .contact-list small{display:block; color:var(--muted); font-size:.82rem}
+    .contact-list a,.contact-list strong{font-family:"Lexend",sans-serif; font-weight:600; color:var(--heading); font-size:1rem}
+    .contact-list a:hover{color:var(--primary-700)}
+    .form{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:clamp(24px,3vw,34px); box-shadow:var(--shadow-md)}
+    .form-row{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+    .field{margin-top:16px}
+    .field:first-child{margin-top:0}
+    .field label{display:block; font-family:"Lexend",sans-serif; font-weight:600; font-size:.9rem; color:var(--heading); margin-bottom:7px}
+    .field .req{color:var(--accent-700)}
+    .field input,.field textarea{width:100%; font:inherit; color:var(--heading); background:var(--bg); border:1.5px solid var(--border-strong); border-radius:12px; padding:13px 15px; min-height:50px; transition:border-color .18s, box-shadow .18s}
+    .field textarea{min-height:130px; resize:vertical}
+    .field input:focus,.field textarea:focus{outline:none; border-color:var(--primary); box-shadow:0 0 0 4px rgba(37,99,235,.15)}
+    .form button{width:100%; margin-top:20px}
+    .form-success{display:none; align-items:center; gap:10px; margin-top:16px; padding:14px 16px; background:#E8F8EE; border:1px solid #A7E0BC; color:#166534; border-radius:12px; font-weight:600; font-family:"Lexend",sans-serif; font-size:.95rem}
+    .form-success.show{display:flex}
+    .form-success svg{width:20px; height:20px; flex:none}
+    @media (max-width:980px){ .contact-grid{grid-template-columns:1fr} }
+    @media (max-width:760px){ .form-row{grid-template-columns:1fr} }
+
+    /* ===== CTA band ===== */
+    .cta-band{text-align:center; background:linear-gradient(135deg,#1D4ED8,#1E40AF); color:#fff; border-radius:26px; padding:clamp(40px,6vw,64px); position:relative; overflow:hidden}
+    .cta-band::before{content:""; position:absolute; width:360px; height:360px; top:-160px; right:-80px; border-radius:50%; background:radial-gradient(circle,rgba(22,163,74,.45),transparent 70%); filter:blur(30px)}
+    .cta-band h2{color:#fff; font-size:clamp(1.7rem,3.2vw,2.3rem); position:relative}
+    .cta-band p{color:#DCEAFB; margin:14px auto 0; max-width:52ch; position:relative}
+    .cta-band .vhero-actions{position:relative; margin-top:28px}
+
+    /* ===== Footer (shared) ===== */
+    .site-footer{background:linear-gradient(180deg,#0F2C5E,#06173A); color:#CFE0F5; position:relative; overflow:hidden}
+    .site-footer .container{position:relative; z-index:1}
+    .footer-grid{display:grid; grid-template-columns:1.6fr 1fr 1fr 1.2fr; gap:40px; padding-block:64px 40px}
+    .footer-brand .brand{color:#fff}
+    .footer-brand p{margin-top:16px; color:#A9C2E3; max-width:34ch; font-size:.97rem}
+    .footer-col h4{color:#fff; font-size:.82rem; letter-spacing:.1em; text-transform:uppercase; font-weight:600; margin-bottom:16px}
+    .footer-col a{display:block; color:#B6CBE8; padding:6px 0; font-size:.97rem}
+    .footer-col a:hover{color:#fff; text-decoration:none}
+    .footer-contact li{display:flex; gap:11px; padding:6px 0; font-size:.95rem; color:#B6CBE8}
+    .footer-contact svg{width:18px; height:18px; flex:none; margin-top:3px; color:var(--secondary)}
+    .footer-contact a{color:#B6CBE8}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.12); padding-block:22px; display:flex; flex-wrap:wrap; gap:12px 24px; align-items:center; justify-content:space-between}
+    .footer-bottom p{font-size:.88rem; color:#8FA6C9}
+
+    /* ===== Reveal ===== */
+    .js .reveal{opacity:0; transform:translateY(22px); transition:opacity .6s ease, transform .6s ease}
+    .js .reveal.in{opacity:1; transform:none}
+
+    @media (max-width:980px){ .partner-grid{grid-template-columns:1fr} .footer-grid{grid-template-columns:1fr 1fr} .footer-brand{grid-column:1 / -1} }
+    @media (max-width:760px){
+      .nav-links,.nav-cta.desktop{display:none}
+      .nav-toggle{display:inline-flex}
+      .mobile-menu{display:block}
+      .grid-3{grid-template-columns:1fr}
+    }
+    @media (max-width:440px){ .footer-grid{grid-template-columns:1fr} .vhero-actions .btn{width:100%} }
+    @media (prefers-reduced-motion: reduce){
+      *,*::before,*::after{animation-duration:.01ms !important; transition-duration:.01ms !important; scroll-behavior:auto !important}
+      .js .reveal{opacity:1 !important; transform:none !important}
+      .ph-tile:hover{transform:none}
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="btn btn-accent" style="position:absolute; left:-9999px; top:8px; z-index:300" onfocus="this.style.left='12px'" onblur="this.style.left='-9999px'">Skip to main content</a>
+
+  <header class="site-header" id="top">
+    <div class="container">
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html" class="brand" aria-label="Empower Foundation home">
+          <img class="logo" src="logo.png" alt="" />
+          <span>Empower Foundation</span>
+        </a>
+        <div class="nav-links">
+          <a href="about.html">About</a>
+          <a href="programs.html">Programs</a>
+          <a href="impact.html">Impact</a>
+          <a href="volunteer.html" aria-current="page">Volunteer</a>
+          <a href="partnership.html">Partnerships</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <a href="index.html#get-involved" class="btn btn-accent nav-cta desktop" style="min-height:44px; padding:0 20px">Get Involved</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <svg class="ico-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <svg class="ico-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </nav>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="about.html">About</a>
+      <a href="programs.html">Programs</a>
+      <a href="impact.html">Impact</a>
+      <a href="volunteer.html" aria-current="page">Volunteer</a>
+      <a href="partnership.html">Partnerships</a>
+      <a href="contact.html">Contact</a>
+      <a href="index.html#get-involved" class="btn btn-accent">Get Involved</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ===== Hero with shader background ===== -->
+    <section class="vhero" aria-label="Volunteer with Empower Foundation">
+      <div id="shaderHero" aria-hidden="true"></div>
+      <div class="vhero-content">
+        <span class="vhero-badge"><span class="dot" aria-hidden="true"></span> Volunteer Program · Orange County, CA</span>
+        <h1>Show up. <span class="text-grad-bright">Light up.</span></h1>
+        <p class="lede">Give a few hours and change a kid's whole afternoon. Our volunteers run STEM workshops, reading sessions, and community events across Orange County. No experience needed — just a few hours and a willingness to show up for kids.</p>
+        <div class="vhero-actions">
+          <a class="btn btn-accent" href="https://docs.google.com/forms/d/e/1FAIpQLSfQb9ZlRo9s5LPFhD4UAlIQL3xLcodb1IBYewKDDv5xClT3ag/viewform?usp=header" target="_blank" rel="noopener">Become a Member
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#membership">How Volunteering Works</a>
+        </div>
+        <div class="vhero-trust">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg> 501(c)(3) nonprofit</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg> Student-founded &amp; volunteer-led</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13A4 4 0 0 1 16 11"/></svg> Proud partners of local youth organizations</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Membership required ===== -->
+    <section class="section" id="membership">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Before You Start</span>
+          <h2>Volunteering Starts With Membership</h2>
+          <p>To volunteer with Empower Foundation, you first need to become a member. It's free, takes about two minutes, and it's how we keep every kid we serve safe and supported.</p>
+        </div>
+        <div class="grid-3">
+          <article class="card reveal">
+            <span class="chip chip-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h4"/></svg></span>
+            <h3>1 &middot; Fill Out the Form</h3>
+            <p>Complete our short membership form — your name, contact info, and a couple of quick questions. About two minutes.</p>
+          </article>
+          <article class="card reveal" style="transition-delay:.08s">
+            <span class="chip chip-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg></span>
+            <h3>2 &middot; Get Confirmed</h3>
+            <p>We'll review your form and welcome you as an official Empower Foundation member.</p>
+          </article>
+          <article class="card reveal" style="transition-delay:.16s">
+            <span class="chip chip-sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></span>
+            <h3>3 &middot; Start Volunteering</h3>
+            <p>Once you're a member, you can sign up for STEM workshops, reading sessions, and club visits across Orange County.</p>
+          </article>
+        </div>
+        <div class="cta-band reveal" style="margin-top:44px">
+          <h2>Become a Member</h2>
+          <p>Membership is required to volunteer with Empower Foundation. Fill out the membership form to join — it only takes a couple of minutes.</p>
+          <div class="vhero-actions">
+            <a class="btn btn-accent" href="https://docs.google.com/forms/d/e/1FAIpQLSfQb9ZlRo9s5LPFhD4UAlIQL3xLcodb1IBYewKDDv5xClT3ag/viewform?usp=header" target="_blank" rel="noopener">Fill Out the Membership Form
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a class="btn btn-ghost" href="#gallery">See Our Moments</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ===== Photo gallery (placeholders for now) ===== -->
+    <section class="section" id="gallery">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Photo Gallery</span>
+          <h2>Moments From Our Visits</h2>
+          <p>Placeholders for now — real photos from our volunteer days are coming soon. Click any frame to preview the gallery experience.</p>
+        </div>
+        <div class="gallery-grid" id="galleryGrid">
+          <button class="ph-tile g1 s22 reveal" style="--i:0" data-g="g1" data-cap="STEM Workshop Day" aria-label="Open photo 1: STEM Workshop Day"><span class="wm">1</span><span class="inner"><span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span><span class="soon">Photo coming soon</span></span><span class="ph-cap">STEM Workshop Day</span></button>
+          <button class="ph-tile g2 reveal" style="--i:1" data-g="g2" data-cap="Reading Buddies Session" aria-label="Open photo 2: Reading Buddies Session"><span class="wm">2</span><span class="inner"><span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span><span class="soon">Photo coming soon</span></span><span class="ph-cap">Reading Buddies</span></button>
+          <button class="ph-tile g3 reveal" style="--i:2" data-g="g3" data-cap="Game &amp; Activity Afternoon" aria-label="Open photo 3: Game and Activity Afternoon"><span class="wm">3</span><span class="inner"><span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span><span class="soon">Photo coming soon</span></span><span class="ph-cap">Game &amp; Activity Afternoon</span></button>
+          <button class="ph-tile g4 reveal" style="--i:3" data-g="g4" data-cap="School Supply Drive Prep" aria-label="Open photo 4: School Supply Drive Prep"><span class="wm">4</span><span class="inner"><span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span><span class="soon">Photo coming soon</span></span><span class="ph-cap">Supply Drive Prep</span></button>
+          <button class="ph-tile g5 reveal" style="--i:4" data-g="g5" data-cap="Holiday Celebration" aria-label="Open photo 5: Holiday Celebration"><span class="wm">5</span><span class="inner"><span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span><span class="soon">Photo coming soon</span></span><span class="ph-cap">Holiday Celebration</span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="cta-band reveal">
+          <h2>Ready to show up for Orange County kids?</h2>
+          <p>The first step is becoming a member — it's free and takes about two minutes. Fill out the membership form and we'll help you find a spot on the next visit.</p>
+          <div class="vhero-actions">
+            <a class="btn btn-accent" href="https://docs.google.com/forms/d/e/1FAIpQLSfQb9ZlRo9s5LPFhD4UAlIQL3xLcodb1IBYewKDDv5xClT3ag/viewform?usp=header" target="_blank" rel="noopener">Fill Out the Membership Form</a>
+            <a class="btn btn-ghost" href="contact.html">Questions? Contact Us</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Contact (combined from the main site) ===== -->
+    <section class="section" id="contact" style="background:linear-gradient(180deg,#E9F2FD,#EFF6FF)">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info reveal">
+            <span class="eyebrow">Contact Us</span>
+            <h2 style="font-size:clamp(1.8rem,3.2vw,2.4rem); font-weight:700">Questions? We're Here to Help</h2>
+            <p style="margin-top:16px; color:var(--muted)">Whether you're ready to volunteer, want to plan a visit with your school or company, or just have a question — reach out and we'll get right back to you.</p>
+            <ul class="contact-list">
+              <li>
+                <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+                <span><small>Location</small><strong>Orange County, California</strong></span>
+              </li>
+              <li>
+                <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span>
+                <span><small>Phone</small><a href="tel:+16575001398">(657) 500-1398</a></span>
+              </li>
+              <li>
+                <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
+                <span><small>Email</small><a href="mailto:empwrfoundationcorp@gmail.com">empwrfoundationcorp@gmail.com</a></span>
+              </li>
+              <li>
+                <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></span>
+                <span><small>Instagram</small><a href="https://instagram.com/empwr_foundation" target="_blank" rel="noopener">@empwr_foundation</a></span>
+              </li>
+            </ul>
+          </div>
+
+          <form class="form reveal" id="contactForm" novalidate>
+            <div class="form-row">
+              <div class="field">
+                <label for="firstName">First Name <span class="req" aria-hidden="true">*</span></label>
+                <input id="firstName" name="firstName" type="text" autocomplete="given-name" required />
+              </div>
+              <div class="field">
+                <label for="lastName">Last Name</label>
+                <input id="lastName" name="lastName" type="text" autocomplete="family-name" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+            <div class="field">
+              <label for="subject">Subject</label>
+              <input id="subject" name="subject" type="text" value="Volunteering with Empower Foundation" />
+            </div>
+            <div class="field">
+              <label for="message">Message <span class="req" aria-hidden="true">*</span></label>
+              <textarea id="message" name="message" required placeholder="Tell us how you'd like to help — mentoring, events, or behind the scenes."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Send Message
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            </button>
+            <p class="form-success" id="formSuccess" role="status" aria-live="polite">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>
+              Thank you! Your message has been sent. We'll be in touch soon.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Lightbox ===== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <div class="lb-panel">
+      <div class="lb-media g1" id="lbMedia">
+        <span class="wm" id="lbNum">1</span>
+        <span class="inner">
+          <span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span>
+          <span class="soon">Photo coming soon</span>
+        </span>
+      </div>
+      <p class="lb-cap" id="lbCap"></p>
+      <button class="lb-btn lb-close" id="lbClose" aria-label="Close photo viewer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+      <button class="lb-btn lb-next" id="lbNext" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">
+            <img class="logo" src="logo.png" alt="" />
+            <span>Empower Foundation</span>
+          </a>
+          <p>Empowering communities in Orange County through education and sustainable development programs.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <a href="about.html">About Us</a>
+          <a href="programs.html">Our Programs</a>
+          <a href="volunteer.html">Volunteer</a>
+          <a href="partnership.html">Partnerships</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQb9ZlRo9s5LPFhD4UAlIQL3xLcodb1IBYewKDDv5xClT3ag/viewform?usp=header" target="_blank" rel="noopener">Become a Member</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+          <h4>Programs</h4>
+          <a href="programs.html">Education Initiative</a>
+          <a href="programs.html">Sustainable Development</a>
+        </div>
+        <div class="footer-col">
+          <h4>Get in Touch</h4>
+          <ul class="footer-contact">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Orange County, California</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.6A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.4-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg> <a href="tel:+16575001398">(657) 500-1398</a></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg> <a href="mailto:empwrfoundationcorp@gmail.com">empwrfoundationcorp@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; <span id="year">2026</span> Empower Foundation. All rights reserved. 501(c)(3) Nonprofit Organization.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- three.js (same pinned CDN build the main page uses for the 3D bloom) -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+  <script>
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+
+    // Sticky header shadow
+    var header = document.querySelector('.site-header');
+    var onScroll = function(){ header.classList.toggle('scrolled', window.scrollY > 8); };
+    onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+    // Mobile menu
+    var toggle = document.getElementById('navToggle');
+    var menu = document.getElementById('mobileMenu');
+    var setMenu = function(open){
+      menu.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+    toggle.addEventListener('click', function(){ setMenu(!menu.classList.contains('open')); });
+    menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+
+    // Reveal on scroll
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var reveals = document.querySelectorAll('.reveal');
+    if(reduce || !('IntersectionObserver' in window)){
+      reveals.forEach(function(el){ el.classList.add('in'); });
+    } else {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+      }, {rootMargin:'0px 0px -10% 0px', threshold:0.08});
+      reveals.forEach(function(el){ io.observe(el); });
+    }
+
+    // ===== Shader hero — vanilla port of the React/three.js ShaderAnimation =====
+    // Same radial-ripple fragment shader, brand-tinted: blue + green + cyan line sets
+    // over deep navy instead of the original white-on-black RGB offsets.
+    (function(){
+      var host = document.getElementById('shaderHero');
+      if(!host) return;
+      if(typeof THREE === 'undefined'){ host.className = 'fallback'; return; }
+      var renderer;
+      try{ renderer = new THREE.WebGLRenderer({antialias:true}); }
+      catch(e){ host.className = 'fallback'; return; }
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio||1, 2));
+
+      var VS = 'void main(){ gl_Position = vec4(position, 1.0); }';
+      var FS = [
+        'precision highp float;',
+        'uniform vec2 resolution;',
+        'uniform float time;',
+        'float lines(vec2 uv, float t, float phase){',
+        '  float acc = 0.0;',
+        '  for(int i=0;i<5;i++){',
+        '    acc += 0.002*float(i*i) / abs(fract(t - phase + float(i)*0.01)*5.0 - length(uv) + mod(uv.x+uv.y, 0.2));',
+        '  }',
+        '  return acc;',
+        '}',
+        'void main(void){',
+        '  vec2 uv = (gl_FragCoord.xy*2.0 - resolution.xy) / min(resolution.x, resolution.y);',
+        '  float t = time*0.05;',
+        '  vec3 base  = vec3(0.012, 0.045, 0.130);',   // deep navy, matches #06173A family
+        '  vec3 blue  = vec3(0.231, 0.510, 0.965);',   // #3B82F6
+        '  vec3 green = vec3(0.290, 0.871, 0.502);',   // #4ADE80
+        '  vec3 cyan  = vec3(0.373, 0.792, 0.961);',
+        '  vec3 color = base',
+        '    + lines(uv, t, 0.0)   * blue',
+        '    + lines(uv, t, 0.012) * green',
+        '    + lines(uv, t, 0.024) * cyan * 0.55;',
+        '  gl_FragColor = vec4(color, 1.0);',
+        '}'
+      ].join('\n');
+
+      var camera = new THREE.Camera(); camera.position.z = 1;
+      var scene = new THREE.Scene();
+      var uniforms = { time:{value:1.0}, resolution:{value:new THREE.Vector2()} };
+      var quad = new THREE.Mesh(
+        new THREE.PlaneGeometry(2,2),
+        new THREE.ShaderMaterial({uniforms:uniforms, vertexShader:VS, fragmentShader:FS})
+      );
+      quad.frustumCulled = false;  // identity-projection camera: CPU culling would reject the quad
+      scene.add(quad);
+      host.appendChild(renderer.domElement);
+
+      function size(){
+        renderer.setSize(host.clientWidth, host.clientHeight);
+        uniforms.resolution.value.set(renderer.domElement.width, renderer.domElement.height);
+      }
+      size();
+      window.addEventListener('resize', size);
+
+      function force(t){ if(t !== undefined) uniforms.time.value = t; renderer.render(scene, camera); return uniforms.time.value; }
+      if(reduce){ force(60); window.__shader = {ok:true, mode:'static', force:force}; return; }
+
+      var visible = true;
+      if('IntersectionObserver' in window){
+        new IntersectionObserver(function(es){ for(var i=0;i<es.length;i++) visible = es[i].isIntersecting; }).observe(host);
+      }
+      (function loop(){
+        requestAnimationFrame(loop);
+        if(!visible) return;
+        uniforms.time.value += 0.05;
+        renderer.render(scene, camera);
+      })();
+      force();
+      window.__shader = {ok:true, mode:'animated', force:force};
+    })();
+
+    // ===== Gallery lightbox with smooth zoom/swap transitions =====
+    (function(){
+      var tiles = [].slice.call(document.querySelectorAll('.ph-tile'));
+      var lb = document.getElementById('lightbox');
+      var media = document.getElementById('lbMedia');
+      var num = document.getElementById('lbNum');
+      var cap = document.getElementById('lbCap');
+      var btnClose = document.getElementById('lbClose');
+      var btnPrev = document.getElementById('lbPrev');
+      var btnNext = document.getElementById('lbNext');
+      var idx = 0, isOpen = false;
+
+      function render(){
+        var t = tiles[idx];
+        media.className = 'lb-media ' + t.getAttribute('data-g');
+        num.textContent = idx + 1;
+        cap.textContent = t.getAttribute('data-cap').replace(/&amp;/g,'&');
+      }
+      function swap(){
+        media.classList.remove('swap');
+        void media.offsetWidth;          // restart the swap animation
+        render();
+        media.classList.add('swap');
+      }
+      function open(i){
+        idx = i; render();
+        lb.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        isOpen = true;
+        btnClose.focus();
+      }
+      function close(){
+        lb.classList.remove('open');
+        document.body.style.overflow = '';
+        isOpen = false;
+        tiles[idx].focus();
+      }
+      function nav(d){ idx = (idx + d + tiles.length) % tiles.length; swap(); }
+
+      tiles.forEach(function(t,i){ t.addEventListener('click', function(){ open(i); }); });
+      btnClose.addEventListener('click', close);
+      btnPrev.addEventListener('click', function(){ nav(-1); });
+      btnNext.addEventListener('click', function(){ nav(1); });
+      lb.addEventListener('click', function(e){ if(e.target === lb) close(); });
+      document.addEventListener('keydown', function(e){
+        if(!isOpen) return;
+        if(e.key === 'Escape') close();
+        else if(e.key === 'ArrowLeft') nav(-1);
+        else if(e.key === 'ArrowRight') nav(1);
+      });
+      window.__gallery = { open:open, close:close, count:tiles.length };
+    })();
+
+    // Contact form -> sends to empwrfoundationcorp@gmail.com via Web3Forms (lands in the inbox)
+    (function(){
+      var form = document.getElementById('contactForm');
+      var success = document.getElementById('formSuccess');
+      if(!form) return;
+      form.addEventListener('submit', function(e){
+        e.preventDefault();
+        if(!form.checkValidity()){ form.reportValidity(); return; }
+        var btn = form.querySelector('button[type="submit"]'), label = btn ? btn.innerHTML : '';
+        if(btn){ btn.disabled = true; btn.style.opacity = '0.65'; }
+        var data = new FormData(form);
+        data.append('access_key', 'ec5b187f-f1a3-4edc-b9cb-69385d1fe40e');
+        if(!(data.get('subject') || '').toString().trim()){ data.set('subject', 'New message from the Empower Foundation website'); }
+        data.append('from_name', 'Empower Foundation website');
+        fetch('https://api.web3forms.com/submit', { method:'POST', headers:{ 'Accept':'application/json' }, body:data })
+          .then(function(r){ return r.json(); })
+          .then(function(j){ if(j && j.success){ if(success){ success.classList.add('show'); } form.reset(); } else { window.location.href = 'mailto:empwrfoundationcorp@gmail.com'; } })
+          .catch(function(){ window.location.href = 'mailto:empwrfoundationcorp@gmail.com'; })
+          .finally(function(){ if(btn){ btn.disabled = false; btn.style.opacity = ''; btn.innerHTML = label; } });
+      });
+    })();
+
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
