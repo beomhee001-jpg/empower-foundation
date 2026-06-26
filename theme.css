@@ -2,7 +2,7 @@
    Empower Foundation — Premium Glass Theme (site-wide)
    Loaded AFTER each page's inline <style> so it re-skins globally.
    ============================================================ */
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 /* ---- Tokens: richer, cooler, more premium ---- */
 :root{
@@ -22,10 +22,12 @@
   --glass-brd:rgba(255,255,255,.7);
 }
 
-/* ---- Modern, friendly type (Plus Jakarta Sans everywhere) ---- */
-body,.nav-links a,.mobile-menu a{font-family:"Plus Jakarta Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-h1,h2,h3,h4,.eyebrow,.btn,.brand{font-family:"Plus Jakarta Sans","Lexend",system-ui,sans-serif}
-h1,h2,h3,h4{letter-spacing:-.02em}
+/* ---- Type: clean & matte, distinctive headings, refined spacing ---- */
+body,.nav-links a,.mobile-menu a{font-family:"Plus Jakarta Sans",system-ui,-apple-system,Segoe UI,Roboto,sans-serif; letter-spacing:.004em}
+h1,h2,h3,h4,.brand{font-family:"Bricolage Grotesque","Plus Jakarta Sans",system-ui,sans-serif}
+.eyebrow,.btn{font-family:"Plus Jakarta Sans",system-ui,sans-serif}
+h1,h2,h3,h4{letter-spacing:-.012em}
+.nav-links a{letter-spacing:.01em}
 
 /* ---- Green/white base behind the drifting-particle canvas (bg.js) ---- */
 body{background:linear-gradient(180deg,#F1FAF3 0%,#E4F3E8 48%,#EFF8F1 100%)}
@@ -35,11 +37,14 @@ body::before{content:""; position:fixed; inset:0; z-index:-2; pointer-events:non
     radial-gradient(48% 48% at 90% 12%, rgba(34,197,94,.16), transparent 64%),
     radial-gradient(58% 54% at 82% 98%, rgba(5,150,105,.14), transparent 64%),
     radial-gradient(42% 42% at 4% 92%, rgba(45,212,140,.12), transparent 62%);}
+/* let the drifting particle field show through every light content band */
+.programs,.partner,#about,#contact,.page-head{background:transparent !important}
 
 /* ---- Eyebrow → gradient text chip ---- */
-.eyebrow{background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent; font-weight:600; letter-spacing:.16em}
-.eyebrow::before{background:var(--grad); width:26px; height:2px}
-.section-head h2{letter-spacing:-.02em}
+.eyebrow{background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent; font-weight:600; letter-spacing:.26em}
+.eyebrow::before{background:var(--grad); width:30px; height:2px}
+.section-head h2{letter-spacing:-.012em; font-size:clamp(2rem,3.9vw,2.95rem)}
+.section-head p{letter-spacing:.005em}
 
 /* ---- Glass header ---- */
 .site-header{background:rgba(255,255,255,.55); -webkit-backdrop-filter:saturate(180%) blur(20px); backdrop-filter:saturate(180%) blur(20px); border-bottom:1px solid rgba(255,255,255,.55)}
