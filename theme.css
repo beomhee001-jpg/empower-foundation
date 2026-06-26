@@ -80,5 +80,34 @@ body::before{content:""; position:fixed; inset:0; z-index:-1; pointer-events:non
 /* ---- Footer polish ---- */
 .site-footer{border-top:1px solid var(--border)}
 
+/* ============================================================
+   Consistency pass — bring the Volunteer page into the light
+   glass theme so every page matches.
+   ============================================================ */
+/* Volunteer hero: was a full dark shader screen — now light + aurora */
+.vhero{background:transparent !important; color:var(--heading); min-height:auto !important; padding:clamp(100px,15vh,165px) 0 clamp(58px,8vh,108px)}
+.vhero #shaderHero{display:none !important}
+.vhero::after{display:none !important}
+.vhero h1{color:var(--heading)}
+.vhero .lede{color:var(--muted)}
+.vhero-badge{background:rgba(255,255,255,.62); border:1px solid var(--border-strong); color:var(--primary-700); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px)}
+.vhero-badge .dot{background:var(--accent); box-shadow:0 0 0 4px rgba(16,185,129,.18)}
+.vhero-trust{color:var(--muted)}
+.vhero-trust svg{color:var(--accent)}
+.vhero .btn-ghost{background:rgba(255,255,255,.6); color:var(--primary-800); border-color:var(--border-strong); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px)}
+.vhero .btn-ghost:hover{background:#fff; border-color:var(--primary)}
+
+/* Photo showcase (Spring/Summer): was dark navy — now light glass like the rest */
+.photo-showcase{background:transparent !important; color:var(--text)}
+.photo-showcase::before,.photo-showcase::after{display:none !important}
+.photo-showcase .section-head h2{color:var(--heading)}
+.photo-showcase .section-head p{color:var(--muted)}
+.photo-showcase .eyebrow{background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent; border:none}
+.photo-showcase .gallery-grid .ph-tile{background:var(--surface); box-shadow:var(--shadow-md)}
+.photo-showcase .gallery-grid .ph-tile:not(.has-photo){background:rgba(255,255,255,.6); border:1px solid var(--border)}
+.photo-showcase .ph-tile .cam{background:linear-gradient(135deg,rgba(37,99,235,.14),rgba(16,185,129,.16))}
+.photo-showcase .ph-tile .cam svg{color:var(--primary-700)}
+.photo-showcase .ph-tile:hover{box-shadow:0 30px 70px -26px rgba(37,99,235,.45)}
+
 /* ---- Respect reduced motion ---- */
 @media (prefers-reduced-motion: reduce){ .btn,.card{transition:none} }
