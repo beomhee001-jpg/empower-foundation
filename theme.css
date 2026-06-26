@@ -1,0 +1,83 @@
+/* ============================================================
+   Empower Foundation — Premium Glass Theme (site-wide)
+   Loaded AFTER each page's inline <style> so it re-skins globally.
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap');
+
+/* ---- Tokens: richer, cooler, more premium ---- */
+:root{
+  --primary:#2563EB; --primary-700:#1D4ED8; --primary-800:#1E3A8A;
+  --secondary:#60A5FA;
+  --accent:#10B981; --accent-700:#0E9F6E; --accent-800:#0B7D57;
+  --bg:#E9EFFA; --surface:#FFFFFF; --surface-2:#EDF3FC;
+  --heading:#0B1F44; --text:#3C4658; --muted:#67738A;
+  --border:#DBE6F7; --border-strong:#C6D8F2;
+  --ring:#2563EB;
+  --shadow-sm:0 1px 2px rgba(11,31,68,.05), 0 6px 18px rgba(11,31,68,.06);
+  --shadow-md:0 16px 44px -18px rgba(11,31,68,.30);
+  --shadow-lg:0 34px 80px -26px rgba(11,31,68,.40);
+  --radius:22px; --radius-sm:14px;
+  --grad:linear-gradient(120deg,#2563EB 0%,#3B82F6 45%,#10B981 100%);
+  --glass:rgba(255,255,255,.66);
+  --glass-brd:rgba(255,255,255,.7);
+}
+
+/* ---- Futuristic headings + tighter tracking ---- */
+h1,h2,h3,h4,.eyebrow,.btn{font-family:"Space Grotesk","Lexend",system-ui,sans-serif}
+h1,h2,h3,h4{letter-spacing:-.035em}
+
+/* ---- Ambient aurora behind everything ---- */
+body{background:var(--bg)}
+body::before{content:""; position:fixed; inset:0; z-index:-1; pointer-events:none;
+  background:
+    radial-gradient(46% 40% at 10% 6%, rgba(37,99,235,.20), transparent 60%),
+    radial-gradient(44% 44% at 92% 10%, rgba(16,185,129,.18), transparent 62%),
+    radial-gradient(52% 50% at 82% 96%, rgba(99,102,241,.14), transparent 62%),
+    radial-gradient(40% 40% at 4% 88%, rgba(20,184,166,.12), transparent 60%);}
+
+/* ---- Eyebrow → gradient text chip ---- */
+.eyebrow{background:var(--grad); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent; font-weight:600; letter-spacing:.16em}
+.eyebrow::before{background:var(--grad); width:26px; height:2px}
+.section-head h2{letter-spacing:-.035em}
+
+/* ---- Glass header ---- */
+.site-header{background:rgba(255,255,255,.55); -webkit-backdrop-filter:saturate(180%) blur(20px); backdrop-filter:saturate(180%) blur(20px); border-bottom:1px solid rgba(255,255,255,.55)}
+.site-header.scrolled{background:rgba(255,255,255,.72); box-shadow:0 10px 30px -22px rgba(11,31,68,.6)}
+.brand span{font-family:"Space Grotesk",sans-serif; font-weight:700; letter-spacing:-.02em}
+.brand .logo{filter:drop-shadow(0 4px 10px rgba(11,31,68,.18))}
+.nav-links a{border-radius:12px}
+.nav-links a[aria-current="page"]{background:linear-gradient(120deg,rgba(37,99,235,.12),rgba(16,185,129,.12)); color:var(--primary-700)}
+
+/* ---- Premium buttons (gradient + glow + sheen) ---- */
+.btn{border-radius:14px; transition:transform .2s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease, filter .25s ease}
+.btn-primary{background:var(--grad); box-shadow:0 14px 30px -12px rgba(37,99,235,.6), inset 0 1px 0 rgba(255,255,255,.28); border:none}
+.btn-primary:hover{box-shadow:0 20px 44px -12px rgba(16,185,129,.55); filter:brightness(1.04)}
+.btn-accent{background:linear-gradient(135deg,#10B981,#0E9F6E); border:none; box-shadow:0 14px 30px -12px rgba(16,185,129,.6)}
+.btn-outline{background:rgba(255,255,255,.6); -webkit-backdrop-filter:blur(8px); backdrop-filter:blur(8px); border:1.5px solid var(--border-strong)}
+.btn-outline:hover{border-color:var(--primary); background:rgba(255,255,255,.85)}
+
+/* ---- Glass cards with gradient hairline ---- */
+.card,.stat,.partner-card,.form,.contact-list li{background:var(--glass); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); border:1px solid var(--glass-brd); box-shadow:var(--shadow-md); position:relative}
+.card{border-radius:var(--radius)}
+.card::after{content:""; position:absolute; inset:0; border-radius:inherit; padding:1px;
+  background:linear-gradient(140deg, rgba(37,99,235,.55), rgba(16,185,129,.45) 70%, rgba(37,99,235,.3));
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude;
+  opacity:.3; transition:opacity .35s ease; pointer-events:none}
+.card:hover{transform:translateY(-6px)}
+.card:hover::after{opacity:.95}
+.stat .num{font-family:"Space Grotesk",sans-serif}
+
+/* ---- Cropped, uniform photo frames (no more ragged masonry) ---- */
+.gallery-grid{column-count:auto !important; display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+@media (max-width:900px){ .gallery-grid{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:520px){ .gallery-grid{grid-template-columns:1fr} }
+.ph-tile{margin:0 !important; width:auto !important; aspect-ratio:4/3; overflow:hidden; border-radius:16px}
+.ph-tile.has-photo{min-height:0 !important}
+.ph-tile .ph-photo{position:absolute !important; inset:0; width:100% !important; height:100% !important; object-fit:cover; border-radius:inherit}
+.photo-showcase .gallery-grid .ph-tile{aspect-ratio:4/3}
+
+/* ---- Footer polish ---- */
+.site-footer{border-top:1px solid var(--border)}
+
+/* ---- Respect reduced motion ---- */
+@media (prefers-reduced-motion: reduce){ .btn,.card{transition:none} }
