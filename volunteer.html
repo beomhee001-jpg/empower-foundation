@@ -129,8 +129,13 @@
     .partner-card .return-note svg{width:18px; height:18px; color:var(--accent-700)}
 
     /* ===== Photo gallery (placeholders) ===== */
-    .gallery-grid{display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:168px; gap:16px}
-    .ph-tile{position:relative; border:1px solid var(--border); border-radius:18px; overflow:hidden; cursor:pointer; display:grid; place-items:center; text-align:center; padding:14px; box-shadow:var(--shadow-sm); transition:transform .25s ease, box-shadow .3s ease}
+    /* masonry photo wall — flows any number of photos at natural heights; add more .ph-tile buttons freely */
+    .gallery-grid{column-count:4; column-gap:14px}
+    .ph-tile{position:relative; display:block; width:100%; break-inside:avoid; margin:0 0 14px; border:1px solid var(--border); border-radius:16px; overflow:hidden; cursor:pointer; text-align:center; box-shadow:var(--shadow-sm); transition:transform .25s ease, box-shadow .3s ease}
+    .ph-tile:not(.has-photo){display:grid; place-items:center; padding:18px; aspect-ratio:var(--ar,4/5)}
+    .ph-tile.has-photo{min-height:140px; background:linear-gradient(135deg,#E8F1FF,#E6F6EC)}
+    .ph-tile .ph-photo{position:static; width:100%; height:auto; display:block}
+    .ph-tile.has-photo .ph-cap{z-index:2; left:0; right:0; bottom:0; padding:26px 14px 10px; color:#fff; opacity:.97; white-space:normal; background:linear-gradient(transparent, rgba(7,15,33,.82))}
     .ph-tile:hover{transform:translateY(-6px); box-shadow:var(--shadow-md)}
     .ph-tile::after{content:""; position:absolute; top:0; bottom:0; left:-85%; width:55%; background:linear-gradient(105deg, transparent, rgba(255,255,255,.55), transparent); transform:skewX(-18deg); transition:left .55s ease; pointer-events:none}
     .ph-tile:hover::after{left:135%}
@@ -150,18 +155,19 @@
     .sw2{grid-column:span 2}
     .sh2{grid-row:span 2}
     .gallery-grid .reveal{transition-delay:calc(var(--i,0)*55ms)}
-    @media (max-width:900px){ .gallery-grid{grid-template-columns:repeat(3,1fr)} }
-    @media (max-width:640px){
-      .gallery-grid{grid-template-columns:repeat(2,1fr); grid-auto-rows:150px}
-      .s22{grid-column:span 2; grid-row:span 1}
-      .sh2{grid-row:span 1}
-    }
+    @media (max-width:1100px){ .gallery-grid{column-count:3} }
+    @media (max-width:720px){ .gallery-grid{column-count:2} }
+    @media (max-width:430px){ .gallery-grid{column-count:1} }
 
     /* ===== Lightbox ===== */
     .lightbox{position:fixed; inset:0; z-index:200; display:grid; place-items:center; padding:22px; background:rgba(7,15,33,.66); backdrop-filter:blur(10px); opacity:0; pointer-events:none; transition:opacity .28s ease}
     .lightbox.open{opacity:1; pointer-events:auto}
     .lb-panel{position:relative; width:min(880px,94vw)}
     .lb-media{height:min(58vh,520px); border-radius:22px; position:relative; overflow:hidden; display:grid; place-items:center; box-shadow:0 40px 90px -28px rgba(7,15,33,.6); transform:scale(.9) translateY(16px); transition:transform .36s cubic-bezier(.16,1,.3,1)}
+    .lb-media .lb-photo{position:absolute; inset:0; width:100%; height:100%; object-fit:contain; display:none}
+    .lb-media.has-photo{background:#0a1830}
+    .lb-media.has-photo .lb-photo{display:block}
+    .lb-media.has-photo .inner, .lb-media.has-photo .wm{display:none}
     .lightbox.open .lb-media{transform:none}
     .lb-media .inner{display:grid; justify-items:center; gap:10px}
     .lb-media .cam{width:72px; height:72px; border-radius:20px; background:rgba(255,255,255,.65); display:grid; place-items:center}
@@ -231,7 +237,7 @@
     .footer-bottom p{font-size:.88rem; color:#8FA6C9}
 
     /* ===== Reveal ===== */
-    .js .reveal{opacity:0; transform:translateY(22px); transition:opacity .6s ease, transform .6s ease}
+    .js .reveal{opacity:0; transform:translateY(24px); transition:opacity 1s cubic-bezier(.25,1,.5,1), transform 1.05s cubic-bezier(.25,1,.5,1); will-change:opacity, transform}
     .js .reveal.in{opacity:1; transform:none}
 
     @media (max-width:980px){ .partner-grid{grid-template-columns:1fr} .footer-grid{grid-template-columns:1fr 1fr} .footer-brand{grid-column:1 / -1} }
@@ -346,20 +352,36 @@
     </section>
 
 
-    <!-- ===== Photo gallery (placeholders for now) ===== -->
-    <section class="section" id="gallery">
+    <!-- ===== Seasonal photo sections — grow these over time by adding more .ph-tile buttons ===== -->
+    <section class="section" id="spring-2026">
       <div class="container">
         <div class="section-head reveal">
-          <span class="eyebrow">Photo Gallery</span>
-          <h2>Moments From Our Visits</h2>
-          <p>Placeholders for now — real photos from our volunteer days are coming soon. Click any frame to preview the gallery experience.</p>
+          <span class="eyebrow">Our Photos</span>
+          <h2>Spring 2026</h2>
+          <p>Moments from our spring volunteer days — we add new photos here as the season goes on.</p>
         </div>
-        <div class="gallery-grid" id="galleryGrid">
-          <button class="ph-tile g1 s22 reveal" style="--i:0" data-g="g1" data-cap="STEM Workshop Day" aria-label="Open photo 1: STEM Workshop Day"><span class="wm">1</span><span class="inner"><span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span><span class="soon">Photo coming soon</span></span><span class="ph-cap">STEM Workshop Day</span></button>
-          <button class="ph-tile g2 reveal" style="--i:1" data-g="g2" data-cap="Reading Buddies Session" aria-label="Open photo 2: Reading Buddies Session"><span class="wm">2</span><span class="inner"><span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span><span class="soon">Photo coming soon</span></span><span class="ph-cap">Reading Buddies</span></button>
-          <button class="ph-tile g3 reveal" style="--i:2" data-g="g3" data-cap="Game &amp; Activity Afternoon" aria-label="Open photo 3: Game and Activity Afternoon"><span class="wm">3</span><span class="inner"><span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span><span class="soon">Photo coming soon</span></span><span class="ph-cap">Game &amp; Activity Afternoon</span></button>
-          <button class="ph-tile g4 reveal" style="--i:3" data-g="g4" data-cap="School Supply Drive Prep" aria-label="Open photo 4: School Supply Drive Prep"><span class="wm">4</span><span class="inner"><span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span><span class="soon">Photo coming soon</span></span><span class="ph-cap">Supply Drive Prep</span></button>
-          <button class="ph-tile g5 reveal" style="--i:4" data-g="g5" data-cap="Holiday Celebration" aria-label="Open photo 5: Holiday Celebration"><span class="wm">5</span><span class="inner"><span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span><span class="soon">Photo coming soon</span></span><span class="ph-cap">Holiday Celebration</span></button>
+        <div class="gallery-grid">
+          <!-- ADD A PHOTO: drop the file in /images/ and copy one line:
+               <button class="ph-tile has-photo reveal" data-img="images/your-photo.jpg" aria-label="Open photo"><img class="ph-photo" src="images/your-photo.jpg" alt="" loading="lazy" /></button> -->
+          <button class="ph-tile has-photo reveal" data-img="images/stanton-chess.jpg" aria-label="Open photo"><img class="ph-photo" src="images/stanton-chess.jpg" alt="" loading="lazy" /></button>
+          <button class="ph-tile has-photo reveal" data-img="images/stanton-craft.jpg" aria-label="Open photo"><img class="ph-photo" src="images/stanton-craft.jpg" alt="" loading="lazy" /></button>
+          <button class="ph-tile g3 reveal" style="--ar:4/5" data-g="g3" aria-label="Photo slot"><span class="inner"><span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span></span></button>
+          <button class="ph-tile g4 reveal" style="--ar:1/1" data-g="g4" aria-label="Photo slot"><span class="inner"><span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span></span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="summer-2026" style="padding-top:0">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Our Photos</span>
+          <h2>Summer 2026</h2>
+          <p>Summer is on the way — photos from our summer programs will land here.</p>
+        </div>
+        <div class="gallery-grid">
+          <button class="ph-tile g2 reveal" style="--ar:3/4" data-g="g2" aria-label="Photo slot"><span class="inner"><span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span></span></button>
+          <button class="ph-tile g1 reveal" style="--ar:1/1" data-g="g1" aria-label="Photo slot"><span class="inner"><span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span></span></button>
+          <button class="ph-tile g5 reveal" style="--ar:4/5" data-g="g5" aria-label="Photo slot"><span class="inner"><span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span></span></button>
         </div>
       </div>
     </section>
@@ -446,6 +468,7 @@
   <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer">
     <div class="lb-panel">
       <div class="lb-media g1" id="lbMedia">
+        <img class="lb-photo" id="lbImg" alt="" />
         <span class="wm" id="lbNum">1</span>
         <span class="inner">
           <span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span>
@@ -612,6 +635,7 @@
       var tiles = [].slice.call(document.querySelectorAll('.ph-tile'));
       var lb = document.getElementById('lightbox');
       var media = document.getElementById('lbMedia');
+      var lbImg = document.getElementById('lbImg');
       var num = document.getElementById('lbNum');
       var cap = document.getElementById('lbCap');
       var btnClose = document.getElementById('lbClose');
@@ -621,9 +645,12 @@
 
       function render(){
         var t = tiles[idx];
-        media.className = 'lb-media ' + t.getAttribute('data-g');
+        var img = t.getAttribute('data-img');
+        var dc = t.getAttribute('data-cap'); dc = dc ? dc.replace(/&amp;/g,'&') : '';
+        if(img){ media.className = 'lb-media has-photo'; lbImg.src = img; lbImg.alt = dc; }
+        else { media.className = 'lb-media ' + t.getAttribute('data-g'); lbImg.removeAttribute('src'); }
         num.textContent = idx + 1;
-        cap.textContent = t.getAttribute('data-cap').replace(/&amp;/g,'&');
+        cap.textContent = dc;
       }
       function swap(){
         media.classList.remove('swap');
