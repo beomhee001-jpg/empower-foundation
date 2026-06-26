@@ -159,6 +159,34 @@
     @media (max-width:720px){ .gallery-grid{column-count:2} }
     @media (max-width:430px){ .gallery-grid{column-count:1} }
 
+    /* ===== Futuristic photo showcase (Spring/Summer) ===== */
+    .photo-showcase{position:relative; overflow:hidden; color:#fff; background:radial-gradient(125% 80% at 50% -15%, #16284d 0%, #0b1428 55%, #070d1c 100%)}
+    .photo-showcase::before{content:""; position:absolute; inset:0; pointer-events:none; background:radial-gradient(38% 32% at 12% 18%, rgba(46,120,255,.34), transparent 70%), radial-gradient(40% 34% at 88% 82%, rgba(22,180,120,.30), transparent 72%)}
+    .photo-showcase::after{content:""; position:absolute; inset:0; pointer-events:none; opacity:.5; background-image:linear-gradient(rgba(120,170,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(120,170,255,.06) 1px, transparent 1px); background-size:46px 46px; mask:radial-gradient(120% 80% at 50% 0, #000, transparent 75%)}
+    .photo-showcase .container{position:relative; z-index:1}
+    .photo-showcase .section-head h2{color:#fff; letter-spacing:-.5px}
+    .photo-showcase .section-head p{color:rgba(220,232,255,.7)}
+    .photo-showcase .eyebrow{background:rgba(120,170,255,.1); border:1px solid rgba(130,175,255,.4); color:#a8caff; backdrop-filter:blur(6px)}
+    /* bigger photos + intentional masonry */
+    .photo-showcase .gallery-grid{column-count:3; column-gap:18px}
+    @media (max-width:1024px){ .photo-showcase .gallery-grid{column-count:2} }
+    @media (max-width:560px){ .photo-showcase .gallery-grid{column-count:1} }
+    .photo-showcase .gallery-grid .ph-tile{margin:0 0 18px; border:none; border-radius:18px; background:#0d1730; box-shadow:0 16px 38px -20px rgba(0,0,0,.85); transition:transform .55s cubic-bezier(.2,.85,.25,1), box-shadow .4s ease, opacity .85s ease}
+    .photo-showcase .gallery-grid .ph-tile.has-photo{min-height:120px}
+    .photo-showcase .ph-photo{transition:transform .8s cubic-bezier(.2,.85,.25,1)}
+    .photo-showcase .gallery-grid .ph-tile:hover{transform:translateY(-9px); box-shadow:0 34px 80px -24px rgba(56,128,255,.6)}
+    .photo-showcase .ph-tile:hover .ph-photo{transform:scale(1.08)}
+    /* neon gradient outline that lights up on hover */
+    .photo-showcase .ph-tile::before{content:""; position:absolute; inset:0; border-radius:18px; padding:1.5px; background:linear-gradient(140deg,#5aa2ff,#36d6a4 55%,#5aa2ff); -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor; mask-composite:exclude; opacity:.45; transition:opacity .35s ease; z-index:4; pointer-events:none}
+    .photo-showcase .ph-tile:hover::before{opacity:1}
+    /* dark glassy placeholder slots */
+    .photo-showcase .gallery-grid .ph-tile:not(.has-photo){background:rgba(255,255,255,.04); border:1px dashed rgba(150,190,255,.28)}
+    .photo-showcase .ph-tile .cam{background:rgba(120,170,255,.16)}
+    .photo-showcase .ph-tile .cam svg{color:#a8caff}
+    /* scale-in reveal */
+    .photo-showcase .gallery-grid .ph-tile.reveal{opacity:0; transform:translateY(34px) scale(.95)}
+    .photo-showcase .gallery-grid .ph-tile.reveal.in{opacity:1; transform:none}
+
     /* ===== Lightbox ===== */
     .lightbox{position:fixed; inset:0; z-index:200; display:grid; place-items:center; padding:22px; background:rgba(7,15,33,.66); backdrop-filter:blur(10px); opacity:0; pointer-events:none; transition:opacity .28s ease}
     .lightbox.open{opacity:1; pointer-events:auto}
@@ -353,7 +381,7 @@
 
 
     <!-- ===== Seasonal photo sections — grow these over time by adding more .ph-tile buttons ===== -->
-    <section class="section" id="spring-2026">
+    <section class="section photo-showcase" id="spring-2026">
       <div class="container">
         <div class="section-head reveal">
           <span class="eyebrow">Our Photos</span>
@@ -371,7 +399,7 @@
       </div>
     </section>
 
-    <section class="section" id="summer-2026" style="padding-top:0">
+    <section class="section photo-showcase" id="summer-2026" style="padding-top:0">
       <div class="container">
         <div class="section-head reveal">
           <span class="eyebrow">Our Photos</span>
