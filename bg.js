@@ -19,9 +19,9 @@
     sprite.width = sprite.height = 64;
     var s = sprite.getContext('2d');
     var g = s.createRadialGradient(32, 32, 0, 32, 32, 32);
-    g.addColorStop(0,   'rgba(46,205,127,1)');
-    g.addColorStop(0.35,'rgba(26,176,99,0.55)');
-    g.addColorStop(1,   'rgba(22,163,94,0)');
+    g.addColorStop(0,    'rgba(178,245,205,1)');
+    g.addColorStop(0.35, 'rgba(74,222,128,0.6)');
+    g.addColorStop(1,    'rgba(34,197,110,0)');
     s.fillStyle = g; s.fillRect(0, 0, 64, 64);
   }
 
@@ -49,8 +49,8 @@
 
   function spawn(){
     var dense = window.innerWidth < 720 ? 0.55 : 1;
-    motes = makeSet(Math.round(78 * dense), { r0: 1.4, r1: 4.6, a0: 0.20, a1: 0.66, v: 0.000055 });
-    orbs  = makeSet(Math.round(8  * dense), { r0: 80,  r1: 180, a0: 0.06, a1: 0.16, v: 0.00003  });
+    motes = makeSet(Math.round(78 * dense), { r0: 1.4, r1: 4.6, a0: 0.22, a1: 0.7,  v: 0.000115 });
+    orbs  = makeSet(Math.round(8  * dense), { r0: 80,  r1: 180, a0: 0.07, a1: 0.18, v: 0.00006  });
   }
 
   function blit(p, sway){

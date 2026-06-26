@@ -9,7 +9,7 @@
   --primary:#2563EB; --primary-700:#1D4ED8; --primary-800:#1E3A8A;
   --secondary:#60A5FA;
   --accent:#10B981; --accent-700:#0E9F6E; --accent-800:#0B7D57;
-  --bg:#EAF6EC; --surface:#FFFFFF; --surface-2:#EAF6EC;
+  --bg:#D2ECDA; --surface:#FFFFFF; --surface-2:#D9EFE0;
   --heading:#0B1F44; --text:#3C4658; --muted:#67738A;
   --border:#DBE6F7; --border-strong:#C6D8F2;
   --ring:#2563EB;
@@ -29,14 +29,15 @@ h1,h2,h3,h4,.brand{font-family:"Bricolage Grotesque","Plus Jakarta Sans",system-
 h1,h2,h3,h4{letter-spacing:-.012em}
 .nav-links a{letter-spacing:.01em}
 
-/* ---- Green/white base behind the drifting-particle canvas (bg.js) ---- */
-body{background:linear-gradient(180deg,#F1FAF3 0%,#E4F3E8 48%,#EFF8F1 100%)}
+/* ---- Rich, layered green base behind the drifting-particle canvas (bg.js) ---- */
+body{background:linear-gradient(158deg,#D6EEDD 0%,#BFE5CC 32%,#CFEBD7 58%,#B6E1C4 100%)}
 body::before{content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
   background:
-    radial-gradient(52% 46% at 12% 6%, rgba(16,185,129,.20), transparent 62%),
-    radial-gradient(48% 48% at 90% 12%, rgba(34,197,94,.16), transparent 64%),
-    radial-gradient(58% 54% at 82% 98%, rgba(5,150,105,.14), transparent 64%),
-    radial-gradient(42% 42% at 4% 92%, rgba(45,212,140,.12), transparent 62%);}
+    radial-gradient(56% 50% at 8% 2%,  rgba(16,185,129,.36), transparent 60%),   /* emerald */
+    radial-gradient(52% 52% at 94% 8%, rgba(5,150,105,.32),  transparent 62%),   /* deep emerald */
+    radial-gradient(60% 58% at 84% 99%,rgba(45,212,140,.28), transparent 62%),   /* spring green */
+    radial-gradient(48% 48% at 0% 96%, rgba(6,148,98,.26),   transparent 60%),   /* forest */
+    radial-gradient(46% 42% at 52% 44%,rgba(110,231,183,.16),transparent 72%);}  /* mint center */
 /* let the drifting particle field show through every light content band */
 .programs,.partner,#about,#contact,.page-head{background:transparent !important}
 
