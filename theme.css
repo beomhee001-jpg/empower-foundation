@@ -284,6 +284,102 @@ body::before{content:""; position:fixed; inset:0; z-index:-2; pointer-events:non
 /* the universal reset — keep this the LAST .reveal rule in the file */
 .js .reveal.in{opacity:1; transform:none; filter:none}
 
+/* ============================================================
+   ULTRA LAYER — the "expensive" signal stack (site-wide).
+   Cursor spotlight, pointer-tracking card glow, living aurora,
+   film grain, branded chrome, animated gradients. Everything is
+   composite-friendly or paints only the hovered element.
+   ============================================================ */
+
+/* ---- Living aurora: the fixed mesh slowly breathes & rotates ---- */
+body::before{inset:-45% !important; animation:auroraDrift 42s ease-in-out infinite; transform-origin:center}
+@keyframes auroraDrift{
+  0%  {transform:rotate(0deg)  scale(1.06) translate3d(0,0,0)}
+  33% {transform:rotate(5deg)  scale(1.16) translate3d(1.5%,-1%,0)}
+  66% {transform:rotate(-4deg) scale(1.12) translate3d(-1.5%,1.5%,0)}
+  100%{transform:rotate(0deg)  scale(1.06) translate3d(0,0,0)}
+}
+
+/* ---- Cursor spotlight (top layer, screen-blended; injected by anim.js) ---- */
+#fx-cursor{
+  position:fixed; top:0; left:0; width:560px; height:560px; margin:-280px 0 0 -280px;
+  z-index:9995; pointer-events:none; border-radius:50%; opacity:0;
+  background:radial-gradient(circle, rgba(96,165,250,.30), rgba(16,185,129,.14) 38%, transparent 68%);
+  mix-blend-mode:screen; will-change:transform, opacity; transition:opacity .4s ease;
+}
+#fx-cursor.on{opacity:1}
+
+/* ---- Film grain (fixed, static, soft-light; injected by anim.js) ---- */
+#fx-grain{
+  position:fixed; inset:0; z-index:9990; pointer-events:none; opacity:.05; mix-blend-mode:soft-light;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:180px 180px;
+}
+
+/* ---- Pointer-tracking glow inside glass cards (anim.js sets --mx/--my) ---- */
+.card,.stat{
+  background:
+    radial-gradient(240px circle at var(--mx,50%) var(--my,-40%),
+      rgba(96,165,250,.22), rgba(16,185,129,.10) 42%, transparent 66%),
+    var(--glass);
+}
+.partner-card{
+  background:
+    radial-gradient(280px circle at var(--mx,50%) var(--my,-40%),
+      rgba(16,185,129,.20), rgba(96,165,250,.10) 42%, transparent 66%),
+    var(--glass);
+}
+
+/* ---- Living gradients on primary CTAs ---- */
+.btn-primary,.btn-accent{background-size:170% 170%; animation:btnFlow 7s ease infinite}
+@keyframes btnFlow{0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%}}
+.btn-primary:hover,.btn-accent:hover{animation-duration:3.2s}
+
+/* ---- Holographic shimmer on every gradient-text accent ---- */
+.text-grad,.hero h1 .grad,.text-grad-bright,.stat .num,.hero-bento .num,.text-rotate{
+  background-size:220% auto; animation:holoText 7s linear infinite;
+}
+
+/* ---- Glass header: animated holographic hairline when scrolled ---- */
+.site-header{position:sticky}
+.site-header::after{
+  content:""; position:absolute; left:0; right:0; bottom:-1px; height:1.5px; pointer-events:none;
+  background:linear-gradient(90deg, transparent, rgba(37,99,235,.6), rgba(16,185,129,.6), transparent);
+  background-size:200% 100%; opacity:0; transition:opacity .35s ease; animation:holoText 5s linear infinite;
+}
+.site-header.scrolled::after{opacity:1}
+
+/* ---- Branded thin scrollbar ---- */
+*{scrollbar-width:thin; scrollbar-color:#3B82F6 rgba(255,255,255,.25)}
+::-webkit-scrollbar{width:11px; height:11px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{
+  background:linear-gradient(180deg,#2563EB,#10B981); border-radius:99px;
+  border:3px solid rgba(255,255,255,.35);
+}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#1D4ED8,#0E9F6E)}
+
+/* ---- Branded text selection ---- */
+::selection{background:rgba(37,99,235,.24); color:var(--heading)}
+::-moz-selection{background:rgba(37,99,235,.24); color:var(--heading)}
+
+/* ---- Scroll-to-top orb: gentle glow pulse ---- */
+#toTop.show{animation:orbPulse 3.4s ease-in-out infinite}
+@keyframes orbPulse{
+  0%,100%{box-shadow:0 14px 36px -12px rgba(11,31,68,.45), inset 0 0 0 1px rgba(255,255,255,.6), 0 0 0 0 rgba(37,99,235,.0)}
+  50%    {box-shadow:0 14px 36px -12px rgba(11,31,68,.45), inset 0 0 0 1px rgba(255,255,255,.6), 0 0 26px -2px rgba(16,185,129,.45)}
+}
+
+/* ---- A touch more depth on glass cards ---- */
+.card:hover,.stat:hover,.partner-card:hover{box-shadow:0 36px 80px -30px rgba(37,99,235,.55)}
+
+@media (prefers-reduced-motion: reduce){
+  body::before{animation:none !important}
+  .btn-primary,.btn-accent,.text-grad,.hero h1 .grad,.stat .num,.hero-bento .num,
+  .text-rotate,.site-header::after,#toTop.show{animation:none !important}
+  #fx-cursor,#fx-grain{display:none !important}
+}
+
 /* ---- Respect reduced motion ---- */
 @media (prefers-reduced-motion: reduce){
   .btn,.card,.stat,.ph-photo,.brand .logo{transition:none !important; transform:none !important}

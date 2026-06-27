@@ -109,7 +109,7 @@
 
   function init(){
     // every glass card / stat, but not the ones other scripts already drive (hub boxes)
-    var cards = document.querySelectorAll('.card, .stat');
+    var cards = document.querySelectorAll('.card, .stat, .partner-card');
     Array.prototype.forEach.call(cards, function(el){
       if(el.closest('.hub')) return;
       var raf = null, tx = 0, ty = 0, tl = 0;
@@ -124,6 +124,9 @@
         tx = px * 9;            // rotateY
         ty = -py * 9;           // rotateX
         tl = -6;                // subtle lift
+        // feed the pointer-tracking glow (CSS radial follows these)
+        el.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+        el.style.setProperty('--my', (e.clientY - r.top) + 'px');
         el.classList.add('tilting');
         if(!raf) raf = requestAnimationFrame(apply);
       });
@@ -131,6 +134,8 @@
         tx = ty = 0; tl = 0;
         el.classList.remove('tilting');
         el.style.transform = '';   // hand back to CSS
+        el.style.removeProperty('--mx');
+        el.style.removeProperty('--my');
       });
     });
   }
@@ -160,6 +165,45 @@
       });
       el.addEventListener('pointerleave', function(){ mx = my = 0; el.style.transform = ''; });
     });
+  }
+
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+/* ---------- 3b) Cursor spotlight + film grain ---------- */
+(function(){
+  var fine = window.matchMedia && window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function init(){
+    // film grain overlay (every device, static — basically free)
+    if(!reduce && !document.getElementById('fx-grain')){
+      var grain = document.createElement('div');
+      grain.id = 'fx-grain'; grain.setAttribute('aria-hidden', 'true');
+      document.body.appendChild(grain);
+    }
+    if(reduce || !fine) return;
+
+    // cursor spotlight that eases toward the pointer
+    var spot = document.createElement('div');
+    spot.id = 'fx-cursor'; spot.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(spot);
+
+    var tx = window.innerWidth / 2, ty = window.innerHeight / 2, cx = tx, cy = ty, raf = null, shown = false;
+    function frame(){
+      cx += (tx - cx) * 0.16; cy += (ty - cy) * 0.16;
+      spot.style.transform = 'translate3d(' + cx + 'px,' + cy + 'px,0)';
+      if(Math.abs(tx - cx) > 0.4 || Math.abs(ty - cy) > 0.4){ raf = requestAnimationFrame(frame); }
+      else raf = null;
+    }
+    window.addEventListener('pointermove', function(e){
+      if(e.pointerType === 'touch') return;
+      tx = e.clientX; ty = e.clientY;
+      if(!shown){ shown = true; spot.classList.add('on'); }
+      if(!raf) raf = requestAnimationFrame(frame);
+    }, { passive: true });
+    document.addEventListener('mouseleave', function(){ spot.classList.remove('on'); shown = false; });
   }
 
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
