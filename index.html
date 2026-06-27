@@ -336,9 +336,9 @@
         radial-gradient(58% 42% at 22% 30%, rgba(37,99,235,.12), transparent 65%),
         radial-gradient(52% 38% at 78% 22%, rgba(22,163,74,.11), transparent 65%),
         radial-gradient(70% 48% at 52% 88%, rgba(96,165,250,.12), transparent 70%)}
-    .hub{display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:188px; gap:18px}
-    .hub-box{position:relative; display:flex; flex-direction:column; justify-content:flex-end; gap:5px; padding:24px; border-radius:22px; overflow:hidden; text-decoration:none; box-shadow:var(--shadow-md); will-change:transform, opacity; border:1px solid rgba(255,255,255,.16); transition:box-shadow .3s ease}
-    .hub-box:hover{text-decoration:none; box-shadow:var(--shadow-lg)}
+    .hub{display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:206px; gap:18px}
+    .hub-box{position:relative; display:flex; flex-direction:column; justify-content:flex-end; gap:5px; padding:22px; border-radius:22px; overflow:hidden; text-decoration:none; box-shadow:var(--shadow-md); will-change:transform, opacity, filter; border:1px solid rgba(255,255,255,.16); transition:box-shadow .35s ease, filter .35s ease}
+    .hub-box:hover{text-decoration:none; box-shadow:0 40px 90px -30px rgba(37,99,235,.6); filter:brightness(1.05)}
     .hub-box::after{content:""; position:absolute; top:0; bottom:0; left:-85%; width:55%; background:linear-gradient(105deg, transparent, rgba(255,255,255,.35), transparent); transform:skewX(-18deg); transition:left .55s ease; pointer-events:none}
     .hub-box:hover::after{left:135%}
     .js .hub-box{opacity:0}
@@ -360,7 +360,29 @@
     .hb-minis{position:absolute; top:20px; left:22px; display:flex; gap:8px}
     .hb-minis i{width:42px; height:42px; border-radius:11px; box-shadow:inset 0 0 0 1px rgba(15,44,94,.1)}
     .hb-screen{position:absolute; top:22px; left:24px; width:76px; height:48px; border-radius:8px; background:#0b1c38; border:2px solid rgba(255,255,255,.4); transform:rotate(-5deg) skewY(-3deg); box-shadow:0 12px 20px -8px rgba(0,0,0,.5)}
-    @media (max-width:900px){ .hub{grid-template-columns:repeat(2,1fr); grid-auto-rows:175px} }
+    .hb-screen::after{content:""; position:absolute; inset:0; border-radius:6px; background:repeating-linear-gradient(0deg, rgba(96,165,250,.5) 0 1px, transparent 1px 4px); opacity:.5}
+    .hb-play{position:absolute; inset:0; margin:auto; width:30px; height:30px; border-radius:50%; background:rgba(255,255,255,.94); display:grid; place-items:center; z-index:1; box-shadow:0 6px 16px -4px rgba(0,0,0,.5)}
+    .hb-play svg{width:13px; height:13px; color:#1E40AF; margin-left:2px}
+    .hb-show:hover .hb-play{animation:hbPlayPulse 1.4s ease-in-out infinite}
+    @keyframes hbPlayPulse{0%,100%{transform:scale(1)} 50%{transform:scale(1.14)}}
+    /* richer content: tags, featured chip, CTA, reply chip */
+    .hb-tags{display:flex; flex-wrap:wrap; gap:7px; margin-top:11px}
+    .hb-tags span{font-family:"Plus Jakarta Sans",sans-serif; font-weight:600; font-size:.74rem; line-height:1; padding:6px 11px; border-radius:999px; background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.26); color:#fff}
+    .hb-feat-chip{display:inline-flex; align-items:center; gap:8px; margin-top:14px; padding:9px 13px; border-radius:13px; background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.24); -webkit-backdrop-filter:blur(6px); backdrop-filter:blur(6px); font-family:"Plus Jakarta Sans",sans-serif; font-weight:600; font-size:.82rem; line-height:1.25; color:#fff}
+    .hb-feat-chip svg{width:16px; height:16px; flex:none; color:#FBBF24; filter:drop-shadow(0 0 6px rgba(251,191,36,.6))}
+    .hb-cta{display:inline-flex; align-items:center; gap:8px; margin-top:15px; font-family:"Plus Jakarta Sans",sans-serif; font-weight:700; font-size:.92rem; color:#fff}
+    .hb-cta svg{width:17px; height:17px; transition:transform .25s ease}
+    .hub-box:hover .hb-cta svg{transform:translateX(6px)}
+    .hb-chip{display:inline-flex; align-items:center; gap:9px; margin-top:13px; padding:7px 13px; border-radius:999px; background:rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.28); font-family:"Plus Jakarta Sans",sans-serif; font-weight:600; font-size:.79rem; color:#fff; align-self:flex-start}
+    .pulse-dot{width:8px; height:8px; border-radius:50%; background:#4ADE80; flex:none; box-shadow:0 0 0 0 rgba(74,222,128,.6); animation:pulseDot 2.1s infinite}
+    @keyframes pulseDot{0%{box-shadow:0 0 0 0 rgba(74,222,128,.55)} 70%{box-shadow:0 0 0 9px rgba(74,222,128,0)} 100%{box-shadow:0 0 0 0 rgba(74,222,128,0)}}
+    /* gallery is light — keep its mini tiles lively */
+    .hb-minis i{transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+    .hb-gallery:hover .hb-minis i:nth-child(1){transform:translateY(-4px) rotate(-4deg)}
+    .hb-gallery:hover .hb-minis i:nth-child(2){transform:translateY(4px) rotate(3deg)}
+    .hb-gallery:hover .hb-minis i:nth-child(3){transform:translateY(-3px) rotate(2deg)}
+    .hb-gallery:hover .hb-minis i:nth-child(4){transform:translateY(5px) rotate(-3deg)}
+    @media (max-width:900px){ .hub{grid-template-columns:repeat(2,1fr); grid-auto-rows:200px} }
     @media (max-width:560px){ .hub{grid-template-columns:1fr; grid-auto-rows:auto} .hub-box{min-height:150px} .hb-feature{grid-column:span 1; grid-row:span 1; min-height:230px} .hb-gallery{grid-column:span 1} }
     @media (prefers-reduced-motion: reduce){ .js .hub-box{opacity:1 !important; transform:none !important} }
 
@@ -848,30 +870,37 @@
           <p>The big stories live on their own pages. Scroll, and watch the doors fall into place.</p>
         </div>
         <div class="hub" id="hubGrid">
-          <a class="hub-box hb-feature" href="partnership.html" data-from="-460,170,-12,-38,-180">
+          <a class="hub-box hb-feature" href="partnership.html" data-from="-540,210,-15,-44,-240">
             <span class="hb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 17a5 5 0 0 1-5 5H4v-2a5 5 0 0 1 5-5"/><path d="M13 7a5 5 0 0 1 5-5h2v2a5 5 0 0 1-5 5"/><path d="M4 22l16-20"/></svg></span>
+            <span class="hb-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             <span class="hb-kicker">Partnerships</span>
             <span class="hb-title">Who We Work With</span>
-            <span class="hb-sub">Schools, libraries, and youth organizations across Orange County &mdash; meet the partners behind our programs.</span>
-            <span class="hb-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            <span class="hb-sub">Schools, libraries, and youth organizations across Orange County &mdash; the partners behind every program we run.</span>
+            <span class="hb-tags" aria-hidden="true"><span>Schools</span><span>Libraries</span><span>Youth Orgs</span></span>
+            <span class="hb-feat-chip"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17.8 5.9 20.4l1.5-6.8L2.2 9l6.9-.7z"/></svg> Featured partner · Boys &amp; Girls Club of Stanton</span>
+            <span class="hb-cta">Explore partnerships <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </a>
-          <a class="hub-box hb-gallery" href="partnership.html#gallery" data-from="430,-150,9,34,-140">
+          <a class="hub-box hb-gallery" href="partnership.html#gallery" data-from="500,-180,10,40,-200">
             <span class="hb-minis" aria-hidden="true"><i class="g1"></i><i class="g2"></i><i class="g3"></i><i class="g4"></i></span>
+            <span class="hb-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             <span class="hb-kicker">Photo Gallery</span>
             <span class="hb-title">Moments From Our Visits</span>
-            <span class="hb-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            <span class="hb-sub">Workshops, reading days &amp; community events &mdash; straight from the field.</span>
           </a>
-          <a class="hub-box hb-show" href="partnership.html#community" data-from="360,240,7,30,-160">
-            <span class="hb-screen" aria-hidden="true"></span>
+          <a class="hub-box hb-show" href="partnership.html#community" data-from="430,290,9,36,-220">
+            <span class="hb-screen" aria-hidden="true"><span class="hb-play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></span>
+            <span class="hb-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             <span class="hb-kicker">Showcase</span>
             <span class="hb-title">Community in Action</span>
-            <span class="hb-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            <span class="hb-sub">See our programs in motion.</span>
           </a>
-          <a class="hub-box hb-contact" href="contact.html" data-from="-310,-210,-7,-28,-130">
+          <a class="hub-box hb-contact" href="contact.html" data-from="-360,-250,-9,-32,-190">
             <span class="hb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
+            <span class="hb-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             <span class="hb-kicker">Say Hello</span>
             <span class="hb-title">Get in Touch</span>
-            <span class="hb-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            <span class="hb-sub">Questions, ideas, partnerships &mdash; we'd love to hear from you.</span>
+            <span class="hb-chip"><span class="pulse-dot" aria-hidden="true"></span> Usually replies in 1&ndash;2 days</span>
           </a>
         </div>
       </div>
@@ -2570,18 +2599,28 @@
         if(st.e>=0.999 && (st.tx||st.ty)){
           // assembled: follow the cursor with a gentle 3D tilt
           st.el.style.transform='perspective(1100px) rotateX('+st.tx.toFixed(2)+'deg) rotateY('+st.ty.toFixed(2)+'deg) scale(1.02)';
+          st.el.style.filter='';
           return;
         }
         var inv=1-st.e;
-        st.el.style.transform='perspective(1100px) translate3d('+(st.dx*inv).toFixed(1)+'px,'+(st.dy*inv).toFixed(1)+'px,'+(st.z*inv).toFixed(1)+'px) rotateY('+(st.ry*inv).toFixed(2)+'deg) rotate('+(st.rz*inv).toFixed(2)+'deg) scale('+(0.8+0.2*st.e).toFixed(3)+')';
+        st.el.style.transform='perspective(1100px) translate3d('+(st.dx*inv).toFixed(1)+'px,'+(st.dy*inv).toFixed(1)+'px,'+(st.z*inv).toFixed(1)+'px) rotateY('+(st.ry*inv).toFixed(2)+'deg) rotate('+(st.rz*inv).toFixed(2)+'deg) scale('+(0.78+0.22*st.e).toFixed(3)+')';
+        // motion blur while flying in, snaps sharp on arrival
+        var blur=cl(Math.abs(inv)*7,0,7);
+        st.el.style.filter=blur>0.3 ? 'blur('+blur.toFixed(1)+'px)' : '';
       }
       function apply(pf){
         var r=grid.getBoundingClientRect(), vh=window.innerHeight;
-        var p=(pf!==undefined)?pf:cl((vh-r.top)/(vh*0.78),0,1);
+        // progress keyed to the grid's CENTER: 0 as it enters from the bottom,
+        // 1 once the center sits ~62% down the viewport — so it locks together
+        // while the section is comfortably in view, not after you scroll past it.
+        var center=r.top + r.height/2;
+        var p=(pf!==undefined)?pf:cl((vh*0.98 - center)/(vh*0.40),0,1);
         for(var i=0;i<state.length;i++){
-          var q=cl((p-i*0.085)/(1-i*0.085),0,1);
+          // each box starts a touch later but they all finish by ~0.72 progress,
+          // so the whole grid is assembled and aligned well before it leaves view
+          var q=cl((p - i*0.055)/0.55, 0, 1);
           state[i].e=eb(q);
-          state[i].el.style.opacity=cl(q*1.7,0,1).toFixed(2);
+          state[i].el.style.opacity=cl(q*1.9,0,1).toFixed(2);
           compose(state[i]);
         }
         return p;
