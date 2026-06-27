@@ -6,6 +6,66 @@
    4) Scroll-to-top orb with a live conic progress ring (injected, every page).
    Every module is isolated so a failure in one can't break the others. */
 
+/* ---------- 0) Section choreographer ----------
+   Give every section its own signature entrance by tagging its .reveal
+   children with a rotating variant class, so no two adjacent sections
+   animate the same way. Runs first so tags exist before anything reveals. */
+(function(){
+  var VARIANTS = ['v-rise','v-left','v-zoom','v-flip','v-right','v-skew','v-rotate','v-unfold','v-drop'];
+
+  // pick sensible things to animate when a section has no .reveal of its own
+  function promoteTargets(sec){
+    var list = Array.prototype.slice.call(sec.querySelectorAll(
+      '.section-head, .card, .partner-card, .stat, .ph-tile, .partner-copy, .quote'));
+    if(!list.length){
+      var cont = sec.querySelector('.container') || sec;
+      list = Array.prototype.filter.call(cont.children, function(ch){
+        var t = ch.tagName.toLowerCase();
+        return t !== 'script' && t !== 'style' &&
+          !ch.classList.contains('slide-bg') && !ch.classList.contains('bg-paths');
+      });
+    }
+    // drop any candidate that contains another candidate (avoid double-wrapped fades)
+    return list.filter(function(a){
+      return !list.some(function(b){ return b !== a && a.contains(b); });
+    });
+  }
+
+  function init(){
+    // Phase A — make sure every section has *something* to animate.
+    var nodes = document.querySelectorAll(
+      'main > section, main > .section, .page-head, .rotate-band, .photo-showcase, .partner');
+    var seen = [];
+    Array.prototype.forEach.call(nodes, function(sec){
+      if(seen.indexOf(sec) !== -1) return; seen.push(sec);
+      if(sec.classList.contains('journey')) return;          // self-scrubbed; leave it alone
+      if(sec.querySelector('.reveal')) return;                // author already chose what reveals
+      promoteTargets(sec).forEach(function(el){ el.classList.add('reveal'); });
+    });
+
+    // Phase B — assign a signature entrance per content cluster, in document order,
+    // so the look keeps changing as you scroll even within one long section.
+    var reveals = document.querySelectorAll('.reveal');
+    var lastParent = null, gi = -1, gidx = 0;
+    Array.prototype.forEach.call(reveals, function(el){
+      if(el.closest('.journey')) return;
+      // new cluster whenever the parent changes (e.g. a fresh grid of cards)
+      if(el.parentNode !== lastParent){ gi++; gidx = 0; lastParent = el.parentNode; }
+      var v = VARIANTS[gi % VARIANTS.length];
+      el.classList.remove('from-left','from-right','zoom-in');
+      el.classList.add(v);
+      // gentle cascade within a cluster, unless the page already staggers it
+      if(!el.hasAttribute('data-d') && !el.style.transitionDelay &&
+         !el.closest('.gallery-grid') && gidx > 0 && gidx < 7){
+        el.style.transitionDelay = (gidx * 0.07) + 's';
+      }
+      gidx++;
+    });
+  }
+  if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
 /* ---------- 1) Scroll reveal ---------- */
 (function(){
   function run(){
