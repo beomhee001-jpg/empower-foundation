@@ -57,8 +57,8 @@
     var dense = window.innerWidth < 720 ? 0.55 : 1;
     // d0/d1 = parallax depth: how far a particle is dragged per px of scroll.
     // High + layered, so scrolling down rapidly streams the field upward (left behind).
-    motes = makeSet(Math.round(80 * dense), { r0: 1.4, r1: 4.6, a0: 0.22, a1: 0.7,  v: 0.000115, d0: 0.40, d1: 0.90, blue: 0.34 });
-    orbs  = makeSet(Math.round(9  * dense), { r0: 80,  r1: 190, a0: 0.06, a1: 0.17, v: 0.00006,  d0: 0.55, d1: 0.98, blue: 0.40 });
+    motes = makeSet(Math.round(62 * dense), { r0: 1.5, r1: 4.8, a0: 0.22, a1: 0.7,  v: 0.000115, d0: 0.55, d1: 1.05, blue: 0.34 });
+    orbs  = makeSet(Math.round(7  * dense), { r0: 80,  r1: 190, a0: 0.06, a1: 0.17, v: 0.00006,  d0: 0.70, d1: 1.10, blue: 0.40 });
   }
 
   function blit(p, sway, stretch){
@@ -72,7 +72,7 @@
 
   function draw(){
     ctx.clearRect(0, 0, W, H);
-    var i, str = 1 + Math.min(Math.abs(vel) * 0.035, 1.8);    // vertical streak on fast scroll
+    var i, str = 1 + Math.min(Math.abs(vel) * 0.05, 2.6);     // vertical streak on fast scroll
     for (i = 0; i < orbs.length; i++) blit(orbs[i], 0, 1);
     for (i = 0; i < motes.length; i++){
       var p = motes[i];
