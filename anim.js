@@ -177,12 +177,6 @@
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function init(){
-    // film grain overlay (every device, static — basically free)
-    if(!reduce && !document.getElementById('fx-grain')){
-      var grain = document.createElement('div');
-      grain.id = 'fx-grain'; grain.setAttribute('aria-hidden', 'true');
-      document.body.appendChild(grain);
-    }
     if(reduce || !fine) return;
 
     // cursor spotlight that eases toward the pointer

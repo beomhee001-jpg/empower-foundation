@@ -18,7 +18,7 @@
   --shadow-lg:0 34px 80px -26px rgba(11,31,68,.40);
   --radius:22px; --radius-sm:14px;
   --grad:linear-gradient(120deg,#2563EB 0%,#3B82F6 45%,#10B981 100%);
-  --glass:rgba(255,255,255,.66);
+  --glass:rgba(255,255,255,.86);
   --glass-brd:rgba(255,255,255,.7);
 }
 
@@ -355,6 +355,27 @@ body::before{inset:-45% !important; animation:auroraDrift 70s ease-in-out infini
 
 /* ---- A touch more depth on glass cards ---- */
 .card:hover,.stat:hover,.partner-card:hover{box-shadow:0 36px 80px -30px rgba(37,99,235,.55)}
+
+/* ============================================================
+   PERF: kill live backdrop-blur. It was the main lag source —
+   every frosted element re-blurred the particle canvas behind it
+   on every frame. Solid-ish glass via opacity reads the same but
+   costs nothing per frame. (Header stays legible without blur.)
+   ============================================================ */
+.card,.stat,.partner-card,.form,.contact-list li,.btn-outline,
+.site-header,.vhero-badge,.journey-title,.journey-cap,.lightbox,
+.hero-badge,.mobile-menu{
+  -webkit-backdrop-filter:none !important; backdrop-filter:none !important;
+}
+.site-header{background:rgba(247,251,255,.86) !important}
+.site-header.scrolled{background:rgba(247,251,255,.94) !important}
+.btn-outline{background:rgba(255,255,255,.9)}
+.vhero-badge,.hero-badge{background:rgba(255,255,255,.9)}
+
+/* The decorative flowing-line SVGs ran ~50 infinite stroke animations at once
+   (CPU-painted, every frame) — the biggest hidden lag source. Freeze them to
+   static faint lines so the only constant motion is the particle field. */
+.bg-paths path{animation:none !important}
 
 @media (prefers-reduced-motion: reduce){
   body::before{animation:none !important}
