@@ -337,11 +337,13 @@
         radial-gradient(52% 38% at 78% 22%, rgba(22,163,74,.11), transparent 65%),
         radial-gradient(70% 48% at 52% 88%, rgba(96,165,250,.12), transparent 70%)}
     .hub{display:grid; grid-template-columns:repeat(4,1fr); grid-auto-rows:224px; gap:18px}
-    .hub-box{position:relative; display:flex; flex-direction:column; justify-content:flex-end; gap:5px; padding:22px; border-radius:22px; overflow:hidden; text-decoration:none; box-shadow:var(--shadow-md); will-change:transform, opacity, filter; border:1px solid rgba(255,255,255,.16); transition:box-shadow .35s ease, filter .35s ease}
+    .hub-box{position:relative; display:flex; flex-direction:column; justify-content:flex-end; gap:5px; padding:22px; border-radius:22px; overflow:hidden; text-decoration:none; box-shadow:var(--shadow-md); border:1px solid rgba(255,255,255,.16); transition:transform .8s cubic-bezier(.22,.72,.24,1), opacity .7s cubic-bezier(.22,.72,.24,1), box-shadow .35s ease, filter .35s ease}
     .hub-box:hover{text-decoration:none; box-shadow:0 40px 90px -30px rgba(37,99,235,.6); filter:brightness(1.05)}
     .hub-box::after{content:""; position:absolute; top:0; bottom:0; left:-85%; width:55%; background:linear-gradient(105deg, transparent, rgba(255,255,255,.35), transparent); transform:skewX(-18deg); transition:left .55s ease; pointer-events:none}
     .hub-box:hover::after{left:135%}
-    .js .hub-box{opacity:0}
+    /* clean one-shot rise (driven by .in from the hub script) */
+    .js .hub-box{opacity:0; transform:translateY(42px) scale(.97)}
+    .js .hub-box.in{opacity:1; transform:none}
     .hb-feature{grid-column:span 2; grid-row:span 2; background:linear-gradient(150deg,#0F2C5E,#06173A); color:#fff}
     .hb-feature::before{content:""; position:absolute; inset:0 0 auto auto; width:240px; height:240px; background:radial-gradient(circle at top right, rgba(74,222,128,.22), transparent 70%); pointer-events:none}
     .hb-gallery{grid-column:span 2; background:linear-gradient(135deg,#E9F2FD,#DBEAFE); color:var(--heading)}
@@ -874,7 +876,7 @@
           <p>The big stories live on their own pages. Scroll, and watch the doors fall into place.</p>
         </div>
         <div class="hub" id="hubGrid">
-          <a class="hub-box hb-feature" href="partnership.html" data-from="-540,210,-15,-44,-240">
+          <a class="hub-box hb-feature" href="partnership.html">
             <span class="hb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 17a5 5 0 0 1-5 5H4v-2a5 5 0 0 1 5-5"/><path d="M13 7a5 5 0 0 1 5-5h2v2a5 5 0 0 1-5 5"/><path d="M4 22l16-20"/></svg></span>
             <span class="hb-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             <span class="hb-kicker">Partnerships</span>
@@ -884,21 +886,21 @@
             <span class="hb-feat-chip"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17.8 5.9 20.4l1.5-6.8L2.2 9l6.9-.7z"/></svg> Featured partner · Boys &amp; Girls Club of Stanton</span>
             <span class="hb-cta">Explore partnerships <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </a>
-          <a class="hub-box hb-gallery" href="partnership.html#gallery" data-from="500,-180,10,40,-200">
+          <a class="hub-box hb-gallery" href="partnership.html#gallery">
             <span class="hb-minis" aria-hidden="true"><i class="g1"></i><i class="g2"></i><i class="g3"></i><i class="g4"></i></span>
             <span class="hb-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             <span class="hb-kicker">Photo Gallery</span>
             <span class="hb-title">Moments From Our Visits</span>
             <span class="hb-sub">Workshops, reading days &amp; community events &mdash; straight from the field.</span>
           </a>
-          <a class="hub-box hb-show" href="partnership.html#community" data-from="430,290,9,36,-220">
+          <a class="hub-box hb-show" href="partnership.html#community">
             <span class="hb-screen" aria-hidden="true"><span class="hb-play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></span>
             <span class="hb-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             <span class="hb-kicker">Showcase</span>
             <span class="hb-title">Community in Action</span>
             <span class="hb-sub">See our programs in motion.</span>
           </a>
-          <a class="hub-box hb-contact" href="contact.html" data-from="-360,-250,-9,-32,-190">
+          <a class="hub-box hb-contact" href="contact.html">
             <span class="hb-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span>
             <span class="hb-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             <span class="hb-kicker">Say Hello</span>
@@ -2586,65 +2588,35 @@
       window.__gallery = { open:open, close:close, count:tiles.length };
     })();
 
-    // ===== Explore hub: boxes hurled in from 3D space assemble as you scroll, then tilt to your cursor =====
+    // ===== Explore hub: clean one-shot staggered rise (no scroll-scrubbing) =====
     (function(){
       var grid=document.getElementById('hubGrid');
       if(!grid) return;
       var boxes=[].slice.call(grid.querySelectorAll('.hub-box'));
-      var reduceH=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if(reduceH){ boxes.forEach(function(b){ b.style.opacity='1'; b.style.transform='none'; }); return; }
-      function eb(x){ var c=1.55; return 1+(c+1)*Math.pow(x-1,3)+c*Math.pow(x-1,2); }
-      function cl(v,a,b){ return Math.max(a,Math.min(b,v)); }
-      var state=boxes.map(function(b){
-        var f=(b.getAttribute('data-from')||'0,0,0,0,0').split(',').map(Number);
-        return {el:b, dx:f[0]||0, dy:f[1]||0, rz:f[2]||0, ry:f[3]||0, z:f[4]||0, e:0, tx:0, ty:0};
-      });
-      function compose(st){
-        if(st.e>=0.999 && (st.tx||st.ty)){
-          // assembled: follow the cursor with a gentle 3D tilt
-          st.el.style.transform='perspective(1100px) rotateX('+st.tx.toFixed(2)+'deg) rotateY('+st.ty.toFixed(2)+'deg) scale(1.02)';
-          st.el.style.filter='';
-          return;
-        }
-        var inv=1-st.e;
-        st.el.style.transform='perspective(1100px) translate3d('+(st.dx*inv).toFixed(1)+'px,'+(st.dy*inv).toFixed(1)+'px,'+(st.z*inv).toFixed(1)+'px) rotateY('+(st.ry*inv).toFixed(2)+'deg) rotate('+(st.rz*inv).toFixed(2)+'deg) scale('+(0.78+0.22*st.e).toFixed(3)+')';
-        // motion blur while flying in, snaps sharp on arrival
-        var blur=cl(Math.abs(inv)*7,0,7);
-        st.el.style.filter=blur>0.3 ? 'blur('+blur.toFixed(1)+'px)' : '';
+      var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var done=false;
+      function revealAll(){ if(done) return; done=true; boxes.forEach(function(b){ b.classList.add('in'); }); cleanup(); }
+      function cleanup(){ window.removeEventListener('scroll', onScroll); if(io) io.disconnect(); }
+
+      if(reduce){ boxes.forEach(function(b){ b.classList.add('in'); }); return; }
+      // stagger each box for a gentle cascade
+      boxes.forEach(function(b,i){ b.style.transitionDelay=(i*0.09)+'s'; });
+
+      // robust trigger: IntersectionObserver + a scroll-sweep backup (like the
+      // site-wide reveal engine) so it always fires once the grid nears view.
+      var vh=function(){ return window.innerHeight||document.documentElement.clientHeight||800; };
+      function onScroll(){ if(grid.getBoundingClientRect().top < vh()*0.85) revealAll(); }
+      var io=null;
+      if('IntersectionObserver' in window){
+        io=new IntersectionObserver(function(entries){
+          entries.forEach(function(e){ if(e.isIntersecting) revealAll(); });
+        }, { threshold:0.15 });
+        io.observe(grid);
       }
-      function apply(pf){
-        var r=grid.getBoundingClientRect(), vh=window.innerHeight;
-        // progress keyed to the grid's CENTER: 0 as it enters from the bottom,
-        // 1 once the center sits ~62% down the viewport — so it locks together
-        // while the section is comfortably in view, not after you scroll past it.
-        var center=r.top + r.height/2;
-        var p=(pf!==undefined)?pf:cl((vh*0.98 - center)/(vh*0.40),0,1);
-        for(var i=0;i<state.length;i++){
-          // each box starts a touch later but they all finish by ~0.72 progress,
-          // so the whole grid is assembled and aligned well before it leaves view
-          var q=cl((p - i*0.055)/0.55, 0, 1);
-          state[i].e=eb(q);
-          state[i].el.style.opacity=cl(q*1.9,0,1).toFixed(2);
-          compose(state[i]);
-        }
-        return p;
-      }
-      state.forEach(function(st){
-        st.el.addEventListener('mousemove', function(ev){
-          if(st.e<0.999) return;
-          var r=st.el.getBoundingClientRect();
-          st.ty=((ev.clientX-r.left)/r.width-0.5)*10;
-          st.tx=(0.5-(ev.clientY-r.top)/r.height)*8;
-          compose(st);
-        });
-        st.el.addEventListener('mouseleave', function(){ st.tx=0; st.ty=0; compose(st); });
-      });
-      var tk=false;
-      function onS(){ if(!tk){ tk=true; requestAnimationFrame(function(){ apply(); tk=false; }); } }
-      apply();
-      window.addEventListener('scroll', onS, {passive:true});
-      window.addEventListener('resize', onS);
-      window.__hub={force:apply, boxes:boxes.length};
+      window.addEventListener('scroll', onScroll, {passive:true});
+      window.addEventListener('load', onScroll);
+      onScroll();
+      setTimeout(onScroll, 500);
     })();
 
     // Scroll progress bar
