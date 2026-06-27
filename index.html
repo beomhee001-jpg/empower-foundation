@@ -349,6 +349,27 @@
     .hb-gallery{grid-column:span 2; background:linear-gradient(135deg,#E9F2FD,#DBEAFE); color:var(--heading)}
     .hb-show{background:linear-gradient(150deg,#2563EB,#1E40AF); color:#fff}
     .hb-contact{background:linear-gradient(150deg,#16A34A,#166534); color:#fff}
+    /* ===== Self-flipping season card (Spring <-> Summer 2026) ===== */
+    .hb-flip{padding:0 !important; background:transparent !important; border:none !important; box-shadow:none !important; overflow:visible; perspective:1600px; min-height:200px}
+    .hb-flip .flip-inner{position:absolute; inset:0; transform-style:preserve-3d; transition:transform .9s cubic-bezier(.45,.02,.18,1); will-change:transform}
+    .hb-flip.flipped .flip-inner{transform:rotateY(180deg)}
+    .flip-face{position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end; gap:5px; padding:22px; border-radius:22px; overflow:hidden; text-decoration:none; box-shadow:var(--shadow-md); border:1px solid rgba(255,255,255,.16); -webkit-backface-visibility:hidden; backface-visibility:hidden; transition:box-shadow .35s ease}
+    .flip-face:hover{text-decoration:none}
+    .flip-front{background:linear-gradient(135deg,#E9F2FD,#DBEAFE); color:var(--heading)}
+    .flip-back{transform:rotateY(180deg); background:linear-gradient(140deg,#D1FAE5,#A7F3D0); color:#0B5B3B}
+    .hb-flip:hover .flip-face{box-shadow:0 34px 80px -30px rgba(37,99,235,.5)}
+    .flip-back .hb-arrow{background:rgba(11,91,59,.12)}
+    /* summer-tinted mini chips */
+    .s1{background:linear-gradient(135deg,#A7F3D0,#6EE7B7)} .s2{background:linear-gradient(135deg,#FDE68A,#FCD34D)}
+    .s3{background:linear-gradient(135deg,#BBF7D0,#86EFAC)} .s4{background:linear-gradient(135deg,#FED7AA,#FDBA74)}
+    /* controls (sit above the flipping faces, don't flip themselves) */
+    .flip-nav{position:absolute; z-index:6; right:18px; bottom:18px; width:42px; height:42px; border-radius:50%; border:1px solid rgba(15,44,94,.16); background:rgba(255,255,255,.92); color:var(--primary-700); display:grid; place-items:center; cursor:pointer; box-shadow:var(--shadow-sm); transition:transform .4s cubic-bezier(.4,0,.2,1), background-color .2s}
+    .flip-nav:hover{transform:rotate(180deg) scale(1.08); background:#fff; color:var(--primary-800)}
+    .flip-nav svg{width:19px; height:19px}
+    .flip-dots{position:absolute; z-index:6; right:72px; bottom:30px; display:flex; gap:7px; pointer-events:none}
+    .flip-dots i{width:8px; height:8px; border-radius:50%; background:rgba(15,44,94,.24); transition:background-color .35s, transform .35s}
+    .flip-dots i.on{background:var(--primary-700); transform:scale(1.35)}
+    @media (prefers-reduced-motion: reduce){ .hb-flip .flip-inner{transition:none} }
     .hb-kicker{font-family:"Lexend",sans-serif; font-weight:600; font-size:.76rem; letter-spacing:.11em; text-transform:uppercase; opacity:.75}
     .hb-title{font-family:"Lexend",sans-serif; font-weight:700; font-size:1.22rem; line-height:1.22}
     .hb-feature .hb-title{font-size:clamp(1.5rem,2.4vw,1.9rem)}
@@ -886,13 +907,28 @@
             <span class="hb-feat-chip"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17.8 5.9 20.4l1.5-6.8L2.2 9l6.9-.7z"/></svg> Featured partner · Boys &amp; Girls Club of Stanton</span>
             <span class="hb-cta">Explore partnerships <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </a>
-          <a class="hub-box hb-gallery" href="volunteer.html#spring-2026">
-            <span class="hb-minis" aria-hidden="true"><i class="g1"></i><i class="g2"></i><i class="g3"></i><i class="g4"></i></span>
-            <span class="hb-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-            <span class="hb-kicker">Photo Gallery</span>
-            <span class="hb-title">Spring 2026 Volunteer Days</span>
-            <span class="hb-sub">Moments from our spring volunteer days &mdash; straight from the field.</span>
-          </a>
+          <div class="hub-box hb-gallery hb-flip" id="seasonFlip">
+            <div class="flip-inner">
+              <a class="flip-face flip-front" href="volunteer.html#spring-2026">
+                <span class="hb-minis" aria-hidden="true"><i class="g1"></i><i class="g2"></i><i class="g3"></i><i class="g4"></i></span>
+                <span class="hb-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                <span class="hb-kicker">Photo Gallery · Spring</span>
+                <span class="hb-title">Spring 2026 Volunteer Days</span>
+                <span class="hb-sub">Moments from our spring volunteer days &mdash; tap to open the gallery.</span>
+              </a>
+              <a class="flip-face flip-back" href="volunteer.html#summer-2026">
+                <span class="hb-minis" aria-hidden="true"><i class="s1"></i><i class="s2"></i><i class="s3"></i><i class="s4"></i></span>
+                <span class="hb-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+                <span class="hb-kicker">Photo Gallery · Summer</span>
+                <span class="hb-title">Summer 2026 Volunteer Days</span>
+                <span class="hb-sub">Highlights from our summer programs &mdash; tap to open the gallery.</span>
+              </a>
+            </div>
+            <span class="flip-dots" aria-hidden="true"><i class="on"></i><i></i></span>
+            <button class="flip-nav" type="button" aria-label="Switch between Spring and Summer 2026">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v-2a4 4 0 0 0-4-4H3"/></svg>
+            </button>
+          </div>
           <a class="hub-box hb-show" href="partnership.html#community">
             <span class="hb-screen" aria-hidden="true"><span class="hb-play"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span></span>
             <span class="hb-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
@@ -2617,6 +2653,29 @@
       window.addEventListener('load', onScroll);
       onScroll();
       setTimeout(onScroll, 500);
+    })();
+
+    // ===== Self-flipping season card: auto-alternates every 10s, or flip on command =====
+    (function(){
+      var fl=document.getElementById('seasonFlip');
+      if(!fl) return;
+      var dots=fl.querySelectorAll('.flip-dots i');
+      var nav=fl.querySelector('.flip-nav');
+      var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var flipped=false, timer=null;
+      function render(){
+        fl.classList.toggle('flipped', flipped);
+        if(dots.length>=2){ dots[0].classList.toggle('on', !flipped); dots[1].classList.toggle('on', flipped); }
+      }
+      function go(){ flipped=!flipped; render(); }
+      function stop(){ if(timer){ clearInterval(timer); timer=null; } }
+      function start(){ stop(); if(!reduce) timer=setInterval(go, 10000); }
+      if(nav) nav.addEventListener('click', function(e){ e.preventDefault(); e.stopPropagation(); go(); start(); });
+      // pause while hovering (so people can read / click) and when the tab is hidden
+      fl.addEventListener('mouseenter', stop);
+      fl.addEventListener('mouseleave', start);
+      document.addEventListener('visibilitychange', function(){ document.hidden ? stop() : start(); });
+      render(); start();
     })();
 
     // Scroll progress bar
