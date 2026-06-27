@@ -352,8 +352,14 @@
     /* ===== Season photo slider (Spring / Summer / + future seasons) ===== */
     .hb-slider{padding:0 !important; min-height:200px}            /* hub-box is already position:relative + overflow:hidden */
     .hb-slider .slide-track{position:absolute; inset:0; display:flex; transition:transform .7s cubic-bezier(.5,0,.18,1); will-change:transform}
-    .hb-slider .slide{flex:0 0 100%; min-width:100%; display:flex; flex-direction:column; justify-content:flex-end; gap:5px; padding:22px; text-decoration:none}
+    .hb-slider .slide{flex:0 0 100%; min-width:100%; display:flex; flex-direction:column; justify-content:flex-end; gap:4px; padding:22px; text-decoration:none}
     .hb-slider .slide:hover{text-decoration:none}
+    /* the hero label: big uppercase season + year */
+    .slide-season{font-family:"Lexend",sans-serif; font-weight:800; font-size:clamp(2.1rem,5vw,3.1rem); line-height:1; letter-spacing:.01em; text-transform:uppercase; margin:3px 0 2px}
+    .slide-spring .slide-season{background:linear-gradient(120deg,#1D4ED8,#2563EB 55%,#16A34A); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent}
+    .slide-summer .slide-season{background:linear-gradient(120deg,#0B7D57,#10B981 55%,#0E7C4F); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent}
+    .slide-fall .slide-season{background:linear-gradient(120deg,#C2410C,#EA580C 55%,#D97706); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent}
+    .slide-winter .slide-season{background:linear-gradient(120deg,#0369A1,#0EA5E9 55%,#2563EB); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent}
     /* per-season skins — add a .slide-<name> rule when you add a season */
     .slide-spring{background:linear-gradient(135deg,#E9F2FD,#DBEAFE); color:var(--heading)}
     .slide-summer{background:linear-gradient(140deg,#D1FAE5,#A7F3D0); color:#0B5B3B}
@@ -914,15 +920,15 @@
               <a class="slide slide-spring" href="volunteer.html#spring-2026" data-season="Spring 2026">
                 <span class="hb-minis" aria-hidden="true"><i class="g1"></i><i class="g2"></i><i class="g3"></i><i class="g4"></i></span>
                 <span class="hb-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-                <span class="hb-kicker">Photo Gallery · Spring</span>
-                <span class="hb-title">Spring 2026 Volunteer Days</span>
+                <span class="hb-kicker">Photo Gallery</span>
+                <span class="slide-season">Spring 2026</span>
                 <span class="hb-sub">Moments from our spring volunteer days &mdash; tap to open the gallery.</span>
               </a>
               <a class="slide slide-summer" href="volunteer.html#summer-2026" data-season="Summer 2026">
                 <span class="hb-minis" aria-hidden="true"><i class="s1"></i><i class="s2"></i><i class="s3"></i><i class="s4"></i></span>
                 <span class="hb-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-                <span class="hb-kicker">Photo Gallery · Summer</span>
-                <span class="hb-title">Summer 2026 Volunteer Days</span>
+                <span class="hb-kicker">Photo Gallery</span>
+                <span class="slide-season">Summer 2026</span>
                 <span class="hb-sub">Highlights from our summer programs &mdash; tap to open the gallery.</span>
               </a>
               <!-- ADD A SEASON: copy one slide block, point href at e.g. volunteer.html#fall-2026,
