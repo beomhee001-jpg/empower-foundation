@@ -510,11 +510,11 @@
 
     /* ===== "Journey of Change" scrollytelling (custom, scroll-scrubbed) ===== */
     .journey{height:500vh; position:relative}
-    .journey-stage{position:sticky; top:0; height:100vh; height:100dvh; overflow:hidden; background:#0A1630}
+    .journey-stage{position:sticky; top:0; height:100vh; height:100dvh; overflow:hidden; background:transparent}
     .journey-stage svg{position:absolute; inset:0; width:100%; height:100%; display:block}
     .journey-stage canvas{position:absolute; inset:0; width:100%; height:100%; display:block}
     .journey-stage::after{content:""; position:absolute; inset:0; pointer-events:none; z-index:2;
-      background:radial-gradient(125% 92% at 50% 42%, transparent 52%, rgba(4,10,26,.62) 100%)}
+      background:radial-gradient(125% 92% at 50% 42%, transparent 60%, rgba(11,31,68,.10) 100%)}
     .journey-hint{position:absolute; left:50%; bottom:24px; transform:translateX(-50%); z-index:3;
       display:inline-flex; flex-direction:column; align-items:center; gap:5px;
       font-family:"Lexend",sans-serif; font-weight:600; font-size:.72rem; letter-spacing:.16em; text-transform:uppercase;
@@ -1907,15 +1907,13 @@
       function draw(g,time){
         if(!W) return; g=cl(g,0,1);
         ctx.setTransform(dpr,0,0,dpr,0,0);
-        ctx.fillStyle='#040a1a'; ctx.fillRect(0,0,W,H);
+        ctx.clearRect(0,0,W,H);                 // transparent — the site particle field shows behind
         var iris=g<0.06?(g/0.06):1, clipped=false;
         if(iris<1){ ctx.save(); ctx.beginPath(); ctx.arc(baseX,groundY,Math.hypot(W,H)*0.62*Math.max(iris,0.001),0,6.2832); ctx.clip(); clipped=true; }
 
-        var sky=ctx.createLinearGradient(0,0,0,H);
-        sky.addColorStop(0,ramp(SKY_T,g)); sky.addColorStop(0.55,ramp(SKY_M,g)); sky.addColorStop(1,ramp(SKY_B,g));
-        ctx.fillStyle=sky; ctx.fillRect(0,0,W,H);
+        /* painted sky removed — particle field is the backdrop */
 
-        var so=1-ss(g,.34,.52);
+        var so=0;
         if(so>0.01){ ctx.fillStyle='#DCE9FF';
           for(var i=0;i<stars.length;i++){ var st=stars[i];
             ctx.globalAlpha=so*st.b*(0.5+0.5*Math.sin(time*1.4+st.ph));
@@ -1933,8 +1931,7 @@
           ctx.beginPath(); ctx.arc(sx,sy,Math.min(W,H)*0.045,0,6.2832); ctx.fill(); ctx.globalAlpha=1;
         }
 
-        hill(groundY-H*0.02,H*0.075,ramp(HILL1,g));
-        hill(groundY-H*0.005,H*0.05,ramp(HILL0,g));
+        /* distant hills removed — particle field shows instead */
 
         var soil=ctx.createLinearGradient(0,groundY,0,H);
         soil.addColorStop(0,mix('#2B1D11','#3a2a16',ss(g,.5,1))); soil.addColorStop(1,'#110b05');
@@ -2298,7 +2295,7 @@
           _trees(394,118,'#4f7d55',0.9,90); _trees(432,150,'#39633f',0.96,80);
           var bt=new THREE.CanvasTexture(bc); bt.wrapS=THREE.RepeatWrapping; bt.repeat.set(3,1); bt.encoding=THREE.sRGBEncoding;
           var backdrop=new THREE.Mesh(new THREE.CylinderGeometry(72,72,46,80,1,true), new THREE.MeshBasicMaterial({map:bt, transparent:true, side:THREE.BackSide, depthWrite:false, fog:false}));
-          backdrop.position.y=14; scene.add(backdrop);
+          backdrop.position.y=14;   /* distant hills backdrop removed — particle field shows instead */
         }catch(e){}
         // (mid-distance 3D trees removed — the hero tree stands alone against the soft hazy horizon)
         try{ // grass: short curved tapered blades, kept clear around the seed so it stays visible
@@ -2349,13 +2346,14 @@
       }
 
       function init(){
-        renderer=new THREE.WebGLRenderer({canvas:glcv, antialias:true, preserveDrawingBuffer:true});
+        renderer=new THREE.WebGLRenderer({canvas:glcv, antialias:true, alpha:true, preserveDrawingBuffer:true});
         renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+        renderer.setClearColor(0x000000, 0);   // transparent — the site particle field shows behind
         if(THREE.ColorManagement) THREE.ColorManagement.enabled=true;
         renderer.outputEncoding=THREE.sRGBEncoding;
         renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=1.12;
         renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap;
-        scene=new THREE.Scene(); scene.fog=new THREE.Fog(0x0a1630, 17, 64);
+        scene=new THREE.Scene(); scene.fog=new THREE.Fog(0xCFEBD7, 22, 72);   // light fog blends ground edge into the particle field
         camera=new THREE.PerspectiveCamera(42,1,0.1,200);
 
         skyMat=new THREE.ShaderMaterial({
@@ -2364,7 +2362,7 @@
           vertexShader:'varying vec3 vDir; void main(){ vDir=normalize(position); gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }',
           fragmentShader:'uniform vec3 top; uniform vec3 bottom; varying vec3 vDir; void main(){ float h=clamp(vDir.y*0.5+0.5,0.0,1.0); gl_FragColor=vec4(mix(bottom,top,h),1.0); }'
         });
-        var sky=new THREE.Mesh(new THREE.SphereGeometry(100,32,16), skyMat); sky.renderOrder=-1; scene.add(sky);
+        var sky=new THREE.Mesh(new THREE.SphereGeometry(100,32,16), skyMat); sky.renderOrder=-1;   /* sky dome removed — particle field is the backdrop */
 
         hemi=new THREE.HemisphereLight(0x9fc0ff, 0x24341c, 0.3); scene.add(hemi);
         sun=new THREE.DirectionalLight(0xfff2d8, 0.2); sun.castShadow=true;
@@ -2419,9 +2417,9 @@
       }
       function setEnv(g,time){
         rampCol(skyMat.uniforms.top.value, SK_TOP, g); rampCol(skyMat.uniforms.bottom.value, SK_BOT, g);
-        scene.fog.color.copy(skyMat.uniforms.bottom.value);
+        /* fog stays light (set at init) so the ground melts into the particle field */
         var day=ss(g,.42,.85);
-        sun.intensity=0.25+1.2*day; hemi.intensity=0.4+0.5*day;
+        sun.intensity=0.6+0.9*day; hemi.intensity=0.74+0.4*day;   /* lifted base so the seed reads against the light backdrop */
         var sa=lerp(0.18,0.92,ss(g,.40,.96))*Math.PI;
         sun.position.set(Math.cos(sa)*24, Math.max(3,Math.sin(sa)*34), 13); sun.target.position.set(0,2.6,0);
         if(sunGlow){ sunGlow.position.copy(sun.position).multiplyScalar(2.0); sunGlow.material.opacity=0.55*day; }
