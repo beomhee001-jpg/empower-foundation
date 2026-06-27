@@ -156,8 +156,120 @@ body::before{content:""; position:fixed; inset:0; z-index:-2; pointer-events:non
 .tri-grid .card h3{font-size:1.16rem; font-weight:700; margin-bottom:9px}
 .tri-grid .card p{color:var(--muted); font-size:.99rem}
 
+/* ============================================================
+   HYPERFUTURISTIC LAYER (site-wide) — appended last so it wins.
+   Cinematic scroll reveal, holographic glass, scroll-reactive
+   micro-interactions, scroll progress comet. All GPU transforms
+   / opacity — tuned to stay smooth on every page.
+   ============================================================ */
+
+/* ---- Cinematic reveal: blur + lift + scale, long settle ---- */
+.js .reveal{
+  opacity:0;
+  transform:translateY(34px) scale(.975);
+  filter:blur(8px);
+  transition:opacity .9s cubic-bezier(.22,.72,.24,1),
+             transform 1s cubic-bezier(.22,.72,.24,1),
+             filter .9s cubic-bezier(.22,.72,.24,1);
+  will-change:transform, opacity, filter;
+}
+.js .reveal.in{opacity:1; transform:none; filter:none}
+.js .reveal.in{will-change:auto}
+/* directional flavours (add the class to any .reveal) */
+.js .reveal.from-left{transform:translate3d(-46px,12px,0) scale(.975)}
+.js .reveal.from-right{transform:translate3d(46px,12px,0) scale(.975)}
+.js .reveal.zoom-in{transform:translateY(10px) scale(.9)}
+.js .reveal.from-left.in,.js .reveal.from-right.in,.js .reveal.zoom-in.in{transform:none}
+/* two-column blocks glide in from their own side */
+.js .about-copy.reveal,.js .contact-info.reveal,.js .partner-copy.reveal{transform:translate3d(-46px,12px,0) scale(.985)}
+.js .mvv.reveal,.js .form.reveal,.js .partner-card.reveal{transform:translate3d(46px,12px,0) scale(.985)}
+.js .about-copy.reveal.in,.js .contact-info.reveal.in,.js .partner-copy.reveal.in,
+.js .mvv.reveal.in,.js .form.reveal.in,.js .partner-card.reveal.in{transform:none}
+
+/* ---- Holographic glass cards: animated gradient hairline + sheen sweep ---- */
+.card,.stat,.partner-card,.form{overflow:hidden}
+.card::after{
+  background:linear-gradient(120deg,
+    rgba(37,99,235,.6), rgba(16,185,129,.5) 35%, rgba(96,165,250,.55) 60%, rgba(16,185,129,.5) 100%);
+  background-size:260% 260%;
+  animation:holoBorder 9s linear infinite;
+}
+@keyframes holoBorder{0%{background-position:0% 50%} 100%{background-position:260% 50%}}
+/* sheen that sweeps across on hover */
+.card::before{
+  content:""; position:absolute; top:0; bottom:0; left:-130%; width:60%; z-index:2;
+  background:linear-gradient(105deg, transparent, rgba(255,255,255,.55), transparent);
+  transform:skewX(-16deg); transition:left .8s cubic-bezier(.22,.72,.24,1); pointer-events:none;
+}
+.card:hover::before{left:150%}
+/* 3D tilt is applied inline by anim.js — give it a smooth base + perspective */
+.card,.stat{transform-style:preserve-3d; transition:transform .18s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease}
+.card.tilting,.stat.tilting{transition:box-shadow .3s ease}
+.card:hover{box-shadow:0 30px 70px -28px rgba(37,99,235,.5)}
+
+/* ---- Buttons: futuristic glow pulse + sharper sheen ---- */
+.btn-primary,.btn-accent{position:relative; overflow:hidden}
+.btn-primary::after,.btn-accent::after{
+  content:""; position:absolute; top:0; bottom:0; left:-130%; width:55%;
+  background:linear-gradient(105deg, transparent, rgba(255,255,255,.45), transparent);
+  transform:skewX(-18deg); transition:left .7s cubic-bezier(.22,.72,.24,1); pointer-events:none;
+}
+.btn-primary:hover::after,.btn-accent:hover::after{left:160%}
+.btn-accent{box-shadow:0 14px 30px -12px rgba(16,185,129,.6), 0 0 0 0 rgba(16,185,129,.0)}
+.btn-accent:hover{box-shadow:0 18px 40px -12px rgba(16,185,129,.7), 0 0 28px -4px rgba(16,185,129,.5)}
+
+/* ---- Eyebrow + headings get a subtle holographic shimmer ---- */
+.eyebrow{background-size:200% auto; animation:holoText 6s linear infinite}
+@keyframes holoText{to{background-position:200% center}}
+
+/* ---- Animated gradient ruling under every section heading ---- */
+.section-head h2{position:relative; display:inline-block}
+.section-head h2::after{
+  content:""; position:absolute; left:50%; bottom:-14px; height:3px; width:0; border-radius:3px;
+  background:var(--grad); background-size:200% auto; transform:translateX(-50%);
+  transition:width .8s cubic-bezier(.22,.72,.24,1) .15s; animation:holoText 5s linear infinite;
+}
+.reveal.in .section-head h2::after,.section-head.in h2::after,.section-head.reveal.in h2::after{width:74px}
+/* show the rule once the head reveals (covers heads that ARE the .reveal) */
+.section-head.reveal.in h2::after{width:74px}
+
+/* ---- Stat numbers glow softly ---- */
+.stat .num{filter:drop-shadow(0 2px 14px rgba(37,99,235,.18))}
+
+/* ---- Scroll progress: glowing comet bar ---- */
+.scroll-progress{
+  height:3px; box-shadow:0 0 12px rgba(37,99,235,.7), 0 0 22px rgba(16,185,129,.5);
+  background:linear-gradient(90deg,#2563EB,#3B82F6 45%,#10B981);
+}
+
+/* ---- Floating scroll-to-top orb with a live progress ring (injected by anim.js) ---- */
+#toTop{
+  position:fixed; right:clamp(16px,3vw,28px); bottom:clamp(16px,3vw,28px); z-index:120;
+  width:54px; height:54px; border:none; border-radius:50%; cursor:pointer;
+  display:grid; place-items:center; color:var(--primary-700);
+  background:rgba(255,255,255,.72); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px);
+  box-shadow:0 14px 36px -12px rgba(11,31,68,.45), inset 0 0 0 1px rgba(255,255,255,.6);
+  opacity:0; transform:translateY(18px) scale(.85); pointer-events:none;
+  transition:opacity .4s ease, transform .4s cubic-bezier(.2,.9,.25,1.3);
+}
+#toTop.show{opacity:1; transform:none; pointer-events:auto}
+#toTop:hover{color:var(--primary-800); transform:translateY(-3px)}
+#toTop::before{
+  content:""; position:absolute; inset:-4px; border-radius:50%; z-index:-1;
+  background:conic-gradient(from -90deg, #2563EB var(--p,0%), #10B981 var(--p,0%), rgba(37,99,235,.12) 0);
+  -webkit-mask:radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 3px));
+  mask:radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 3px));
+}
+#toTop svg{width:22px; height:22px}
+
+/* ---- Magnetic micro-lift for primary CTAs (anim.js sets --mx/--my) ---- */
+.btn[data-magnetic]{transition:transform .25s cubic-bezier(.2,.9,.25,1.3), box-shadow .3s ease, filter .25s ease}
+
 /* ---- Respect reduced motion ---- */
 @media (prefers-reduced-motion: reduce){
-  .btn,.card,.ph-photo,.brand .logo{transition:none !important}
-  .nav-links a::after{transition:none}
+  .btn,.card,.stat,.ph-photo,.brand .logo{transition:none !important; transform:none !important}
+  .nav-links a::after,.card::before,.btn-primary::after,.btn-accent::after{transition:none}
+  .card::after,.eyebrow,.section-head h2::after{animation:none !important}
+  .js .reveal{filter:none !important}
+  #toTop{transition:opacity .3s ease}
 }
