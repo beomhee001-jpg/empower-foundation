@@ -55,8 +55,10 @@
 
   function spawn(){
     var dense = window.innerWidth < 720 ? 0.55 : 1;
-    motes = makeSet(Math.round(80 * dense), { r0: 1.4, r1: 4.6, a0: 0.22, a1: 0.7,  v: 0.000115, d0: 0.04, d1: 0.16, blue: 0.34 });
-    orbs  = makeSet(Math.round(9  * dense), { r0: 80,  r1: 190, a0: 0.06, a1: 0.17, v: 0.00006,  d0: 0.10, d1: 0.26, blue: 0.40 });
+    // d0/d1 = parallax depth: how far a particle is dragged per px of scroll.
+    // High + layered, so scrolling down rapidly streams the field upward (left behind).
+    motes = makeSet(Math.round(80 * dense), { r0: 1.4, r1: 4.6, a0: 0.22, a1: 0.7,  v: 0.000115, d0: 0.40, d1: 0.90, blue: 0.34 });
+    orbs  = makeSet(Math.round(9  * dense), { r0: 80,  r1: 190, a0: 0.06, a1: 0.17, v: 0.00006,  d0: 0.55, d1: 0.98, blue: 0.40 });
   }
 
   function blit(p, sway, stretch){
@@ -70,7 +72,7 @@
 
   function draw(){
     ctx.clearRect(0, 0, W, H);
-    var i, str = 1 + Math.min(Math.abs(vel) * 0.018, 0.85);   // vertical streak on fast scroll
+    var i, str = 1 + Math.min(Math.abs(vel) * 0.035, 1.8);    // vertical streak on fast scroll
     for (i = 0; i < orbs.length; i++) blit(orbs[i], 0, 1);
     for (i = 0; i < motes.length; i++){
       var p = motes[i];
@@ -91,8 +93,8 @@
 
   function loop(){
     t += 0.016;
-    sY += (sTarget - sY) * 0.085;                              // ease scroll toward target
-    vel += ((sTarget - sLast) - vel) * 0.12; sLast = sTarget;  // smoothed scroll velocity
+    sY += (sTarget - sY) * 0.16;                               // track scroll tightly so the field reacts fast
+    vel += ((sTarget - sLast) - vel) * 0.18; sLast = sTarget;  // smoothed scroll velocity
     if (Math.abs(vel) < 0.01) vel = 0;
     step(motes, 0.06); step(orbs, 0.25);
     draw();
