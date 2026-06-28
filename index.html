@@ -426,7 +426,16 @@
     .hb-gallery:hover .hb-minis i:nth-child(3){transform:translateY(-3px) rotate(2deg)}
     .hb-gallery:hover .hb-minis i:nth-child(4){transform:translateY(5px) rotate(-3deg)}
     @media (max-width:900px){ .hub{grid-template-columns:repeat(2,1fr); grid-auto-rows:200px} }
-    @media (max-width:560px){ .hub{grid-template-columns:1fr; grid-auto-rows:auto} .hub-box{min-height:150px} .hb-feature{grid-column:span 1; grid-row:span 1; min-height:230px} .hb-gallery{grid-column:span 1} .hb-slider{min-height:198px} .slide-season{font-size:2.3rem} }
+    @media (max-width:560px){
+      .hub{grid-template-columns:1fr; grid-auto-rows:auto} .hub-box{min-height:150px}
+      .hb-feature{grid-column:span 1; grid-row:span 1; min-height:230px} .hb-gallery{grid-column:span 1}
+      /* season slider: declutter so the big label owns the space */
+      .hb-slider{min-height:206px}
+      .hb-slider .hb-minis,.hb-slider .hb-arrow{display:none}     /* the squares/arrow were covering the label */
+      .hb-slider .slide-controls{top:16px; bottom:auto; right:16px}/* controls to the top, text to the bottom */
+      .hb-slider .slide{padding:18px}
+      .slide-season{font-size:2.4rem; margin-top:0}
+    }
     @media (prefers-reduced-motion: reduce){ .js .hub-box{opacity:1 !important; transform:none !important} }
 
     /* ===== Footer ===== */
@@ -1101,6 +1110,8 @@
     var toggle = document.getElementById('navToggle');
     var menu = document.getElementById('mobileMenu');
     var setMenu = function(open){
+      // force visibility inline so a stale/cached stylesheet can't keep it display:none
+      if(open) menu.style.display = 'block';
       menu.classList.toggle('open', open);
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');

@@ -674,6 +674,7 @@
     var toggle = document.getElementById('navToggle');
     var menu = document.getElementById('mobileMenu');
     var setMenu = function(open){
+      if(open) menu.style.display = 'block';   // cache-proof: beat a stale stylesheet
       menu.classList.toggle('open', open);
       toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
