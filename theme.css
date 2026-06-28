@@ -191,6 +191,9 @@ body::before{content:""; position:fixed; inset:0; z-index:-2; pointer-events:non
   background:linear-gradient(120deg,
     rgba(37,99,235,.55), rgba(16,185,129,.5) 45%, rgba(96,165,250,.5) 100%);
 }
+/* prog-card had a leftover 160x160 corner element; with the card border's mask it
+   showed as a small box around the icon/heading. Make it fill the whole card. */
+.prog-card::after{width:auto !important; height:auto !important; inset:0 !important}
 /* sheen that sweeps across on hover */
 .card::before{
   content:""; position:absolute; top:0; bottom:0; left:-130%; width:60%; z-index:2;
