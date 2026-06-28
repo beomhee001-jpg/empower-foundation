@@ -666,7 +666,7 @@
       .tr-char{transition:opacity .3s ease !important; transform:none !important}
     }
   </style>
-  <link rel="stylesheet" href="theme.css?v=2" />
+  <link rel="stylesheet" href="theme.css?v=3" />
 </head>
 <body>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
@@ -1120,6 +1120,18 @@
     };
     toggle.addEventListener('click', function(){ setMenu(!menu.classList.contains('open')); });
     menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+
+    // Brand (top-left logo) -> always glide to the very top of the home page.
+    // (#top is the sticky header, so a plain hash link doesn't actually scroll.)
+    document.querySelectorAll('a.brand').forEach(function(b){
+      b.addEventListener('click', function(e){
+        if((b.getAttribute('href')||'').charAt(0) === '#'){
+          e.preventDefault();
+          window.scrollTo({ top:0, behavior:'smooth' });
+          setMenu(false);
+        }
+      });
+    });
 
     // Reveal on scroll
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

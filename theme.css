@@ -371,7 +371,44 @@ body::before{inset:-45% !important; animation:auroraDrift 70s ease-in-out infini
   .flip-nav,.lb-btn{width:44px; height:44px}
   /* keep big display type from getting cramped edge-to-edge */
   .section-head{padding-inline:2px}
+
+  /* On phones the two-column blocks are stacked, so sliding them in from the
+     left/right left content sitting off-centre (the contact form drifted right).
+     Never travel sideways on phones — rise vertically, then sit flat-centred.
+     Both !important so neither the variant nor a stuck reveal can offset it. */
+  .js .about-copy.reveal, .js .contact-info.reveal, .js .partner-copy.reveal,
+  .js .mvv.reveal, .js .form.reveal, .js .partner-card.reveal,
+  .js .reveal.v-left, .js .reveal.v-right, .js .reveal.v-skew{
+    transform:translateY(28px) !important;
+  }
+  .js .reveal.in{ transform:none !important; }   /* revealed = centred, always */
+
+  /* let stacked grid cells shrink to the container instead of overflowing to the
+     right (the contact form was 27px wider than its column -> drifted right) */
+  .contact-grid > *, .about-grid > *, .partner-grid > *, .hero-grid > *,
+  .footer-grid > *, .form-row > *{ min-width:0; }
 }
+
+/* ============================================================
+   NAV: clear "you are here" so the green Get-Involved CTA isn't
+   mistaken for the active page.
+   ============================================================ */
+.nav-links a[aria-current="page"]{
+  background:linear-gradient(120deg, rgba(37,99,235,.16), rgba(16,185,129,.16));
+  color:var(--primary-800); font-weight:600;
+}
+.nav-links a[aria-current="page"]::after{transform:scaleX(1)}   /* keep its underline lit */
+/* the Get Involved button is an action, not a location — make sure it never
+   carries the active-page treatment */
+.nav-cta[aria-current],.nav-cta{font-weight:600}
+/* mobile menu: clearly mark the current page (was unmarked, so the green
+   Get Involved button looked like the active item on every page) */
+.mobile-menu a[aria-current="page"]{
+  color:var(--primary-700); font-weight:700;
+  background:linear-gradient(120deg, rgba(37,99,235,.10), rgba(16,185,129,.10));
+  border-radius:10px; padding-left:12px; border-bottom-color:transparent;
+}
+.mobile-menu a.btn[aria-current]{background:none}   /* never on the CTA button */
 
 /* ============================================================
    PERF: kill live backdrop-blur. It was the main lag source —
