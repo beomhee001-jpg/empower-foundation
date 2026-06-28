@@ -357,6 +357,23 @@ body::before{inset:-45% !important; animation:auroraDrift 70s ease-in-out infini
 .card:hover,.stat:hover,.partner-card:hover{box-shadow:0 36px 80px -30px rgba(37,99,235,.55)}
 
 /* ============================================================
+   MOBILE FIXES (site-wide; theme.css loads last so these win)
+   ============================================================ */
+/* The hamburger menu was dead: each page declares `.mobile-menu{display:none}`
+   AFTER its own max-width media query, so the menu never showed. Re-assert it. */
+@media (max-width:760px){
+  .mobile-menu{display:block}
+  .mobile-menu.open{display:block}
+  /* comfortable tap targets + readable spacing */
+  .mobile-menu a{padding:15px 6px}
+  .btn{min-height:48px}
+  .slide-nav{width:40px; height:40px}      /* easier to tap on the season slider */
+  .flip-nav,.lb-btn{width:44px; height:44px}
+  /* keep big display type from getting cramped edge-to-edge */
+  .section-head{padding-inline:2px}
+}
+
+/* ============================================================
    PERF: kill live backdrop-blur. It was the main lag source —
    every frosted element re-blurred the particle canvas behind it
    on every frame. Solid-ish glass via opacity reads the same but

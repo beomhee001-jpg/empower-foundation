@@ -163,7 +163,15 @@
     .bt-np .ic{background:linear-gradient(135deg,#2563EB,#16A34A); color:#fff}
     .bt-np .np-text{display:flex; flex-direction:column; gap:2px}
     .bt-np strong{font-family:"Lexend",sans-serif; font-weight:800; font-size:1.4rem; color:var(--heading); line-height:1}
-    @media (max-width:560px){ .hero-bento{aspect-ratio:480/430} }
+    @media (max-width:560px){
+      /* let the bento grow to fit its content instead of clipping into fixed cells */
+      .hero-bento{aspect-ratio:auto; height:auto; grid-template-rows:repeat(4,minmax(82px,auto)); gap:10px}
+      .bento-tile{padding:14px}
+      .bento-tile.feature .bt-desc{display:none}      /* the heading + tags tell the story on phones */
+      .bento-tile.feature h4{font-size:1.12rem}
+      .bt-tags{margin-top:8px}
+      .bt-np strong{font-size:1.2rem}
+    }
 
     /* ===== Stats / impact ===== */
     .stats{display:grid; grid-template-columns:repeat(4,1fr); gap:18px}
@@ -418,7 +426,7 @@
     .hb-gallery:hover .hb-minis i:nth-child(3){transform:translateY(-3px) rotate(2deg)}
     .hb-gallery:hover .hb-minis i:nth-child(4){transform:translateY(5px) rotate(-3deg)}
     @media (max-width:900px){ .hub{grid-template-columns:repeat(2,1fr); grid-auto-rows:200px} }
-    @media (max-width:560px){ .hub{grid-template-columns:1fr; grid-auto-rows:auto} .hub-box{min-height:150px} .hb-feature{grid-column:span 1; grid-row:span 1; min-height:230px} .hb-gallery{grid-column:span 1} }
+    @media (max-width:560px){ .hub{grid-template-columns:1fr; grid-auto-rows:auto} .hub-box{min-height:150px} .hb-feature{grid-column:span 1; grid-row:span 1; min-height:230px} .hb-gallery{grid-column:span 1} .hb-slider{min-height:198px} .slide-season{font-size:2.3rem} }
     @media (prefers-reduced-motion: reduce){ .js .hub-box{opacity:1 !important; transform:none !important} }
 
     /* ===== Footer ===== */
