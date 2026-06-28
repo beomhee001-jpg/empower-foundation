@@ -102,6 +102,26 @@
     .vhero-trust span{display:inline-flex; align-items:center; gap:7px}
     .vhero-trust svg{width:16px; height:16px; color:#4ADE80}
 
+    /* ===== Volunteer hours verification band ===== */
+    .hours-section{padding-top:clamp(40px,6vw,64px); padding-bottom:0}
+    .hours-band{position:relative; overflow:hidden; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:clamp(24px,4vw,40px); box-shadow:var(--shadow-md); display:grid; grid-template-columns:1.5fr 1fr; gap:clamp(22px,4vw,44px); align-items:center}
+    .hours-band::after{content:""; position:absolute; inset:0 0 auto auto; width:200px; height:200px; background:radial-gradient(circle at top right, rgba(74,222,128,.16), transparent 70%); pointer-events:none}
+    .hours-band .eyebrow{margin-bottom:10px}
+    .hours-band h2{font-size:clamp(1.5rem,3vw,2rem); margin-bottom:10px}
+    .hours-band > div{position:relative; z-index:1}
+    .hours-steps{display:grid; gap:12px; margin:18px 0 16px}
+    .hours-steps li{display:flex; gap:12px; align-items:flex-start; color:var(--text); font-size:1rem}
+    .hs-n{flex:none; width:28px; height:28px; border-radius:50%; background:linear-gradient(135deg,#2563EB,#16A34A); color:#fff; font-family:"Lexend",sans-serif; font-weight:700; font-size:.9rem; display:grid; place-items:center; margin-top:1px}
+    .hours-steps strong{color:var(--heading)}
+    .hours-note{font-size:.93rem; color:var(--muted); margin:0 0 18px}
+    .hours-side{display:grid; gap:14px; justify-items:center; text-align:center; padding:24px; background:linear-gradient(150deg,#0F2C5E,#06173A); border-radius:16px; color:#fff}
+    .hours-side .doc{width:56px; height:56px; border-radius:15px; display:grid; place-items:center; background:rgba(255,255,255,.14); color:#fff}
+    .hours-side .doc svg{width:28px; height:28px}
+    .hours-side strong{font-family:"Lexend",sans-serif; font-size:1.05rem}
+    .hours-side small{color:#A9C2E3; font-size:.85rem; line-height:1.4}
+    .hours-side .btn{width:100%}
+    @media (max-width:760px){ .hours-band{grid-template-columns:1fr} }
+
     /* ===== Ways to help cards ===== */
     .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:24px}
     .card{background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:30px; box-shadow:var(--shadow-sm); transition:transform .22s ease, box-shadow .25s ease, border-color .25s}
@@ -337,6 +357,34 @@
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg> 501(c)(3) nonprofit</span>
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg> Student-founded &amp; volunteer-led</span>
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13A4 4 0 0 1 16 11"/></svg> Proud partners of local youth organizations</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Volunteer hours verification ===== -->
+    <section class="section hours-section" id="hours" aria-label="Get your volunteer hours confirmed">
+      <div class="container">
+        <div class="hours-band reveal">
+          <div class="hours-copy">
+            <span class="eyebrow">Volunteer Hours</span>
+            <h2>Need Your Hours Confirmed?</h2>
+            <p>Volunteered with us and need your service hours verified for school, NHS, or scholarships? It only takes a minute:</p>
+            <ol class="hours-steps">
+              <li><span class="hs-n">1</span><span><strong>Download</strong> the Volunteer Hours Verification form.</span></li>
+              <li><span class="hs-n">2</span><span><strong>Fill it in</strong> &mdash; your name, and each event with its date and hours.</span></li>
+              <li><span class="hs-n">3</span><span><strong>Get it signed</strong> by both the President (Beomhee Kim) and Secretary (Aaron Kim) &mdash; both signatures are required.</span></li>
+            </ol>
+            <p class="hours-note">Email the completed form to <a href="mailto:empwrfoundationcorp@gmail.com">empwrfoundationcorp@gmail.com</a> and we'll sign it and send it back to you.</p>
+          </div>
+          <div class="hours-side">
+            <span class="doc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h4"/></svg></span>
+            <strong>Volunteer Hours Form</strong>
+            <small>PDF &middot; signed by the President &amp; Secretary</small>
+            <a class="btn btn-accent" href="empower-volunteer-hours.pdf" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+              Download Form
+            </a>
+          </div>
         </div>
       </div>
     </section>
