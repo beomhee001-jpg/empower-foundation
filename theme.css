@@ -219,7 +219,9 @@ body::before{content:""; position:fixed; inset:0; z-index:-2; pointer-events:non
 @keyframes holoText{to{background-position:200% center}}
 
 /* ---- Animated gradient ruling under every section heading ---- */
-.section-head h2{position:relative; display:inline-block}
+/* block, not inline-block: inline-block let the eyebrow share a line with short
+   headings (e.g. "Partner Spotlight" next to "Saferide Collective") */
+.section-head h2{position:relative; display:block}
 .section-head h2::after{
   content:""; position:absolute; left:50%; bottom:-14px; height:3px; width:0; border-radius:3px;
   background:var(--grad); transform:translateX(-50%);
@@ -506,3 +508,13 @@ body::before{inset:-10% !important}
 
 /* header hairline: single quiet line */
 .site-header::after{background:linear-gradient(90deg, transparent, rgba(11,31,68,.14), transparent); animation:none}
+
+/* ---- Tighter vertical rhythm: whole sections fit the viewport far more often ---- */
+:root{--space:clamp(44px, 6vw, 72px)}                    /* was clamp(64px, 9vw, 116px) */
+.section-head{margin:0 auto 34px}                        /* was 52px under the heading */
+.section-head p{margin-top:12px}
+.hero{padding-block:clamp(36px, 5vw, 64px)}
+.page-head{padding-top:clamp(44px, 6vw, 64px)}
+.vhero{padding:clamp(84px, 11vh, 118px) 0 clamp(44px, 6vh, 72px) !important}
+.cta-band{padding:clamp(32px, 4.5vw, 48px)}
+.rotate-band{padding:clamp(30px, 4.5vw, 48px) 0}
