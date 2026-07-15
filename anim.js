@@ -83,18 +83,31 @@
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.06 });
     reveals.forEach(function(el){ io.observe(el); });
 
-    // backup: reveal anything at/above the trigger line so it never gets stuck
+    // backup: reveal anything at/above the trigger line so it never gets stuck.
+    // rAF-throttled (layout reads on raw scroll events jank the scroll), and the
+    // listener detaches once everything has revealed.
     var vh = function(){ return window.innerHeight || document.documentElement.clientHeight; };
+    var pendingSweep = false;
     var sweep = function(){
+      pendingSweep = false;
+      var left = 0;
       for(var i = 0; i < reveals.length; i++){
         var el = reveals[i];
         if(el.classList.contains('in')) continue;
         if(el.getBoundingClientRect().top < vh() * 0.92){ el.classList.add('in'); io.unobserve(el); }
+        else left++;
       }
+      if(!left) window.removeEventListener('scroll', onSweep);
     };
-    window.addEventListener('scroll', sweep, { passive: true });
-    window.addEventListener('load', sweep);
-    setTimeout(sweep, 400);
+    var onSweep = function(){
+      if(pendingSweep) return;
+      pendingSweep = true;
+      requestAnimationFrame(sweep);
+      setTimeout(function(){ if(pendingSweep) sweep(); }, 140);   // backstop if rAF is throttled
+    };
+    window.addEventListener('scroll', onSweep, { passive: true });
+    window.addEventListener('load', onSweep);
+    setTimeout(onSweep, 400);
   }
 
   if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);

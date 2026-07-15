@@ -48,7 +48,7 @@
   }
 
   function resize(){
-    dpr = Math.min(window.devicePixelRatio || 1, 1.75);
+    dpr = Math.min(window.devicePixelRatio || 1, 1.35);   // perf: fewer pixels to clear+blit every frame
     W = c.width  = Math.floor(window.innerWidth  * dpr);
     H = c.height = Math.floor(window.innerHeight * dpr);
   }

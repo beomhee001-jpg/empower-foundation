@@ -9,17 +9,17 @@
   --primary:#2563EB; --primary-700:#1D4ED8; --primary-800:#1E3A8A;
   --secondary:#60A5FA;
   --accent:#10B981; --accent-700:#0E9F6E; --accent-800:#0B7D57;
-  --bg:#D2ECDA; --surface:#FFFFFF; --surface-2:#D9EFE0;
+  --bg:#F2F6F5; --surface:#FFFFFF; --surface-2:#EAF1EF;
   --heading:#0B1F44; --text:#3C4658; --muted:#67738A;
   --border:#DBE6F7; --border-strong:#C6D8F2;
   --ring:#2563EB;
   --shadow-sm:0 1px 2px rgba(11,31,68,.05), 0 6px 18px rgba(11,31,68,.06);
   --shadow-md:0 16px 44px -18px rgba(11,31,68,.30);
   --shadow-lg:0 34px 80px -26px rgba(11,31,68,.40);
-  --radius:22px; --radius-sm:14px;
+  --radius:16px; --radius-sm:10px;
   --grad:linear-gradient(120deg,#2563EB 0%,#3B82F6 45%,#10B981 100%);
-  --glass:rgba(255,255,255,.86);
-  --glass-brd:rgba(255,255,255,.7);
+  --glass:rgba(255,255,255,.94);
+  --glass-brd:#E3EAF3;
 }
 
 /* ---- Type: clean & matte, distinctive headings, refined spacing ---- */
@@ -29,15 +29,14 @@ h1,h2,h3,h4,.brand{font-family:"Bricolage Grotesque","Plus Jakarta Sans",system-
 h1,h2,h3,h4{letter-spacing:-.012em}
 .nav-links a{letter-spacing:.01em}
 
-/* ---- Rich, layered green base behind the drifting-particle canvas (bg.js) ---- */
-body{background:linear-gradient(158deg,#D6EEDD 0%,#BFE5CC 32%,#CFEBD7 58%,#B6E1C4 100%)}
+/* ---- Clean neutral canvas with faint blue/green atmosphere (bg.js particles sit on top) ---- */
+body{background:linear-gradient(165deg,#F6F9F8 0%,#EDF3F1 55%,#F3F7F6 100%)}
 body::before{content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
   background:
-    radial-gradient(56% 50% at 8% 2%,  rgba(16,185,129,.36), transparent 60%),   /* emerald */
-    radial-gradient(52% 52% at 94% 8%, rgba(5,150,105,.32),  transparent 62%),   /* deep emerald */
-    radial-gradient(60% 58% at 84% 99%,rgba(45,212,140,.28), transparent 62%),   /* spring green */
-    radial-gradient(48% 48% at 0% 96%, rgba(6,148,98,.26),   transparent 60%),   /* forest */
-    radial-gradient(46% 42% at 52% 44%,rgba(110,231,183,.16),transparent 72%);}  /* mint center */
+    radial-gradient(50% 42% at 10% 0%,  rgba(37,99,235,.07), transparent 62%),
+    radial-gradient(52% 46% at 92% 6%,  rgba(16,185,129,.08), transparent 62%),
+    radial-gradient(56% 50% at 85% 100%,rgba(16,185,129,.06), transparent 64%),
+    radial-gradient(44% 40% at 0% 96%,  rgba(37,99,235,.05), transparent 60%);}
 /* let the drifting particle field show through every light content band */
 .programs,.partner,#about,#contact,.page-head{background:transparent !important}
 
@@ -233,10 +232,10 @@ body::before{content:""; position:fixed; inset:0; z-index:-2; pointer-events:non
 /* ---- Stat numbers glow softly ---- */
 .stat .num{filter:drop-shadow(0 2px 14px rgba(37,99,235,.18))}
 
-/* ---- Scroll progress: glowing comet bar ---- */
+/* ---- Scroll progress: clean hairline (glow removed — repainted on every scroll) ---- */
 .scroll-progress{
-  height:3px; box-shadow:0 0 12px rgba(37,99,235,.7), 0 0 22px rgba(16,185,129,.5);
-  background:linear-gradient(90deg,#2563EB,#3B82F6 45%,#10B981);
+  height:2px; box-shadow:none;
+  background:linear-gradient(90deg,#2563EB,#10B981);
 }
 
 /* ---- Floating scroll-to-top orb with a live progress ring (injected by anim.js) ---- */
@@ -288,13 +287,8 @@ body::before{content:""; position:fixed; inset:0; z-index:-2; pointer-events:non
    composite-friendly or paints only the hovered element.
    ============================================================ */
 
-/* ---- Living aurora: the fixed mesh breathes very slowly (calm + cheap) ---- */
-body::before{inset:-45% !important; animation:auroraDrift 70s ease-in-out infinite; transform-origin:center}
-@keyframes auroraDrift{
-  0%  {transform:rotate(0deg)   scale(1.05)}
-  50% {transform:rotate(3deg)   scale(1.10)}
-  100%{transform:rotate(0deg)   scale(1.05)}
-}
+/* ---- Aurora tint: static (the animated version kept a huge composited layer alive) ---- */
+body::before{inset:-10% !important}
 
 /* ---- Cursor spotlight (top layer, screen-blended; injected by anim.js) ---- */
 #fx-cursor{
@@ -349,12 +343,7 @@ body::before{inset:-45% !important; animation:auroraDrift 70s ease-in-out infini
 ::selection{background:rgba(37,99,235,.24); color:var(--heading)}
 ::-moz-selection{background:rgba(37,99,235,.24); color:var(--heading)}
 
-/* ---- Scroll-to-top orb: gentle glow pulse ---- */
-#toTop.show{animation:orbPulse 3.4s ease-in-out infinite}
-@keyframes orbPulse{
-  0%,100%{box-shadow:0 14px 36px -12px rgba(11,31,68,.45), inset 0 0 0 1px rgba(255,255,255,.6), 0 0 0 0 rgba(37,99,235,.0)}
-  50%    {box-shadow:0 14px 36px -12px rgba(11,31,68,.45), inset 0 0 0 1px rgba(255,255,255,.6), 0 0 26px -2px rgba(16,185,129,.45)}
-}
+/* (scroll-to-top orb pulse removed — box-shadow animations repaint every frame) */
 
 /* ---- A touch more depth on glass cards ---- */
 .card:hover,.stat:hover,.partner-card:hover{box-shadow:0 36px 80px -30px rgba(37,99,235,.55)}
@@ -449,3 +438,71 @@ body::before{inset:-45% !important; animation:auroraDrift 70s ease-in-out infini
   .js .reveal{filter:none !important}
   #toTop{transition:opacity .3s ease}
 }
+
+/* ============================================================
+   MODERN 2.0 — editorial, restrained, confident. Loads last.
+   Gradient-text everywhere, glow shadows, sheens and animated
+   hairlines read as 2021 template; strip them back to a sharp
+   neutral canvas, solid ink, and two decisive accent colors.
+   ============================================================ */
+
+/* type: heavier display, tighter tracking */
+.section-head h2{font-weight:800; letter-spacing:-.022em}
+.hero h1{letter-spacing:-.032em}
+
+/* eyebrows: solid ink, wide tracking — no gradient text */
+.eyebrow{
+  background:none; -webkit-text-fill-color:currentColor; color:var(--primary-700);
+  animation:none; letter-spacing:.22em; font-size:.78rem;
+}
+.eyebrow::before{background:var(--accent); width:26px; transition:none}
+.reveal.in .eyebrow::before,.section-head:hover .eyebrow::before{width:26px}
+
+/* headings: no growing underline gimmick */
+.section-head h2::after{content:none !important}
+
+/* cards: crisp borders, no holographic hairline, no hover sheen */
+.card::after,.card::before{content:none !important}
+.card,.stat,.partner-card,.form,.contact-list li{
+  background:var(--surface); border:1px solid var(--glass-brd);
+  box-shadow:0 1px 2px rgba(11,31,68,.04), 0 10px 28px -18px rgba(11,31,68,.18);
+}
+.card:hover,.stat:hover,.partner-card:hover{
+  transform:translateY(-3px);
+  border-color:#C9D6E8;
+  box-shadow:0 2px 4px rgba(11,31,68,.05), 0 22px 44px -20px rgba(11,31,68,.26);
+}
+
+/* stat + bento numbers: solid ink, no gradient, no glow */
+.stat .num,.hero-bento .num{
+  background:none; -webkit-text-fill-color:currentColor; color:var(--heading);
+  animation:none; filter:none;
+}
+
+/* buttons: solid, flat-modern; no sheen sweep, no neon glow */
+.btn{border-radius:12px}
+.btn-primary{background:#1D4ED8; box-shadow:0 8px 20px -10px rgba(29,78,216,.45); animation:none}
+.btn-primary:hover{background:#1E40AF; box-shadow:0 12px 26px -12px rgba(29,78,216,.5); filter:none}
+.btn-accent{background:#0E9F6E; box-shadow:0 8px 20px -10px rgba(14,159,110,.45); animation:none}
+.btn-accent:hover{background:#0B7D57; box-shadow:0 12px 26px -12px rgba(14,159,110,.5)}
+.btn-primary::after,.btn-accent::after{content:none !important}
+
+/* card pointer-glow: barely-there (was a loud radial) */
+.card,.stat{background:
+  radial-gradient(220px circle at var(--mx,50%) var(--my,-40%), rgba(37,99,235,.05), transparent 62%),
+  var(--surface)}
+.partner-card{background:
+  radial-gradient(240px circle at var(--mx,50%) var(--my,-40%), rgba(16,185,129,.05), transparent 62%),
+  var(--surface)}
+
+/* cursor spotlight: subtler */
+#fx-cursor{opacity:0; background:radial-gradient(circle, rgba(96,165,250,.16), rgba(16,185,129,.07) 40%, transparent 66%)}
+#fx-cursor.on{opacity:.8}
+
+/* scrollbar: quiet neutral */
+*{scrollbar-color:#B9C6D6 transparent}
+::-webkit-scrollbar-thumb{background:#B9C6D6; border:3px solid rgba(255,255,255,.4)}
+::-webkit-scrollbar-thumb:hover{background:#93A5BC}
+
+/* header hairline: single quiet line */
+.site-header::after{background:linear-gradient(90deg, transparent, rgba(11,31,68,.14), transparent); animation:none}

@@ -486,8 +486,7 @@
     #growing-vine canvas{position:absolute; pointer-events:none}
 
     /* ===== Section slides: every section is its own contained backdrop ===== */
-    @media (prefers-reduced-motion: no-preference){ html{scroll-snap-type:y proximity} }
-    main > section, .site-footer{scroll-snap-align:start}
+    /* scroll-snap removed — proximity snapping fought the user's scroll and read as lag */
     main > section{scroll-margin-top:74px}
     .section{position:relative; overflow:hidden}
     .section > .container{position:relative; z-index:1}
@@ -666,7 +665,7 @@
       .tr-char{transition:opacity .3s ease !important; transform:none !important}
     }
   </style>
-  <link rel="stylesheet" href="theme.css?v=4" />
+  <link rel="stylesheet" href="theme.css?v=5" />
 </head>
 <body>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
@@ -1322,7 +1321,7 @@
           if(typeof THREE==='undefined'){ ok=false; return ok; }
           try{
             renderer = new THREE.WebGLRenderer({alpha:true, antialias:true});
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.5));
             renderer.outputEncoding = THREE.sRGBEncoding;
             renderer.toneMapping = THREE.ACESFilmicToneMapping;
             renderer.toneMappingExposure = 1.06;
@@ -2339,7 +2338,7 @@
             bc.setHSL(0.27,0.5,0.14+t*0.24); bcol[bi*3]=bc.r; bcol[bi*3+1]=bc.g; bcol[bi*3+2]=bc.b; }
           blade.setAttribute('color', new THREE.BufferAttribute(bcol,3)); blade.computeVertexNormals();
           var grassMat=new THREE.MeshStandardMaterial({vertexColors:true, roughness:0.9, metalness:0, side:THREE.DoubleSide});
-          var GN=mobile?3200:9000; grassMesh=new THREE.InstancedMesh(blade, grassMat, GN); grassMesh.receiveShadow=true;
+          var GN=mobile?1500:3200; grassMesh=new THREE.InstancedMesh(blade, grassMat, GN); grassMesh.receiveShadow=true;   // perf: was 9000 instanced blades
           var gm=new THREE.Matrix4(), gp=new THREE.Vector3(), gq=new THREE.Quaternion(), gs=new THREE.Vector3(), gee=new THREE.Euler(), gc=new THREE.Color();
           for(i=0;i<GN;i++){ var ga=rand()*6.2832, rr=Math.pow(rand(),1.5)*15+0.6;   // clear ~0.6 around the seed
             var hMax=lerp(0.09,0.30,cl((rr-0.6)/3.5,0,1)), hh=hMax*(0.7+rand()*0.55), wsc=0.7+rand()*0.7;  // short near the seed, taller farther out
@@ -2354,7 +2353,7 @@
           for(var c2=0;c2<6;c2++){ var cs=new THREE.Sprite(new THREE.SpriteMaterial({map:ct, transparent:true, opacity:0, depthWrite:false, fog:false}));
             var bx=(rand()-0.5)*90; cs.position.set(bx, 22+rand()*26, -32-rand()*40); var csc=16+rand()*22; cs.scale.set(csc*1.7,csc,1);
             cs.userData={bx:bx, sp:0.15+rand()*0.4, i:c2}; scene.add(cs); clouds.push(cs); } }catch(e){}
-        try{ var MN=mobile?120:260, pa=new Float32Array(MN*3); motesData=[];
+        try{ var MN=mobile?80:150, pa=new Float32Array(MN*3); motesData=[];
           for(i=0;i<MN;i++){ var mx=(rand()-0.5)*22, my=rand()*9, mz=(rand()-0.5)*22; pa[i*3]=mx; pa[i*3+1]=my; pa[i*3+2]=mz; motesData.push({x:mx,y:my,z:mz,sp:0.2+rand()*0.6,ph:rand()*6.28}); }
           var mg=new THREE.BufferGeometry(); mg.setAttribute('position', new THREE.BufferAttribute(pa,3));
           motes=new THREE.Points(mg, new THREE.PointsMaterial({map:glowTex(), color:0xfff0c0, size:0.17, transparent:true, opacity:0, blending:THREE.AdditiveBlending, depthWrite:false, sizeAttenuation:true, fog:false})); scene.add(motes); }catch(e){}
@@ -2379,13 +2378,13 @@
       }
 
       function init(){
-        renderer=new THREE.WebGLRenderer({canvas:glcv, antialias:true, alpha:true, preserveDrawingBuffer:true});
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,2));
+        renderer=new THREE.WebGLRenderer({canvas:glcv, antialias:true, alpha:true});
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.35));   // perf: 2.0 was 2.2x the pixels
         renderer.setClearColor(0x000000, 0);   // transparent — the site particle field shows behind
         if(THREE.ColorManagement) THREE.ColorManagement.enabled=true;
         renderer.outputEncoding=THREE.sRGBEncoding;
         renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=1.12;
-        renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+        renderer.shadowMap.enabled=false;   // perf: soft shadows re-rendered the whole scene into a shadow map every frame
         scene=new THREE.Scene(); scene.fog=new THREE.Fog(0xCFEBD7, 22, 72);   // light fog blends ground edge into the particle field
         camera=new THREE.PerspectiveCamera(42,1,0.1,200);
 
@@ -2544,6 +2543,7 @@
     (function(){
       var host = document.getElementById('shaderHero');
       if(!host) return;
+      if(getComputedStyle(host).display === 'none') return;   // theme hides it — don't burn a WebGL context
       if(typeof THREE === 'undefined'){ host.className = 'fallback'; return; }
       var renderer;
       try{ renderer = new THREE.WebGLRenderer({antialias:true}); }

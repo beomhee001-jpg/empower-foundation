@@ -302,7 +302,7 @@
       .ph-tile:hover{transform:none}
     }
   </style>
-  <link rel="stylesheet" href="theme.css?v=4" />
+  <link rel="stylesheet" href="theme.css?v=5" />
 </head>
 <body>
   <a href="#main" class="btn btn-accent" style="position:absolute; left:-9999px; top:8px; z-index:300" onfocus="this.style.left='12px'" onblur="this.style.left='-9999px'">Skip to main content</a>
@@ -642,6 +642,7 @@
     (function(){
       var host = document.getElementById('shaderHero');
       if(!host) return;
+      if(getComputedStyle(host).display === 'none') return;   // theme hides it — don't burn a WebGL context
       if(typeof THREE === 'undefined'){ host.className = 'fallback'; return; }
       var renderer;
       try{ renderer = new THREE.WebGLRenderer({antialias:true}); }
