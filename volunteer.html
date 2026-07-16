@@ -102,6 +102,22 @@
     .vhero-trust span{display:inline-flex; align-items:center; gap:7px}
     .vhero-trust svg{width:16px; height:16px; color:#4ADE80}
 
+    /* ===== Photo album cards (link out to per-season gallery pages) ===== */
+    .album-cards{display:grid; grid-template-columns:repeat(2,1fr); gap:22px}
+    @media (max-width:760px){ .album-cards{grid-template-columns:1fr} }
+    .album-card{position:relative; display:block; border-radius:18px; overflow:hidden; box-shadow:var(--shadow-md); aspect-ratio:16/10; transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease}
+    .album-card:hover{transform:translateY(-5px); box-shadow:0 30px 70px -26px rgba(11,31,68,.5); text-decoration:none}
+    .album-card img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+    .album-card:hover img{transform:scale(1.05)}
+    .ac-scrim{position:absolute; inset:0; background:linear-gradient(180deg, rgba(6,23,58,.06) 30%, rgba(6,23,58,.78) 100%)}
+    .ac-body{position:absolute; left:22px; right:22px; bottom:18px; display:grid; gap:3px; color:#fff}
+    .ac-kicker{font-family:"Lexend",sans-serif; font-weight:600; font-size:.74rem; letter-spacing:.18em; text-transform:uppercase; opacity:.85}
+    .ac-title{font-family:"Lexend",sans-serif; font-weight:800; font-size:clamp(1.5rem,3.4vw,2.1rem); line-height:1.05; text-transform:uppercase}
+    .ac-meta{display:inline-flex; align-items:center; gap:7px; margin-top:4px; font-family:"Lexend",sans-serif; font-weight:600; font-size:.9rem; opacity:.95}
+    .ac-meta svg{width:16px; height:16px; transition:transform .25s ease}
+    .album-card:hover .ac-meta svg{transform:translateX(5px)}
+    #albums > span[aria-hidden]{position:relative; top:-80px}   /* legacy #spring-2026/#summer-2026 anchors land here */
+
     /* ===== Volunteer hours verification band ===== */
     .hours-section{padding-top:clamp(40px,6vw,64px); padding-bottom:0}
     .hours-band{position:relative; overflow:hidden; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); padding:clamp(24px,4vw,40px); box-shadow:var(--shadow-md); display:grid; grid-template-columns:1.5fr 1fr; gap:clamp(22px,4vw,44px); align-items:center}
@@ -421,46 +437,47 @@
             <a class="btn btn-accent" href="https://docs.google.com/forms/d/e/1FAIpQLSfQb9ZlRo9s5LPFhD4UAlIQL3xLcodb1IBYewKDDv5xClT3ag/viewform?usp=header" target="_blank" rel="noopener">Fill Out the Membership Form
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
             </a>
-            <a class="btn btn-ghost" href="#gallery">See Our Moments</a>
+            <a class="btn btn-ghost" href="#albums">See Our Moments</a>
           </div>
         </div>
       </div>
     </section>
 
 
-    <!-- ===== Seasonal photo sections — grow these over time by adding more .ph-tile buttons ===== -->
-    <section class="section photo-showcase" id="spring-2026">
+    <!-- ===== Photo albums — one card per time period, each opens its own page.
+         ADD AN ALBUM: create gallery-<season>-<year>.html (copy an existing one),
+         then copy one .album-card block below and update the cover/title/count. ===== -->
+    <section class="section" id="albums">
+      <span id="spring-2026" aria-hidden="true"></span><span id="summer-2026" aria-hidden="true"></span>
       <div class="container">
         <div class="section-head reveal">
           <span class="eyebrow">Our Photos</span>
-          <h2>Spring 2026</h2>
-          <p>Moments from our spring volunteer days — we add new photos here as the season goes on.</p>
+          <h2>Photo Albums</h2>
+          <p>Every season gets its own album. Tap one to see all the photos from that time period.</p>
         </div>
-        <div class="gallery-grid">
-          <!-- ADD A PHOTO: drop the file in /images/ and copy one line:
-               <button class="ph-tile has-photo reveal" data-img="images/your-photo.jpg" aria-label="Open photo"><img class="ph-photo" src="images/your-photo.jpg" alt="" loading="lazy" /></button> -->
-          <button class="ph-tile has-photo reveal" data-img="images/spring-2026-01.jpg" aria-label="Open photo"><img class="ph-photo" src="images/spring-2026-01.jpg" alt="" loading="lazy" /></button>
-          <button class="ph-tile has-photo reveal" data-img="images/spring-2026-02.jpg" aria-label="Open photo"><img class="ph-photo" src="images/spring-2026-02.jpg" alt="" loading="lazy" /></button>
-          <button class="ph-tile has-photo reveal" data-img="images/spring-2026-03.jpg" aria-label="Open photo"><img class="ph-photo" src="images/spring-2026-03.jpg" alt="" loading="lazy" /></button>
-          <button class="ph-tile has-photo reveal" data-img="images/spring-2026-04.jpg" aria-label="Open photo"><img class="ph-photo" src="images/spring-2026-04.jpg" alt="" loading="lazy" /></button>
-        </div>
-      </div>
-    </section>
-
-    <section class="section photo-showcase" id="summer-2026" style="padding-top:0">
-      <div class="container">
-        <div class="section-head reveal">
-          <span class="eyebrow">Our Photos</span>
-          <h2>Summer 2026</h2>
-          <p>Highlights from our summer 2026 programs and volunteer days.</p>
-        </div>
-        <div class="gallery-grid">
-          <button class="ph-tile has-photo reveal" data-img="images/summer-2026-01.jpg" aria-label="Open photo"><img class="ph-photo" src="images/summer-2026-01.jpg" alt="" loading="lazy" /></button>
-          <button class="ph-tile has-photo reveal" data-img="images/summer-2026-02.jpg" aria-label="Open photo"><img class="ph-photo" src="images/summer-2026-02.jpg" alt="" loading="lazy" /></button>
-          <button class="ph-tile has-photo reveal" data-img="images/summer-2026-03.jpg" aria-label="Open photo"><img class="ph-photo" src="images/summer-2026-03.jpg" alt="" loading="lazy" /></button>
-          <button class="ph-tile has-photo reveal" data-img="images/summer-2026-04.jpg" aria-label="Open photo"><img class="ph-photo" src="images/summer-2026-04.jpg" alt="" loading="lazy" /></button>
-          <button class="ph-tile has-photo reveal" data-img="images/summer-2026-05.jpg" aria-label="Open photo"><img class="ph-photo" src="images/summer-2026-05.jpg" alt="" loading="lazy" /></button>
-          <button class="ph-tile has-photo reveal" data-img="images/summer-2026-06.jpg" aria-label="Open photo"><img class="ph-photo" src="images/summer-2026-06.jpg" alt="" loading="lazy" /></button>
+        <div class="album-cards">
+          <a class="album-card reveal" href="gallery-spring-2026.html">
+            <img src="images/spring-2026-01.jpg" alt="Spring 2026 volunteer day" loading="lazy" />
+            <span class="ac-scrim" aria-hidden="true"></span>
+            <span class="ac-body">
+              <span class="ac-kicker">Photo Album</span>
+              <span class="ac-title">Spring 2026</span>
+              <span class="ac-meta">4 photos &middot; View album
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </span>
+          </a>
+          <a class="album-card reveal" data-d="1" href="gallery-summer-2026.html">
+            <img src="images/summer-2026-07.jpg" alt="Summer 2026 chess day at the Boys and Girls Club of Stanton" loading="lazy" />
+            <span class="ac-scrim" aria-hidden="true"></span>
+            <span class="ac-body">
+              <span class="ac-kicker">Photo Album</span>
+              <span class="ac-title">Summer 2026</span>
+              <span class="ac-meta">23 photos &middot; View album
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </span>
+          </a>
         </div>
       </div>
     </section>
