@@ -227,6 +227,16 @@
     .cta-band p{color:#DCEAFB; margin:14px auto 0; max-width:52ch; position:relative}
     .cta-band .hero-actions{justify-content:center; position:relative; margin-top:28px}
 
+    /* ===== Join As A Member band (top of page) ===== */
+    .join-band{padding-block:clamp(26px,4vw,40px)}
+    .join-inner{display:flex; align-items:center; justify-content:space-between; gap:22px; flex-wrap:wrap;
+      background:linear-gradient(135deg,#0F2C5E,#123A73); color:#fff; border-radius:18px;
+      padding:clamp(22px,3.5vw,32px) clamp(22px,4vw,40px); box-shadow:var(--shadow-md)}
+    .join-copy h2{color:#fff; font-size:clamp(1.35rem,2.6vw,1.8rem); margin:0}
+    .join-copy p{color:#C9DCF6; margin-top:6px; font-size:1rem; max-width:52ch}
+    .join-band .btn{flex:none}
+    @media (max-width:640px){ .join-inner{flex-direction:column; align-items:stretch; text-align:center} }
+
     /* Contact */
     .contact-grid{display:grid; grid-template-columns:.92fr 1.08fr; gap:clamp(30px,4vw,56px); align-items:start}
     .contact-info .card{padding:0; border:none; background:transparent; box-shadow:none}
@@ -687,7 +697,7 @@
           <a href="partnership.html">Partnerships</a>
           <a href="contact.html">Contact</a>
         </div>
-        <a href="#get-involved" class="btn btn-accent nav-cta desktop" style="min-height:44px; padding:0 20px">Get Involved</a>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQb9ZlRo9s5LPFhD4UAlIQL3xLcodb1IBYewKDDv5xClT3ag/viewform?usp=header" target="_blank" rel="noopener" class="btn btn-accent nav-cta desktop" style="min-height:44px; padding:0 20px">Get Involved</a>
         <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
           <svg class="ico-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
           <svg class="ico-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
@@ -701,7 +711,7 @@
       <a href="volunteer.html">Volunteer</a>
       <a href="partnership.html">Partnerships</a>
       <a href="contact.html">Contact</a>
-      <a href="#get-involved" class="btn btn-accent">Get Involved</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQb9ZlRo9s5LPFhD4UAlIQL3xLcodb1IBYewKDDv5xClT3ag/viewform?usp=header" target="_blank" rel="noopener" class="btn btn-accent">Get Involved</a>
     </div>
   </header>
 
@@ -717,7 +727,7 @@
             <p class="lede-sub">Empowering Communities, Transforming Lives</p>
             <p class="lede">Empower Foundation is dedicated to creating sustainable change through education and development programs for communities in Orange County.</p>
             <div class="hero-actions">
-              <a href="#get-involved" class="btn btn-accent">Get Involved
+              <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQb9ZlRo9s5LPFhD4UAlIQL3xLcodb1IBYewKDDv5xClT3ag/viewform?usp=header" target="_blank" rel="noopener" class="btn btn-accent">Get Involved
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
               </a>
               <a href="about.html" class="btn btn-outline">Learn Our Story</a>
@@ -754,6 +764,21 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Join As A Member ===== -->
+    <section class="join-band" id="join" aria-label="Join Empower Foundation as a member">
+      <div class="container">
+        <div class="join-inner reveal">
+          <div class="join-copy">
+            <h2>Join As A Member</h2>
+            <p>Membership is free, takes about two minutes, and is the first step to volunteering with us.</p>
+          </div>
+          <a class="btn btn-accent" href="https://docs.google.com/forms/d/e/1FAIpQLSfQb9ZlRo9s5LPFhD4UAlIQL3xLcodb1IBYewKDDv5xClT3ag/viewform?usp=header" target="_blank" rel="noopener">Fill Out the Membership Form
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
         </div>
       </div>
     </section>
@@ -894,7 +919,7 @@
             <span class="chip chip-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13A4 4 0 0 1 16 11"/></svg></span>
             <h3>Volunteer</h3>
             <p>Share your time and talents to support our programs — from mentoring to event support. Volunteers must be members, and becoming one takes about two minutes.</p>
-            <a href="volunteer.html" class="more">Learn more &amp; sign up <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQb9ZlRo9s5LPFhD4UAlIQL3xLcodb1IBYewKDDv5xClT3ag/viewform?usp=header" target="_blank" rel="noopener" class="more">Sign up as a member <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </article>
           <article class="card reveal" data-d="1">
             <span class="chip chip-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3h5v5"/><path d="M21 3l-9 9"/><path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></span>
@@ -1067,7 +1092,7 @@
           <h4>Quick Links</h4>
           <a href="about.html">About Us</a>
           <a href="programs.html">Our Programs</a>
-          <a href="#get-involved">Get Involved</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQb9ZlRo9s5LPFhD4UAlIQL3xLcodb1IBYewKDDv5xClT3ag/viewform?usp=header" target="_blank" rel="noopener">Get Involved</a>
           <a href="volunteer.html">Volunteer</a>
           <a href="partnership.html">Partnerships</a>
           <a href="contact.html">Contact</a>
