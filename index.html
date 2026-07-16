@@ -389,6 +389,9 @@
     .s3{background:linear-gradient(135deg,#BBF7D0,#86EFAC)} .s4{background:linear-gradient(135deg,#FED7AA,#FDBA74)}
     /* controls cluster (bottom-right, clear of the bottom-left text) */
     .slide-controls{position:absolute; z-index:6; right:18px; bottom:18px; display:flex; align-items:center; gap:10px}
+    .slide-albums{display:inline-flex; align-items:center; gap:7px; padding:8px 13px; border-radius:999px; background:rgba(255,255,255,.92); border:1px solid rgba(15,44,94,.16); font-family:"Lexend",sans-serif; font-weight:600; font-size:.8rem; color:var(--primary-800); box-shadow:var(--shadow-sm); transition:transform .2s ease, background-color .2s}
+    .slide-albums:hover{background:#fff; transform:translateY(-2px); text-decoration:none}
+    .slide-albums svg{width:15px; height:15px}
     .slide-nav{width:36px; height:36px; padding:0; border-radius:50%; border:1px solid rgba(15,44,94,.16); background:rgba(255,255,255,.92); color:var(--primary-700); display:grid; place-items:center; cursor:pointer; box-shadow:var(--shadow-sm); transition:transform .2s ease, background-color .2s}
     .slide-nav:hover{background:#fff; transform:scale(1.1); color:var(--primary-800)}
     .slide-nav svg{width:18px; height:18px}
@@ -979,6 +982,10 @@
                    The dots + auto-rotation pick up the new slide automatically. -->
             </div>
             <div class="slide-controls">
+              <a class="slide-albums" href="volunteer.html#albums" aria-label="Browse all photo albums">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+                All albums
+              </a>
               <button class="slide-nav slide-prev" type="button" aria-label="Previous season"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
               <span class="slide-dots" id="seasonDots"></span>
               <button class="slide-nav slide-next" type="button" aria-label="Next season"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
@@ -1094,6 +1101,7 @@
           <a href="programs.html">Our Programs</a>
           <a href="https://docs.google.com/forms/d/e/1FAIpQLSfQb9ZlRo9s5LPFhD4UAlIQL3xLcodb1IBYewKDDv5xClT3ag/viewform?usp=header" target="_blank" rel="noopener">Get Involved</a>
           <a href="volunteer.html">Volunteer</a>
+          <a href="volunteer.html#albums">Photo Albums</a>
           <a href="partnership.html">Partnerships</a>
           <a href="contact.html">Contact</a>
         </div>
