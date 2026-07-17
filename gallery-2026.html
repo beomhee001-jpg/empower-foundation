@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>2026 Gallery — Empower Foundation</title>
+  <meta name="description" content="Empower Foundation's 2026 photo gallery — volunteer days across Orange County, season by season." />
+  <meta name="theme-color" content="#2563EB" />
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --primary:#2563EB; --primary-700:#1D4ED8; --primary-800:#1E40AF;
+      --accent:#16A34A; --accent-700:#15803D;
+      --bg:#F2F6F5; --surface:#FFFFFF;
+      --heading:#0B1F44; --text:#3C4658; --muted:#67738A;
+      --border:#DBE6F7; --border-strong:#C6D8F2; --ring:#2563EB;
+      --shadow-sm:0 1px 2px rgba(11,31,68,.05), 0 6px 18px rgba(11,31,68,.06);
+      --shadow-md:0 16px 44px -18px rgba(11,31,68,.30);
+      --container:1180px;
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{-webkit-text-size-adjust:100%}
+    @media (prefers-reduced-motion: no-preference){html{scroll-behavior:smooth}}
+    body{margin:0; background:var(--bg); color:var(--text); font-family:"Source Sans 3",system-ui,sans-serif; font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased}
+    h1,h2{font-family:"Lexend",system-ui,sans-serif; color:var(--heading); margin:0; line-height:1.1}
+    a{color:var(--primary-700); text-decoration:none}
+    img,svg{display:block; max-width:100%}
+    :focus-visible{outline:3px solid var(--ring); outline-offset:3px; border-radius:6px}
+    .container{width:100%; max-width:var(--container); margin-inline:auto; padding-inline:clamp(20px,5vw,40px)}
+
+    /* header (shared look) */
+    .site-header{position:sticky; top:0; z-index:100; background:rgba(247,251,255,.9); border-bottom:1px solid transparent; transition:border-color .25s, box-shadow .25s}
+    .site-header.scrolled{border-bottom-color:var(--border); box-shadow:0 6px 24px -18px rgba(11,31,68,.5)}
+    .nav{display:flex; align-items:center; gap:18px; height:74px}
+    .brand{display:inline-flex; align-items:center; gap:11px; font-family:"Lexend",sans-serif; font-weight:700; font-size:1.18rem; color:var(--heading)}
+    .brand .logo{width:44px; height:44px; flex:none; object-fit:contain}
+    .nav-links{display:flex; align-items:center; gap:4px; margin-left:auto}
+    .nav-links a{font-family:"Lexend",sans-serif; font-weight:500; font-size:.97rem; color:var(--heading); padding:9px 14px; border-radius:10px}
+    .nav-links a:hover{background:#EAF1EF; text-decoration:none}
+    .nav-toggle{display:none; margin-left:auto; width:46px; height:46px; align-items:center; justify-content:center; background:var(--surface); border:1.5px solid var(--border-strong); border-radius:12px; cursor:pointer; color:var(--heading)}
+    .nav-toggle svg{width:24px;height:24px}
+    .nav-toggle .ico-close{display:none}
+    .nav-toggle[aria-expanded="true"] .ico-open{display:none}
+    .nav-toggle[aria-expanded="true"] .ico-close{display:block}
+    .mobile-menu{display:none; position:fixed; inset:74px 0 auto 0; z-index:99; background:var(--bg); border-bottom:1px solid var(--border); padding:18px clamp(20px,5vw,40px) 26px; transform:translateY(-12px); opacity:0; pointer-events:none; transition:opacity .22s, transform .22s}
+    .mobile-menu.open{opacity:1; transform:none; pointer-events:auto}
+    .mobile-menu a{display:block; font-family:"Lexend",sans-serif; font-weight:500; font-size:1.05rem; color:var(--heading); padding:14px 6px; border-bottom:1px solid var(--border)}
+    @media (max-width:760px){ .nav-links{display:none} .nav-toggle{display:inline-flex} .mobile-menu{display:block} }
+
+    /* gallery hero */
+    .album-hero{padding:clamp(40px,7vw,72px) 0 clamp(14px,2.5vw,24px); text-align:center}
+    .album-kicker{display:inline-flex; align-items:center; gap:8px; font-family:"Lexend",sans-serif; font-weight:600; font-size:.78rem; letter-spacing:.22em; text-transform:uppercase; color:var(--primary-700)}
+    .album-kicker::before{content:""; width:26px; height:2px; border-radius:2px; background:var(--accent)}
+    .album-title{margin-top:12px; font-weight:800; font-size:clamp(3rem,9vw,5.4rem); letter-spacing:.01em; text-transform:uppercase;
+      background:linear-gradient(120deg,#1D4ED8,#2563EB 45%,#10B981); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent}
+    .album-sub{margin:12px auto 0; max-width:58ch; color:var(--muted); font-size:1.05rem}
+    .album-back{display:inline-flex; align-items:center; gap:7px; margin-top:16px; font-family:"Lexend",sans-serif; font-weight:600; font-size:.93rem}
+    .album-back svg{width:16px; height:16px}
+
+    /* season chip nav */
+    .season-nav{display:flex; flex-wrap:wrap; justify-content:center; gap:10px; padding:14px 0 6px}
+    .season-chip{display:inline-flex; align-items:center; gap:8px; padding:10px 18px; border-radius:999px; background:var(--surface); border:1px solid var(--border-strong); font-family:"Lexend",sans-serif; font-weight:600; font-size:.92rem; color:var(--heading); box-shadow:var(--shadow-sm); transition:transform .2s ease, border-color .2s}
+    .season-chip:hover{transform:translateY(-2px); border-color:var(--primary); text-decoration:none}
+    .season-chip .n{font-size:.8rem; padding:2px 9px; border-radius:999px; background:#EAF1EF; color:var(--primary-800)}
+    .season-chip.soon{opacity:.55; pointer-events:none}
+    .season-chip.soon .n{background:#F1F3F6; color:var(--muted)}
+
+    /* season sections */
+    .season-block{padding:clamp(28px,4.5vw,48px) 0 clamp(10px,2vw,18px)}
+    .season-head{display:flex; align-items:baseline; justify-content:space-between; gap:14px; flex-wrap:wrap; margin-bottom:20px}
+    .season-title{font-weight:800; font-size:clamp(1.7rem,4vw,2.5rem); text-transform:uppercase; letter-spacing:.01em;
+      -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent}
+    .st-spring{background-image:linear-gradient(120deg,#1D4ED8,#2563EB 55%,#16A34A)}
+    .st-summer{background-image:linear-gradient(120deg,#0B7D57,#10B981 55%,#0E7C4F)}
+    .st-fall{background-image:linear-gradient(120deg,#C2410C,#EA580C 55%,#D97706)}
+    .st-winter{background-image:linear-gradient(120deg,#0369A1,#0EA5E9 55%,#2563EB)}
+    .season-count{font-family:"Lexend",sans-serif; font-weight:600; font-size:.9rem; color:var(--muted)}
+
+    /* masonry grid */
+    .album-grid{column-count:3; column-gap:16px}
+    @media (max-width:1000px){ .album-grid{column-count:2} }
+    @media (max-width:600px){ .album-grid{column-count:1} }
+    .album-tile{position:relative; display:block; width:100%; margin:0 0 16px; padding:0; border:none; border-radius:14px; overflow:hidden; cursor:zoom-in; background:var(--surface); box-shadow:var(--shadow-sm); break-inside:avoid; transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease}
+    .album-tile img{width:100%; height:auto; display:block; transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+    .album-tile:hover{transform:translateY(-4px); box-shadow:var(--shadow-md)}
+    .album-tile:hover img{transform:scale(1.04)}
+    .album-tile::after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, transparent 68%, rgba(11,31,68,.28)); opacity:0; transition:opacity .3s ease; pointer-events:none}
+    .album-tile:hover::after{opacity:1}
+
+    /* coming-soon panel for empty seasons */
+    .season-soon{display:grid; place-items:center; gap:10px; text-align:center; padding:clamp(30px,5vw,52px); background:var(--surface); border:1.5px dashed var(--border-strong); border-radius:16px; color:var(--muted)}
+    .season-soon .cam{width:52px; height:52px; border-radius:15px; display:grid; place-items:center; background:#EAF1EF; color:var(--primary-700)}
+    .season-soon .cam svg{width:26px; height:26px}
+    .season-soon strong{font-family:"Lexend",sans-serif; color:var(--heading); font-size:1.02rem}
+    .season-soon p{margin:0; font-size:.95rem}
+
+    /* lightbox */
+    .lb{position:fixed; inset:0; z-index:300; display:grid; place-items:center; padding:20px; background:rgba(7,13,28,.88); opacity:0; pointer-events:none; transition:opacity .25s ease}
+    .lb.open{opacity:1; pointer-events:auto}
+    .lb img{max-width:min(1200px,94vw); max-height:84vh; width:auto; height:auto; border-radius:12px; box-shadow:0 40px 90px -28px rgba(0,0,0,.7)}
+    .lb-count{position:absolute; top:18px; left:50%; transform:translateX(-50%); color:#fff; font-family:"Lexend",sans-serif; font-weight:600; font-size:.92rem; opacity:.85}
+    .lb-btn{position:absolute; width:46px; height:46px; border-radius:50%; border:none; background:rgba(255,255,255,.94); color:var(--heading); display:grid; place-items:center; cursor:pointer; transition:transform .18s ease}
+    .lb-btn:hover{transform:scale(1.08)}
+    .lb-btn svg{width:22px; height:22px}
+    .lb-close{top:16px; right:16px}
+    .lb-prev{left:14px; top:50%; margin-top:-23px}
+    .lb-next{right:14px; top:50%; margin-top:-23px}
+    @media (max-width:600px){ .lb-prev{left:8px} .lb-next{right:8px} }
+
+    /* footer */
+    .mini-footer{background:linear-gradient(180deg,#0F2C5E,#06173A); color:#B6CBE8; padding:26px 0; font-size:.92rem; margin-top:clamp(36px,6vw,64px)}
+    .mini-footer .container{display:flex; flex-wrap:wrap; gap:10px 24px; align-items:center; justify-content:space-between}
+    .mini-footer a{color:#DCEAFB; font-weight:600}
+    .mini-footer p{margin:0}
+
+    .js .reveal{opacity:0; transform:translateY(28px); transition:opacity .7s cubic-bezier(.22,.72,.24,1), transform .8s cubic-bezier(.22,.72,.24,1)}
+    .js .reveal.in{opacity:1; transform:none}
+    @media (prefers-reduced-motion: reduce){ .js .reveal{opacity:1; transform:none} .album-tile,.album-tile img{transition:none} }
+  </style>
+  <link rel="stylesheet" href="theme.css?v=6" />
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="container">
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html" class="brand" aria-label="Empower Foundation home">
+          <img class="logo" src="logo-mark.png" alt="" />
+          <span>Empower Foundation</span>
+        </a>
+        <div class="nav-links">
+          <a href="about.html">About</a>
+          <a href="programs.html">Programs</a>
+          <a href="impact.html">Impact</a>
+          <a href="volunteer.html">Volunteer</a>
+          <a href="partnership.html">Partnerships</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <svg class="ico-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <svg class="ico-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </nav>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="about.html">About</a>
+      <a href="programs.html">Programs</a>
+      <a href="impact.html">Impact</a>
+      <a href="volunteer.html">Volunteer</a>
+      <a href="partnership.html">Partnerships</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="album-hero">
+      <div class="container">
+        <span class="album-kicker">Photo Gallery</span>
+        <h1 class="album-title">2026 Gallery</h1>
+        <p class="album-sub">A year of showing up for Orange County kids — season by season. New photos land here after every event.</p>
+        <div><a class="album-back" href="volunteer.html#albums"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> Back to Volunteer</a></div>
+        <nav class="season-nav" aria-label="Jump to a season">
+          <a class="season-chip" href="#spring">Spring <span class="n">4</span></a>
+          <a class="season-chip" href="#summer">Summer <span class="n">23</span></a>
+          <span class="season-chip soon" aria-disabled="true">Fall <span class="n">soon</span></span>
+          <span class="season-chip soon" aria-disabled="true">Winter <span class="n">soon</span></span>
+        </nav>
+      </div>
+    </section>
+
+    <section class="season-block" id="spring">
+      <div class="container">
+        <div class="season-head reveal">
+          <h2 class="season-title st-spring">Spring 2026</h2>
+          <span class="season-count">4 photos &middot; volunteer days across Orange County</span>
+        </div>
+        <div class="album-grid">
+            <button class="album-tile reveal" data-full="images/spring-2026-01.jpg" aria-label="Open photo 1"><img src="images/spring-2026-01.jpg" alt="Volunteer day photo 1" loading="lazy" /></button>
+            <button class="album-tile reveal" data-full="images/spring-2026-02.jpg" aria-label="Open photo 2"><img src="images/spring-2026-02.jpg" alt="Volunteer day photo 2" loading="lazy" /></button>
+            <button class="album-tile reveal" data-full="images/spring-2026-03.jpg" aria-label="Open photo 3"><img src="images/spring-2026-03.jpg" alt="Volunteer day photo 3" loading="lazy" /></button>
+            <button class="album-tile reveal" data-full="images/spring-2026-04.jpg" aria-label="Open photo 4"><img src="images/spring-2026-04.jpg" alt="Volunteer day photo 4" loading="lazy" /></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="season-block" id="summer">
+      <div class="container">
+        <div class="season-head reveal">
+          <h2 class="season-title st-summer">Summer 2026</h2>
+          <span class="season-count">23 photos &middot; incl. chess day at the Boys &amp; Girls Club of Stanton</span>
+        </div>
+        <div class="album-grid">
+            <button class="album-tile reveal" data-full="images/summer-2026-01.jpg" aria-label="Open photo 1"><img src="images/summer-2026-01.jpg" alt="Volunteer day photo 1" loading="lazy" /></button>
+            <button class="album-tile reveal" data-full="images/summer-2026-02.jpg" aria-label="Open photo 2"><img src="images/summer-2026-02.jpg" alt="Volunteer day photo 2" loading="lazy" /></button>
+            <button class="album-tile reveal" data-full="images/summer-2026-03.jpg" aria-label="Open photo 3"><img src="images/summer-2026-03.jpg" alt="Volunteer day photo 3" loading="lazy" /></button>
+            <button class="album-tile reveal" data-full="images/summer-2026-04.jpg" aria-label="Open photo 4"><img src="images/summer-2026-04.jpg" alt="Volunteer day photo 4" loading="lazy" /></button>
+            <button class="album-tile reveal" data-full="images/summer-2026-05.jpg" aria-label="Open photo 5"><img src="images/summer-2026-05.jpg" alt="Volunteer day photo 5" loading="lazy" /></button>
+            <button class="album-tile reveal" data-full="images/summer-2026-06.jpg" aria-label="Open photo 6"><img src="images/summer-2026-06.jpg" alt="Volunteer day photo 6" loading="lazy" /></button>
+            <button class="album-tile reveal" data-full="images/summer-2026-07.jpg" aria-label="Open photo 7"><img src="images/summer-2026-07.jpg" alt="Volunteer day photo 7" loading="lazy" /></button>
+            <button class="album-tile reveal" data-full="images/summer-2026-08.jpg" aria-label="Open photo 8"><img src="images/summer-2026-08.jpg" alt="Volunteer day photo 8" loading="lazy" /></button>
+            <button class="album-tile reveal" data-full="images/summer-2026-09.jpg" aria-label="Open photo 9"><img src="images/summer-2026-09.jpg" alt="Volunteer day photo 9" loading="lazy" /></button>
+            <button class="album-tile reveal" data-full="images/summer-2026-10.jpg" aria-label="Open photo 10"><img src="images/summer-2026-10.jpg" alt="Volunteer day photo 10" loading="lazy" /></button>
+            <button class="album-tile reveal" data-full="images/summer-2026-11.jpg" aria-label="Open photo 11"><img src="images/summer-2026-11.jpg" alt="Volunteer day photo 11" loading="lazy" /></button>
+            <button class="album-tile reveal" data-full="images/summer-2026-12.jpg" aria-label="Open photo 12"><img src="images/summer-2026-12.jpg" alt="Volunteer day photo 12" loading="lazy" /></button>
+            <button class="album-tile reveal" data-full="images/summer-2026-13.jpg" aria-label="Open photo 13"><img src="images/summer-2026-13.jpg" alt="Volunteer day photo 13" loading="lazy" /></button>
+            <button class="album-tile reveal" data-full="images/summer-2026-14.jpg" aria-label="Open photo 14"><img src="images/summer-2026-14.jpg" alt="Volunteer day photo 14" loading="lazy" /></button>
+            <button class="album-tile reveal" data-full="images/summer-2026-15.jpg" aria-label="Open photo 15"><img src="images/summer-2026-15.jpg" alt="Volunteer day photo 15" loading="lazy" /></button>
+            <button class="album-tile reveal" data-full="images/summer-2026-16.jpg" aria-label="Open photo 16"><img src="images/summer-2026-16.jpg" alt="Volunteer day photo 16" loading="lazy" /></button>
+            <button class="album-tile reveal" data-full="images/summer-2026-17.jpg" aria-label="Open photo 17"><img src="images/summer-2026-17.jpg" alt="Volunteer day photo 17" loading="lazy" /></button>
+            <button class="album-tile reveal" data-full="images/summer-2026-18.jpg" aria-label="Open photo 18"><img src="images/summer-2026-18.jpg" alt="Volunteer day photo 18" loading="lazy" /></button>
+            <button class="album-tile reveal" data-full="images/summer-2026-19.jpg" aria-label="Open photo 19"><img src="images/summer-2026-19.jpg" alt="Volunteer day photo 19" loading="lazy" /></button>
+            <button class="album-tile reveal" data-full="images/summer-2026-20.jpg" aria-label="Open photo 20"><img src="images/summer-2026-20.jpg" alt="Volunteer day photo 20" loading="lazy" /></button>
+            <button class="album-tile reveal" data-full="images/summer-2026-21.jpg" aria-label="Open photo 21"><img src="images/summer-2026-21.jpg" alt="Volunteer day photo 21" loading="lazy" /></button>
+            <button class="album-tile reveal" data-full="images/summer-2026-22.jpg" aria-label="Open photo 22"><img src="images/summer-2026-22.jpg" alt="Volunteer day photo 22" loading="lazy" /></button>
+            <button class="album-tile reveal" data-full="images/summer-2026-23.jpg" aria-label="Open photo 23"><img src="images/summer-2026-23.jpg" alt="Volunteer day photo 23" loading="lazy" /></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="season-block" id="fall">
+      <div class="container">
+        <div class="season-head reveal">
+          <h2 class="season-title st-fall">Fall 2026</h2>
+          <span class="season-count">coming soon</span>
+        </div>
+        <div class="season-soon reveal">
+          <span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span>
+          <strong>Fall photos are on the way</strong>
+          <p>We'll post them right after our first fall event.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="season-block" id="winter">
+      <div class="container">
+        <div class="season-head reveal">
+          <h2 class="season-title st-winter">Winter 2026</h2>
+          <span class="season-count">coming soon</span>
+        </div>
+        <div class="season-soon reveal">
+          <span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span>
+          <strong>Winter photos are on the way</strong>
+          <p>Check back after our winter events wrap up.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <span class="lb-count" id="lbCount"></span>
+    <img id="lbImg" alt="" />
+    <button class="lb-btn lb-close" id="lbClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <button class="lb-btn lb-next" id="lbNext" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+  </div>
+
+  <footer class="mini-footer">
+    <div class="container">
+      <p>&copy; <span id="year">2026</span> Empower Foundation &middot; 501(c)(3) Nonprofit</p>
+      <a href="volunteer.html#albums">&larr; Back to Volunteer</a>
+    </div>
+  </footer>
+
+  <script>
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+    document.getElementById('year').textContent = new Date().getFullYear();
+    (function(){
+      var h=document.querySelector('.site-header');
+      function u(){ h.classList.toggle('scrolled', window.scrollY>8); }
+      window.addEventListener('scroll', u, {passive:true}); u();
+    })();
+    (function(){
+      var t=document.getElementById('navToggle'), m=document.getElementById('mobileMenu');
+      t.addEventListener('click', function(){
+        var open=!m.classList.contains('open');
+        if(open) m.style.display='block';
+        m.classList.toggle('open', open);
+        t.setAttribute('aria-expanded', open?'true':'false');
+      });
+    })();
+    (function(){
+      var tiles=[].slice.call(document.querySelectorAll('.album-tile'));
+      var lb=document.getElementById('lb'), img=document.getElementById('lbImg'), count=document.getElementById('lbCount');
+      var i=0;
+      function show(n){ i=((n%tiles.length)+tiles.length)%tiles.length; img.src=tiles[i].getAttribute('data-full'); count.textContent=(i+1)+' / '+tiles.length; }
+      function open(n){ show(n); lb.classList.add('open'); document.body.style.overflow='hidden'; }
+      function close(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+      tiles.forEach(function(t,idx){ t.addEventListener('click', function(){ open(idx); }); });
+      document.getElementById('lbClose').addEventListener('click', close);
+      document.getElementById('lbPrev').addEventListener('click', function(){ show(i-1); });
+      document.getElementById('lbNext').addEventListener('click', function(){ show(i+1); });
+      lb.addEventListener('click', function(e){ if(e.target===lb) close(); });
+      document.addEventListener('keydown', function(e){
+        if(!lb.classList.contains('open')) return;
+        if(e.key==='Escape') close();
+        else if(e.key==='ArrowLeft') show(i-1);
+        else if(e.key==='ArrowRight') show(i+1);
+      });
+    })();
+  </script>
+  <script src="bg.js" defer></script>
+  <script src="anim.js" defer></script>
+</body>
+</html>
