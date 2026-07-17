@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Events — Empower Foundation</title>
+  <meta name="description" content="Events by Empower Foundation — STEM volunteering at the Boys & Girls Club of Stanton, the Empower Book Drive, and more to come." />
+  <meta name="theme-color" content="#2563EB" />
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --primary:#2563EB; --primary-700:#1D4ED8; --primary-800:#1E40AF;
+      --accent:#16A34A; --accent-700:#15803D;
+      --bg:#F2F6F5; --surface:#FFFFFF;
+      --heading:#0B1F44; --text:#3C4658; --muted:#67738A;
+      --border:#DBE6F7; --border-strong:#C6D8F2; --ring:#2563EB;
+      --shadow-sm:0 1px 2px rgba(11,31,68,.05), 0 6px 18px rgba(11,31,68,.06);
+      --shadow-md:0 16px 44px -18px rgba(11,31,68,.30);
+      --container:1180px;
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{-webkit-text-size-adjust:100%}
+    @media (prefers-reduced-motion: no-preference){html{scroll-behavior:smooth}}
+    body{margin:0; background:var(--bg); color:var(--text); font-family:"Source Sans 3",system-ui,sans-serif; font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased}
+    h1,h2,h3{font-family:"Lexend",system-ui,sans-serif; color:var(--heading); margin:0; line-height:1.12}
+    p{margin:0}
+    a{color:var(--primary-700); text-decoration:none}
+    img,svg{display:block; max-width:100%}
+    :focus-visible{outline:3px solid var(--ring); outline-offset:3px; border-radius:6px}
+    .container{width:100%; max-width:var(--container); margin-inline:auto; padding-inline:clamp(20px,5vw,40px)}
+    .btn{display:inline-flex; align-items:center; justify-content:center; gap:9px; min-height:48px; padding:0 24px; font-family:"Lexend",sans-serif; font-weight:600; font-size:1rem; border-radius:12px; border:1.5px solid transparent; cursor:pointer; transition:transform .18s ease, box-shadow .25s ease, background-color .2s ease; text-decoration:none}
+    .btn:hover{text-decoration:none; transform:translateY(-2px)}
+    .btn svg{width:18px; height:18px}
+    .btn-accent{background:#0E9F6E; color:#fff; box-shadow:0 8px 20px -10px rgba(14,159,110,.45)}
+    .btn-accent:hover{background:#0B7D57}
+    .btn-outline{background:rgba(255,255,255,.9); color:var(--primary-800); border-color:var(--border-strong); box-shadow:var(--shadow-sm)}
+    .btn-outline:hover{border-color:var(--primary); background:#fff}
+
+    /* header */
+    .site-header{position:sticky; top:0; z-index:100; background:rgba(247,251,255,.9); border-bottom:1px solid transparent; transition:border-color .25s, box-shadow .25s}
+    .site-header.scrolled{border-bottom-color:var(--border); box-shadow:0 6px 24px -18px rgba(11,31,68,.5)}
+    .nav{display:flex; align-items:center; gap:18px; height:74px}
+    .brand{display:inline-flex; align-items:center; gap:11px; font-family:"Lexend",sans-serif; font-weight:700; font-size:1.18rem; color:var(--heading)}
+    .brand .logo{width:44px; height:44px; flex:none; object-fit:contain}
+    .nav-links{display:flex; align-items:center; gap:4px; margin-left:auto}
+    .nav-links a{font-family:"Lexend",sans-serif; font-weight:500; font-size:.97rem; color:var(--heading); padding:9px 14px; border-radius:10px}
+    .nav-links a:hover{background:#EAF1EF; text-decoration:none}
+    .nav-links a[aria-current="page"]{background:linear-gradient(120deg, rgba(37,99,235,.16), rgba(16,185,129,.16)); color:var(--primary-800); font-weight:600}
+    .nav-toggle{display:none; margin-left:auto; width:46px; height:46px; align-items:center; justify-content:center; background:var(--surface); border:1.5px solid var(--border-strong); border-radius:12px; cursor:pointer; color:var(--heading)}
+    .nav-toggle svg{width:24px;height:24px}
+    .nav-toggle .ico-close{display:none}
+    .nav-toggle[aria-expanded="true"] .ico-open{display:none}
+    .nav-toggle[aria-expanded="true"] .ico-close{display:block}
+    .mobile-menu{display:none; position:fixed; inset:74px 0 auto 0; z-index:99; background:var(--bg); border-bottom:1px solid var(--border); padding:18px clamp(20px,5vw,40px) 26px; transform:translateY(-12px); opacity:0; pointer-events:none; transition:opacity .22s, transform .22s}
+    .mobile-menu.open{opacity:1; transform:none; pointer-events:auto}
+    .mobile-menu a{display:block; font-family:"Lexend",sans-serif; font-weight:500; font-size:1.05rem; color:var(--heading); padding:14px 6px; border-bottom:1px solid var(--border)}
+    @media (max-width:760px){ .nav-links{display:none} .nav-toggle{display:inline-flex} .mobile-menu{display:block} }
+
+    /* hero */
+    .ev-hero{padding:clamp(40px,7vw,72px) 0 clamp(16px,3vw,28px); text-align:center}
+    .ev-kicker{display:inline-flex; align-items:center; gap:8px; font-family:"Lexend",sans-serif; font-weight:600; font-size:.78rem; letter-spacing:.22em; text-transform:uppercase; color:var(--primary-700)}
+    .ev-kicker::before{content:""; width:26px; height:2px; border-radius:2px; background:var(--accent)}
+    .ev-title{margin-top:12px; font-weight:800; font-size:clamp(2.8rem,8vw,4.8rem); letter-spacing:.01em; text-transform:uppercase;
+      background:linear-gradient(120deg,#1D4ED8,#2563EB 45%,#10B981); -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent; color:transparent}
+    .ev-sub{margin:12px auto 0; max-width:58ch; color:var(--muted); font-size:1.05rem}
+
+    /* event blocks */
+    .ev-block{padding:clamp(28px,4.5vw,52px) 0}
+    .ev-grid{display:grid; grid-template-columns:1fr 1fr; gap:clamp(24px,4vw,48px); align-items:center}
+    .ev-block.flip .ev-grid > .ev-copy{order:2}
+    @media (max-width:860px){ .ev-grid{grid-template-columns:1fr} .ev-block.flip .ev-grid > .ev-copy{order:0} }
+    .ev-num{display:inline-flex; align-items:center; gap:10px; font-family:"Lexend",sans-serif; font-weight:700; font-size:.85rem; letter-spacing:.14em; text-transform:uppercase; color:var(--primary-700)}
+    .ev-num .n{display:grid; place-items:center; width:34px; height:34px; border-radius:11px; background:linear-gradient(135deg,#2563EB,#16A34A); color:#fff; font-size:1rem; letter-spacing:0}
+    .ev-copy h2{margin-top:14px; font-weight:800; font-size:clamp(1.6rem,3.4vw,2.3rem); letter-spacing:-.015em}
+    .ev-meta{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px}
+    .ev-meta span{display:inline-flex; align-items:center; gap:6px; padding:6px 13px; border-radius:999px; background:var(--surface); border:1px solid var(--border); font-family:"Lexend",sans-serif; font-weight:600; font-size:.8rem; color:var(--heading)}
+    .ev-meta svg{width:14px; height:14px; color:var(--accent-700)}
+    .ev-copy p.desc{margin-top:16px; color:var(--text)}
+    .ev-tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:14px}
+    .ev-tags span{font-family:"Lexend",sans-serif; font-weight:600; font-size:.8rem; padding:6px 12px; border-radius:999px; background:#EAF1EF; color:var(--primary-800)}
+    .ev-links{display:flex; flex-wrap:wrap; gap:12px; margin-top:20px}
+
+    /* photo collage */
+    .ev-photos{display:grid; grid-template-columns:repeat(2,1fr); gap:12px}
+    .ev-photos .ev-ph{position:relative; border:none; padding:0; border-radius:14px; overflow:hidden; cursor:zoom-in; background:var(--surface); box-shadow:var(--shadow-sm); aspect-ratio:4/3; transition:transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s ease}
+    .ev-photos .ev-ph img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+    .ev-photos .ev-ph:hover{transform:translateY(-3px); box-shadow:var(--shadow-md)}
+    .ev-photos .ev-ph:hover img{transform:scale(1.05)}
+    /* photos-incoming panel */
+    .ev-soon-photos{display:grid; place-items:center; gap:10px; text-align:center; padding:clamp(28px,4vw,44px); background:var(--surface); border:1.5px dashed var(--border-strong); border-radius:16px; color:var(--muted); min-height:240px}
+    .ev-soon-photos .cam{width:52px; height:52px; border-radius:15px; display:grid; place-items:center; background:#EAF1EF; color:var(--primary-700)}
+    .ev-soon-photos .cam svg{width:26px; height:26px}
+    .ev-soon-photos strong{font-family:"Lexend",sans-serif; color:var(--heading)}
+
+    .ev-divider{height:1px; background:linear-gradient(90deg, transparent, var(--border-strong), transparent)}
+
+    /* more to come */
+    .ev-more{padding:clamp(36px,6vw,64px) 0 clamp(52px,8vw,84px)}
+    .ev-more-inner{text-align:center; background:linear-gradient(135deg,#0F2C5E,#123A73); color:#fff; border-radius:18px; padding:clamp(30px,5vw,52px); box-shadow:var(--shadow-md)}
+    .ev-more-inner h2{color:#fff; font-size:clamp(1.5rem,3vw,2.1rem); font-weight:800}
+    .ev-more-inner p{color:#C9DCF6; margin:12px auto 0; max-width:52ch}
+    .ev-more-inner .btn{margin-top:22px}
+
+    /* lightbox */
+    .lb{position:fixed; inset:0; z-index:300; display:grid; place-items:center; padding:20px; background:rgba(7,13,28,.88); opacity:0; pointer-events:none; transition:opacity .25s ease}
+    .lb.open{opacity:1; pointer-events:auto}
+    .lb img{max-width:min(1200px,94vw); max-height:84vh; width:auto; height:auto; border-radius:12px; box-shadow:0 40px 90px -28px rgba(0,0,0,.7)}
+    .lb-count{position:absolute; top:18px; left:50%; transform:translateX(-50%); color:#fff; font-family:"Lexend",sans-serif; font-weight:600; font-size:.92rem; opacity:.85}
+    .lb-btn{position:absolute; width:46px; height:46px; border-radius:50%; border:none; background:rgba(255,255,255,.94); color:var(--heading); display:grid; place-items:center; cursor:pointer; transition:transform .18s ease}
+    .lb-btn:hover{transform:scale(1.08)}
+    .lb-btn svg{width:22px; height:22px}
+    .lb-close{top:16px; right:16px}
+    .lb-prev{left:14px; top:50%; margin-top:-23px}
+    .lb-next{right:14px; top:50%; margin-top:-23px}
+    @media (max-width:600px){ .lb-prev{left:8px} .lb-next{right:8px} }
+
+    /* footer */
+    .mini-footer{background:linear-gradient(180deg,#0F2C5E,#06173A); color:#B6CBE8; padding:26px 0; font-size:.92rem}
+    .mini-footer .container{display:flex; flex-wrap:wrap; gap:10px 24px; align-items:center; justify-content:space-between}
+    .mini-footer a{color:#DCEAFB; font-weight:600}
+    .mini-footer p{margin:0}
+
+    .js .reveal{opacity:0; transform:translateY(28px); transition:opacity .7s cubic-bezier(.22,.72,.24,1), transform .8s cubic-bezier(.22,.72,.24,1)}
+    .js .reveal.in{opacity:1; transform:none}
+    @media (prefers-reduced-motion: reduce){ .js .reveal{opacity:1; transform:none} }
+  </style>
+  <link rel="stylesheet" href="theme.css?v=6" />
+</head>
+<body>
+  <header class="site-header" id="top">
+    <div class="container">
+      <nav class="nav" aria-label="Primary">
+        <a href="index.html" class="brand" aria-label="Empower Foundation home">
+          <img class="logo" src="logo-mark.png" alt="" />
+          <span>Empower Foundation</span>
+        </a>
+        <div class="nav-links">
+          <a href="about.html">About</a>
+          <a href="programs.html">Programs</a>
+          <a href="impact.html">Impact</a>
+          <a href="events.html" aria-current="page">Events</a>
+          <a href="volunteer.html">Volunteer</a>
+          <a href="partnership.html">Partnerships</a>
+          <a href="contact.html">Contact</a>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <svg class="ico-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          <svg class="ico-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </nav>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="about.html">About</a>
+      <a href="programs.html">Programs</a>
+      <a href="impact.html">Impact</a>
+      <a href="events.html" aria-current="page">Events</a>
+      <a href="volunteer.html">Volunteer</a>
+      <a href="partnership.html">Partnerships</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="ev-hero">
+      <div class="container">
+        <span class="ev-kicker">What We&#39;ve Done</span>
+        <h1 class="ev-title">Events</h1>
+        <p class="ev-sub">Every event has one goal: give Orange County kids a hands-on experience they&#39;ll remember. Here&#39;s what we&#39;ve been up to.</p>
+      </div>
+    </section>
+
+    <!-- ===== Event 1: STEM Volunteering ===== -->
+    <section class="ev-block" id="stem-day">
+      <div class="container">
+        <div class="ev-grid">
+          <div class="ev-copy reveal">
+            <span class="ev-num"><span class="n">1</span> Event 01</span>
+            <h2>STEM Volunteering at the Boys &amp; Girls Club of Stanton</h2>
+            <div class="ev-meta">
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Stanton, CA</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> Spring 2026</span>
+            </div>
+            <p class="desc">We spent the day with the kids at the Boys &amp; Girls Club of Stanton showing them that STEM isn&#39;t a textbook — it&#39;s something you get your hands on. Our volunteers ran stations where kids made their own slime, engineered LEGO builds, learned chess strategy, and tackled hands-on building challenges. Every activity snuck real science, engineering, and problem-solving into an afternoon that just felt like fun.</p>
+            <div class="ev-tags"><span>Slime chemistry</span><span>LEGO builds</span><span>Chess</span><span>Building challenges</span></div>
+            <div class="ev-links">
+              <a class="btn btn-outline" href="gallery-2026.html#spring">See all photos
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </div>
+          <div class="ev-photos reveal" data-d="1">
+            <button class="ev-ph" data-full="images/spring-2026-01.jpg" aria-label="Open photo"><img src="images/spring-2026-01.jpg" alt="STEM day at the Boys and Girls Club of Stanton" loading="lazy" /></button>
+            <button class="ev-ph" data-full="images/spring-2026-02.jpg" aria-label="Open photo"><img src="images/spring-2026-02.jpg" alt="Kids doing hands-on STEM activities" loading="lazy" /></button>
+            <button class="ev-ph" data-full="images/spring-2026-03.jpg" aria-label="Open photo"><img src="images/spring-2026-03.jpg" alt="Volunteers running an activity station" loading="lazy" /></button>
+            <button class="ev-ph" data-full="images/spring-2026-04.jpg" aria-label="Open photo"><img src="images/spring-2026-04.jpg" alt="Building challenge at the club" loading="lazy" /></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container"><div class="ev-divider"></div></div>
+
+    <!-- ===== Event 2: Empower Book Drive ===== -->
+    <section class="ev-block flip" id="book-drive">
+      <div class="container">
+        <div class="ev-grid">
+          <div class="ev-copy reveal">
+            <span class="ev-num"><span class="n">2</span> Event 02</span>
+            <h2>Empower Book Drive</h2>
+            <div class="ev-meta">
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Orange County, CA</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Community drive</span>
+            </div>
+            <p class="desc">Our team gathered in a local neighborhood and went door to door collecting book donations from the community. Every book we gathered was donated to local charities, nonprofits, and libraries — putting stories back into circulation and into the hands of kids and families across Orange County. A simple idea, a full trunk of books, and a lot of neighbors who wanted to help.</p>
+            <div class="ev-tags"><span>Community donations</span><span>Local charities</span><span>Nonprofits</span><span>Libraries</span></div>
+          </div>
+          <div class="ev-photos reveal" data-d="1" id="bookdrivePhotos">
+            <div class="ev-soon-photos" style="grid-column:1/-1">
+              <span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span>
+              <strong>Photos are on the way</strong>
+              <p>We&#39;re getting the book drive photos ready — check back soon.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== More to come ===== -->
+    <section class="ev-more">
+      <div class="container">
+        <div class="ev-more-inner reveal">
+          <h2>More to come.</h2>
+          <p>We&#39;re already planning what&#39;s next — more workshops, more drives, more days that make a difference. Become a member and be part of the next one.</p>
+          <a class="btn btn-accent" href="https://docs.google.com/forms/d/e/1FAIpQLSfQb9ZlRo9s5LPFhD4UAlIQL3xLcodb1IBYewKDDv5xClT3ag/viewform?usp=header" target="_blank" rel="noopener">Join the next event
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Photo viewer">
+    <span class="lb-count" id="lbCount"></span>
+    <img id="lbImg" alt="" />
+    <button class="lb-btn lb-close" id="lbClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <button class="lb-btn lb-next" id="lbNext" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+  </div>
+
+  <footer class="mini-footer">
+    <div class="container">
+      <p>&copy; <span id="year">2026</span> Empower Foundation &middot; 501(c)(3) Nonprofit</p>
+      <a href="gallery-2026.html">Browse the 2026 Gallery &rarr;</a>
+    </div>
+  </footer>
+
+  <script>
+    document.documentElement.classList.remove('no-js');
+    document.documentElement.classList.add('js');
+    document.getElementById('year').textContent = new Date().getFullYear();
+    (function(){
+      var h=document.querySelector('.site-header');
+      function u(){ h.classList.toggle('scrolled', window.scrollY>8); }
+      window.addEventListener('scroll', u, {passive:true}); u();
+    })();
+    (function(){
+      var t=document.getElementById('navToggle'), m=document.getElementById('mobileMenu');
+      t.addEventListener('click', function(){
+        var open=!m.classList.contains('open');
+        if(open) m.style.display='block';
+        m.classList.toggle('open', open);
+        t.setAttribute('aria-expanded', open?'true':'false');
+      });
+    })();
+    (function(){
+      var tiles=[].slice.call(document.querySelectorAll('.ev-ph'));
+      if(!tiles.length) return;
+      var lb=document.getElementById('lb'), img=document.getElementById('lbImg'), count=document.getElementById('lbCount');
+      var i=0;
+      function show(n){ i=((n%tiles.length)+tiles.length)%tiles.length; img.src=tiles[i].getAttribute('data-full'); count.textContent=(i+1)+' / '+tiles.length; }
+      function open(n){ show(n); lb.classList.add('open'); document.body.style.overflow='hidden'; }
+      function close(){ lb.classList.remove('open'); document.body.style.overflow=''; }
+      tiles.forEach(function(t,idx){ t.addEventListener('click', function(){ open(idx); }); });
+      document.getElementById('lbClose').addEventListener('click', close);
+      document.getElementById('lbPrev').addEventListener('click', function(){ show(i-1); });
+      document.getElementById('lbNext').addEventListener('click', function(){ show(i+1); });
+      lb.addEventListener('click', function(e){ if(e.target===lb) close(); });
+      document.addEventListener('keydown', function(e){
+        if(!lb.classList.contains('open')) return;
+        if(e.key==='Escape') close();
+        else if(e.key==='ArrowLeft') show(i-1);
+        else if(e.key==='ArrowRight') show(i+1);
+      });
+    })();
+  </script>
+  <script src="bg.js" defer></script>
+  <script src="anim.js" defer></script>
+</body>
+</html>

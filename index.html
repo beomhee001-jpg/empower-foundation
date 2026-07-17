@@ -237,6 +237,22 @@
     .join-band .btn{flex:none}
     @media (max-width:640px){ .join-inner{flex-direction:column; align-items:stretch; text-align:center} }
 
+    /* ===== What We've Done (events teaser) ===== */
+    .done-grid{display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(28px,4.5vw,56px); align-items:center}
+    @media (max-width:860px){ .done-grid{grid-template-columns:1fr} }
+    .done-copy h2{font-size:clamp(1.8rem,3.4vw,2.5rem); font-weight:800; letter-spacing:-.02em}
+    .done-copy p{margin-top:14px; color:var(--text)}
+    .done-list{display:grid; gap:12px; margin-top:20px}
+    .done-list li{display:flex; gap:12px; align-items:flex-start; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px 16px; box-shadow:var(--shadow-sm)}
+    .done-list .dn{flex:none; display:grid; place-items:center; width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,#2563EB,#16A34A); color:#fff; font-family:"Lexend",sans-serif; font-weight:700; font-size:.95rem}
+    .done-list strong{display:block; font-family:"Lexend",sans-serif; color:var(--heading); font-size:1rem; line-height:1.3}
+    .done-list small{color:var(--muted); font-size:.88rem}
+    .done-photo{position:relative; border-radius:18px; overflow:hidden; box-shadow:var(--shadow-md); aspect-ratio:4/3; display:block}
+    .done-photo img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+    .done-photo:hover img{transform:scale(1.04)}
+    .done-photo .dp-tag{position:absolute; left:14px; bottom:14px; display:inline-flex; align-items:center; gap:7px; padding:8px 14px; border-radius:999px; background:rgba(255,255,255,.93); font-family:"Lexend",sans-serif; font-weight:600; font-size:.83rem; color:var(--heading)}
+    .done-actions{display:flex; flex-wrap:wrap; gap:12px; margin-top:22px}
+
     /* Contact */
     .contact-grid{display:grid; grid-template-columns:.92fr 1.08fr; gap:clamp(30px,4vw,56px); align-items:start}
     .contact-info .card{padding:0; border:none; background:transparent; box-shadow:none}
@@ -696,6 +712,7 @@
           <a href="about.html">About</a>
           <a href="programs.html">Programs</a>
           <a href="impact.html">Impact</a>
+          <a href="events.html">Events</a>
           <a href="volunteer.html">Volunteer</a>
           <a href="partnership.html">Partnerships</a>
           <a href="contact.html">Contact</a>
@@ -711,6 +728,7 @@
       <a href="about.html">About</a>
       <a href="programs.html">Programs</a>
       <a href="impact.html">Impact</a>
+          <a href="events.html">Events</a>
       <a href="volunteer.html">Volunteer</a>
       <a href="partnership.html">Partnerships</a>
       <a href="contact.html">Contact</a>
@@ -904,6 +922,32 @@
             </ul>
             <a href="#get-involved" class="more">Support this program <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== What We've Done (events teaser) ===== -->
+    <section class="section" id="what-weve-done">
+      <div class="container">
+        <div class="done-grid">
+          <div class="done-copy reveal">
+            <span class="eyebrow">What We've Done</span>
+            <h2>Real events. Real impact.</h2>
+            <p>We don't just talk about empowering kids — we show up and do it. Every event we run puts hands-on learning and real resources directly into the community, from STEM afternoons to neighborhood drives.</p>
+            <ul class="done-list">
+              <li><span class="dn">1</span><span><strong>STEM Volunteering at the Boys &amp; Girls Club of Stanton</strong><small>Slime, LEGO builds, chess &amp; building challenges</small></span></li>
+              <li><span class="dn">2</span><span><strong>Empower Book Drive</strong><small>Neighborhood book collection donated to local charities, nonprofits &amp; libraries</small></span></li>
+            </ul>
+            <div class="done-actions">
+              <a class="btn btn-primary" href="events.html">See our events
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
+          </div>
+          <a class="done-photo reveal" data-d="1" href="events.html" aria-label="See our events">
+            <img src="images/spring-2026-02.jpg" alt="Empower Foundation volunteers with kids at a STEM event" loading="lazy" />
+            <span class="dp-tag">2 events so far &middot; more to come</span>
+          </a>
         </div>
       </div>
     </section>
