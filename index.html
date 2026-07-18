@@ -2456,7 +2456,7 @@
 
       function init(){
         renderer=new THREE.WebGLRenderer({canvas:glcv, antialias:true, alpha:true});
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.35));   // perf: 2.0 was 2.2x the pixels
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio||1,1.5));   // crisp base; dynamic-res drops it only mid-scrub
         renderer.setClearColor(0x000000, 0);   // transparent — the site particle field shows behind
         if(THREE.ColorManagement) THREE.ColorManagement.enabled=true;
         renderer.outputEncoding=THREE.sRGBEncoding;
@@ -2559,7 +2559,21 @@
 
       if(reduce){ render(1,0); if(hint) hint.style.display='none'; return; }
       var raf=null, inView=false, t0=performance.now();
-      function frame(now){ var time=(now-t0)/1000, tgt=progress(); curG+=(tgt-curG)*0.085; if(Math.abs(tgt-curG)<0.0003) curG=tgt; render(curG,time); if(inView) raf=requestAnimationFrame(frame); else raf=null; }
+      // Dynamic resolution: while the scroll is scrubbing fast the scene renders at a
+      // lower internal resolution (motion hides it), and snaps back to full crispness
+      // the moment it settles — same visual quality when you can actually look at it,
+      // a fraction of the GPU cost while it's flying. Idle wind renders at ~30fps.
+      var RES_HI=Math.min(window.devicePixelRatio||1,1.5), RES_LO=Math.min(window.devicePixelRatio||1,0.85), resLow=false, lastWind=0;
+      function frame(now){
+        var time=(now-t0)/1000, tgt=progress();
+        var d=Math.abs(tgt-curG);
+        curG+=(tgt-curG)*0.085; if(Math.abs(tgt-curG)<0.0003) curG=tgt;
+        if(!resLow && d>0.006){ resLow=true; renderer.setPixelRatio(RES_LO); resize(); }
+        else if(resLow && d<0.0018){ resLow=false; renderer.setPixelRatio(RES_HI); resize(); }
+        if(curG===tgt){ if(now-lastWind>=33){ render(curG,time); lastWind=now; } }
+        else { render(curG,time); lastWind=now; }
+        if(inView) raf=requestAnimationFrame(frame); else raf=null;
+      }
       function startLoop(){ if(!raf) raf=requestAnimationFrame(frame); }
       render(progress(),0);
       if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ inView=es[0].isIntersecting; if(inView) startLoop(); }, {threshold:0}).observe(sec); }
