@@ -91,6 +91,12 @@
     .ev-photos .ev-ph:hover img{transform:scale(1.05)}
     /* an odd photo count: the last one goes wide instead of leaving a gap */
     .ev-photos .ev-ph:nth-child(odd):last-child{grid-column:1/-1; aspect-ratio:16/9}
+    /* single hero photo per event — links to the full pictures page */
+    .ev-photo-single{position:relative; display:block; border-radius:16px; overflow:hidden; box-shadow:var(--shadow-md); aspect-ratio:4/3; transition:transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease}
+    .ev-photo-single:hover{transform:translateY(-4px); box-shadow:0 30px 70px -26px rgba(11,31,68,.5)}
+    .ev-photo-single img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+    .ev-photo-single:hover img{transform:scale(1.05)}
+    .eps-tag{position:absolute; left:14px; bottom:14px; display:inline-flex; align-items:center; gap:7px; padding:8px 14px; border-radius:999px; background:rgba(255,255,255,.93); font-family:"Lexend",sans-serif; font-weight:600; font-size:.83rem; color:var(--heading)}
     /* photos-incoming panel */
     .ev-soon-photos{display:grid; place-items:center; gap:10px; text-align:center; padding:clamp(28px,4vw,44px); background:var(--surface); border:1.5px dashed var(--border-strong); border-radius:16px; color:var(--muted); min-height:240px}
     .ev-soon-photos .cam{width:52px; height:52px; border-radius:15px; display:grid; place-items:center; background:#EAF1EF; color:var(--primary-700)}
@@ -183,22 +189,20 @@
             <h2>STEM Volunteering at the Boys &amp; Girls Club of Stanton</h2>
             <div class="ev-meta">
               <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Stanton, CA</span>
-              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> Spring 2026</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> May 2, 2026</span>
             </div>
             <p class="desc">We spent the day with the kids at the Boys &amp; Girls Club of Stanton showing them that STEM isn&#39;t a textbook — it&#39;s something you get your hands on. Our volunteers ran stations where kids made their own slime, engineered LEGO builds, learned chess strategy, and tackled hands-on building challenges. Every activity snuck real science, engineering, and problem-solving into an afternoon that just felt like fun.</p>
             <div class="ev-tags"><span>Slime chemistry</span><span>LEGO builds</span><span>Chess</span><span>Building challenges</span></div>
             <div class="ev-links">
-              <a class="btn btn-outline" href="gallery-2026.html#spring">See all photos
+              <a class="btn btn-outline" href="stem-day-pictures.html">View all pictures
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
               </a>
             </div>
           </div>
-          <div class="ev-photos reveal" data-d="1">
-            <button class="ev-ph" data-full="images/spring-2026-01.jpg" aria-label="Open photo"><img src="images/spring-2026-01.jpg" alt="STEM day at the Boys and Girls Club of Stanton" loading="lazy" /></button>
-            <button class="ev-ph" data-full="images/spring-2026-02.jpg" aria-label="Open photo"><img src="images/spring-2026-02.jpg" alt="Kids doing hands-on STEM activities" loading="lazy" /></button>
-            <button class="ev-ph" data-full="images/spring-2026-03.jpg" aria-label="Open photo"><img src="images/spring-2026-03.jpg" alt="Volunteers running an activity station" loading="lazy" /></button>
-            <button class="ev-ph" data-full="images/spring-2026-04.jpg" aria-label="Open photo"><img src="images/spring-2026-04.jpg" alt="Building challenge at the club" loading="lazy" /></button>
-          </div>
+          <a class="ev-photo-single reveal" data-d="1" href="stem-day-pictures.html" aria-label="View all STEM day pictures">
+            <img src="images/spring-2026-01.jpg" alt="Kids smiling over their chess boards at the Boys and Girls Club of Stanton" loading="lazy" />
+            <span class="eps-tag">4 pictures &middot; view all</span>
+          </a>
         </div>
       </div>
     </section>
@@ -214,21 +218,21 @@
             <h2>Empower Book Drive</h2>
             <div class="ev-meta">
               <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Orange County, CA</span>
-              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> Community drive</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg> June 27, 2026</span>
+              <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg> 127 books collected</span>
             </div>
-            <p class="desc">Our team gathered in a local neighborhood and went door to door collecting book donations from the community. Every book we gathered was donated to local charities, nonprofits, and libraries — putting stories back into circulation and into the hands of kids and families across Orange County. A simple idea, a full trunk of books, and a lot of neighbors who wanted to help.</p>
-            <div class="ev-tags"><span>Community donations</span><span>Local charities</span><span>Nonprofits</span><span>Libraries</span></div>
+            <p class="desc">Our team gathered in a local neighborhood and collected book donations from the community — <strong>127 books in total</strong>. Every one of them was donated to local charities, nonprofits, and libraries, putting stories back into circulation and into the hands of kids and families across Orange County. A simple idea, a table on the sidewalk, and a lot of neighbors who wanted to help.</p>
+            <div class="ev-tags"><span>127 books</span><span>Local charities</span><span>Nonprofits</span><span>Libraries</span></div>
+            <div class="ev-links">
+              <a class="btn btn-outline" href="book-drive-pictures.html">View all pictures
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            </div>
           </div>
-          <div class="ev-photos reveal" data-d="1" id="bookdrivePhotos">
-            <button class="ev-ph" data-full="images/bookdrive-01.jpg" aria-label="Open photo"><img src="images/bookdrive-01.jpg" alt="Empower Book Drive — collecting books in the neighborhood" loading="lazy" /></button>
-            <button class="ev-ph" data-full="images/bookdrive-02.jpg" aria-label="Open photo"><img src="images/bookdrive-02.jpg" alt="Volunteers gathering donated books" loading="lazy" /></button>
-            <button class="ev-ph" data-full="images/bookdrive-03.jpg" aria-label="Open photo"><img src="images/bookdrive-03.jpg" alt="Book donations from the community" loading="lazy" /></button>
-            <button class="ev-ph" data-full="images/bookdrive-04.jpg" aria-label="Open photo"><img src="images/bookdrive-04.jpg" alt="Sorting collected books" loading="lazy" /></button>
-            <button class="ev-ph" data-full="images/bookdrive-05.jpg" aria-label="Open photo"><img src="images/bookdrive-05.jpg" alt="Books ready for donation" loading="lazy" /></button>
-            <button class="ev-ph" data-full="images/bookdrive-06.jpg" aria-label="Open photo"><img src="images/bookdrive-06.jpg" alt="Volunteers on the book drive" loading="lazy" /></button>
-            <button class="ev-ph" data-full="images/bookdrive-07.jpg" aria-label="Open photo"><img src="images/bookdrive-07.jpg" alt="Neighborhood book collection" loading="lazy" /></button>
-            <button class="ev-ph" data-full="images/bookdrive-08.jpg" aria-label="Open photo"><img src="images/bookdrive-08.jpg" alt="Donated books for local charities, nonprofits, and libraries" loading="lazy" /></button>
-          </div>
+          <a class="ev-photo-single reveal" data-d="1" href="book-drive-pictures.html" aria-label="View all Empower Book Drive pictures">
+            <img src="images/bookdrive-07.jpg" alt="The Empower Foundation team behind the book drive donation table" loading="lazy" />
+            <span class="eps-tag">8 pictures &middot; view all</span>
+          </a>
         </div>
       </div>
     </section>
