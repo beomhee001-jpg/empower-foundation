@@ -220,11 +220,14 @@
             <div class="ev-tags"><span>Community donations</span><span>Local charities</span><span>Nonprofits</span><span>Libraries</span></div>
           </div>
           <div class="ev-photos reveal" data-d="1" id="bookdrivePhotos">
-            <div class="ev-soon-photos" style="grid-column:1/-1">
-              <span class="cam"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></span>
-              <strong>Photos are on the way</strong>
-              <p>We&#39;re getting the book drive photos ready — check back soon.</p>
-            </div>
+            <button class="ev-ph" data-full="images/bookdrive-01.jpg" aria-label="Open photo"><img src="images/bookdrive-01.jpg" alt="Empower Book Drive — collecting books in the neighborhood" loading="lazy" /></button>
+            <button class="ev-ph" data-full="images/bookdrive-02.jpg" aria-label="Open photo"><img src="images/bookdrive-02.jpg" alt="Volunteers gathering donated books" loading="lazy" /></button>
+            <button class="ev-ph" data-full="images/bookdrive-03.jpg" aria-label="Open photo"><img src="images/bookdrive-03.jpg" alt="Book donations from the community" loading="lazy" /></button>
+            <button class="ev-ph" data-full="images/bookdrive-04.jpg" aria-label="Open photo"><img src="images/bookdrive-04.jpg" alt="Sorting collected books" loading="lazy" /></button>
+            <button class="ev-ph" data-full="images/bookdrive-05.jpg" aria-label="Open photo"><img src="images/bookdrive-05.jpg" alt="Books ready for donation" loading="lazy" /></button>
+            <button class="ev-ph" data-full="images/bookdrive-06.jpg" aria-label="Open photo"><img src="images/bookdrive-06.jpg" alt="Volunteers on the book drive" loading="lazy" /></button>
+            <button class="ev-ph" data-full="images/bookdrive-07.jpg" aria-label="Open photo"><img src="images/bookdrive-07.jpg" alt="Neighborhood book collection" loading="lazy" /></button>
+            <button class="ev-ph" data-full="images/bookdrive-08.jpg" aria-label="Open photo"><img src="images/bookdrive-08.jpg" alt="Donated books for local charities, nonprofits, and libraries" loading="lazy" /></button>
           </div>
         </div>
       </div>
@@ -278,14 +281,17 @@
       });
     })();
     (function(){
-      var tiles=[].slice.call(document.querySelectorAll('.ev-ph'));
-      if(!tiles.length) return;
+      var all=[].slice.call(document.querySelectorAll('.ev-ph'));
+      if(!all.length) return;
       var lb=document.getElementById('lb'), img=document.getElementById('lbImg'), count=document.getElementById('lbCount');
-      var i=0;
+      var tiles=all, i=0;   // tiles = the collage the viewer opened from
       function show(n){ i=((n%tiles.length)+tiles.length)%tiles.length; img.src=tiles[i].getAttribute('data-full'); count.textContent=(i+1)+' / '+tiles.length; }
-      function open(n){ show(n); lb.classList.add('open'); document.body.style.overflow='hidden'; }
+      function open(group, n){ tiles=group; show(n); lb.classList.add('open'); document.body.style.overflow='hidden'; }
       function close(){ lb.classList.remove('open'); document.body.style.overflow=''; }
-      tiles.forEach(function(t,idx){ t.addEventListener('click', function(){ open(idx); }); });
+      [].forEach.call(document.querySelectorAll('.ev-photos'), function(wrap){
+        var group=[].slice.call(wrap.querySelectorAll('.ev-ph'));
+        group.forEach(function(t,idx){ t.addEventListener('click', function(){ open(group, idx); }); });
+      });
       document.getElementById('lbClose').addEventListener('click', close);
       document.getElementById('lbPrev').addEventListener('click', function(){ show(i-1); });
       document.getElementById('lbNext').addEventListener('click', function(){ show(i+1); });
