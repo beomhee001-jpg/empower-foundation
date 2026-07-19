@@ -509,6 +509,11 @@ body::before{inset:-10% !important}
 /* header hairline: single quiet line */
 .site-header::after{background:linear-gradient(90deg, transparent, rgba(11,31,68,.14), transparent); animation:none}
 
+/* balanced header: brand left, links centered, CTA right — kills the big empty
+   gap that sat between the brand and the right-packed link cluster */
+.nav-links{margin-inline:auto}
+.nav-cta{margin-left:0}
+
 /* ---- Tighter vertical rhythm: whole sections fit the viewport far more often ---- */
 :root{--space:clamp(44px, 6vw, 72px)}                    /* was clamp(64px, 9vw, 116px) */
 .section-head{margin:0 auto 34px}                        /* was 52px under the heading */
